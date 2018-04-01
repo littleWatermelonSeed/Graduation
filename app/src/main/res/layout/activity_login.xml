@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/activity_login_parent"
+    android:gravity="center"
+    android:background="@color/white5">
+
+    <LinearLayout
+        android:layout_width="500px"
+        android:layout_height="70px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:src="@drawable/zhanghao"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_login_userID"
+                android:layout_width="match_parent"
+                android:layout_height="68px"
+                android:background="@null"
+                android:ellipsize="end"
+                android:gravity="bottom|left"
+                android:singleLine="true"
+                android:hint="账号"
+                android:textColorHint="@color/white3"
+                android:textColor="@color/black1"
+                android:textAllCaps="false"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/underLine"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="500px"
+        android:layout_height="70px"
+        android:orientation="horizontal"
+        android:layout_marginTop="55px"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:src="@drawable/activity_login_password_icon"/>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_login_userPassword"
+                android:layout_width="match_parent"
+                android:layout_height="68px"
+                android:background="@null"
+                android:ellipsize="end"
+                android:gravity="bottom|left"
+                android:hint="密码"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textColor="@color/black1"
+                android:textColorHint="@color/white3"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/underLine"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/activity_login_loginButton"
+        android:layout_width="500px"
+        android:layout_height="110px"
+        android:layout_marginTop="20px"
+        android:text="登      录"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/activity_login_enter_button"/>
+
+    <RelativeLayout
+        android:layout_width="500px"
+        android:layout_height="50px">
+
+        <TextView
+            android:id="@+id/activity_login_registerUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="没有账号?马上注册>>"
+            android:textColor="@color/activity_login_register_uncheck"
+            android:textSize="18px"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/activity_login_forgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="忘记密码?"
+            android:textColor="@color/activity_login_register_uncheck"
+            android:textSize="18px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+</LinearLayout>
+
+

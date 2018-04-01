@@ -1,0 +1,231 @@
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_user_informationBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.sayhellototheworld.littlewatermelon.shareplan.view.centerplaza_view.centerplaza_fragment.UserFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/fragment_user_headPortrait"
+        android:layout_width="180px"
+        android:layout_height="180px"
+        android:layout_marginTop="180px"
+        android:src="@drawable/head_log1"
+        app:civ_border_color="@color/white1"
+        app:civ_border_width="1dp"/>
+
+    <LinearLayout
+        android:layout_width="650px"
+        android:layout_height="70px"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/fragment_user_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="600px"
+            android:singleLine="true"
+            android:text="不穿xx裤"
+            android:textColor="@color/white"
+            android:textSize="35px"/>
+
+        <ImageView
+            android:id="@+id/fragment_user_sex"
+            android:layout_width="35px"
+            android:layout_height="35px"
+            android:layout_marginLeft="10px"
+            android:src="@drawable/man_log"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="650px"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/fragment_user_introduction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="简介："
+            android:textColor="@color/white"
+            android:textSize="25px"/>
+
+        <TextView
+            android:id="@+id/fragment_user_introductionContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxWidth="500px"
+            android:singleLine="true"
+            android:text="哦豁"
+            android:textColor="@color/white"
+            android:textSize="25px"/>
+
+        <ImageView
+            android:id="@+id/fragment_user_introductionPen"
+            android:layout_width="35px"
+            android:layout_height="35px"
+            android:layout_marginLeft="8px"
+            android:src="@drawable/introduction_pen"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_user_registerAndLoginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="25px"
+        android:background="@color/wuse5"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/fragment_user_loginButton"
+            android:layout_width="450px"
+            android:layout_height="80px"
+            android:background="@drawable/radius_background_buttongreen4"
+            android:text="登录"/>
+
+        <Button
+            android:id="@+id/fragment_user_registerButton"
+            android:layout_width="450px"
+            android:layout_height="80px"
+            android:layout_marginTop="30px"
+            android:background="@drawable/radius_background_buttongreen4"
+            android:text="注册"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/fragment_user_ItemScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="25px"
+        android:background="@color/wuse5"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/fragment_user_setSkin"
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:layout_marginTop="30px"
+                android:background="@color/wuse6"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/fragment_user_setSkinIcon"
+                    android:layout_width="70px"
+                    android:layout_height="70px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10px"
+                    android:src="@drawable/skin_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:layout_toRightOf="@+id/fragment_user_setSkinIcon"
+                    android:text="更换用户背景"
+                    android:textSize="30px"/>
+
+                <ImageView
+                    android:layout_width="45px"
+                    android:layout_height="45px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginRight="15px"
+                    android:src="@drawable/right_back"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_user_setting"
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:layout_marginTop="30px"
+                android:background="@color/wuse6"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/fragment_user_settingIcon"
+                    android:layout_width="70px"
+                    android:layout_height="70px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10px"
+                    android:src="@drawable/setting"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:layout_toRightOf="@+id/fragment_user_settingIcon"
+                    android:text="设置"
+                    android:textSize="30px"/>
+
+                <ImageView
+                    android:layout_width="45px"
+                    android:layout_height="45px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginRight="15px"
+                    android:src="@drawable/right_back"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_user_bug"
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:layout_marginTop="1px"
+                android:background="@color/wuse6"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/fragment_user_bugIcon"
+                    android:layout_width="70px"
+                    android:layout_height="70px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10px"
+                    android:src="@drawable/bug"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:layout_toRightOf="@+id/fragment_user_bugIcon"
+                    android:text="提交BUG"
+                    android:textSize="30px"/>
+
+                <ImageView
+                    android:layout_width="45px"
+                    android:layout_height="45px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginRight="15px"
+                    android:src="@drawable/right_back"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</com.zhy.autolayout.AutoLinearLayout>

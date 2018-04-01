@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/radius_background2">
+
+    <TextView
+        android:id="@+id/nicedialog_head_portrait_takePicture"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="拍       照"
+        android:background="@drawable/nicedialog_head_portrait_text_background"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:id="@+id/nicedialog_head_portrait_chooseDFromAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="从相册中选择"
+        android:background="@drawable/nicedialog_head_portrait_text_background"/>
+
+    <View
+        android:id="@+id/nicedialog_head_portrait_line"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:id="@+id/nicedialog_head_portrait_choosedFromSystem"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="使用系统默认背景"
+        android:background="@drawable/nicedialog_head_portrait_text_background"/>
+
+</LinearLayout>

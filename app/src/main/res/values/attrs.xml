@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LiTopBar">
+
+        <attr name="bodyBackground" format="reference"/>
+
+        <attr name="leftImageSrc" format="reference"/>
+        <attr name="leftImageBackground" format="reference"/>
+        <attr name="leftText" format="string"/>
+        <attr name="leftTextColor" format="color"/>
+        <attr name="lefttextSize" format="dimension"/>
+        <attr name="leftContainerBackground" format="reference"/>
+        <attr name="leftImageViewWidth" format="dimension"/>
+        <attr name="leftImageViewHeight" format="dimension"/>
+        <attr name="leftContainerMargin" format="dimension"/>
+
+        <attr name="middleText" format="string"/>
+        <attr name="middleTextSize" format="dimension"/>
+        <attr name="middleContainerBackground" format="reference"/>
+        <attr name="middleTextColor" format="color"/>
+
+        <attr name="rightText" format="string"/>
+        <attr name="rightTextColor" format="color"/>
+        <attr name="rightTextSize" format="dimension"/>
+        <attr name="rightImageViewBackground" format="reference"/>
+        <attr name="rightContainerBackgroun" format="reference"/>
+        <attr name="rightImageSrc" format="reference"/>
+        <attr name="rightImageViewWidth" format="dimension"/>
+        <attr name="rightImageViewHeight" format="dimension"/>
+        <attr name="rightContainerMargin" format="dimension"/>
+    </declare-styleable>
+
+</resources>

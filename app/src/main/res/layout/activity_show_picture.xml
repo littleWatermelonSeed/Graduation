@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+
+    <RelativeLayout
+        android:id="@+id/activity_show_picture_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/lowblcak">
+
+        <LinearLayout
+            android:id="@+id/activity_show_picture_backLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返回"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/activity_show_picture_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="取消"
+            android:textSize="15sp"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/activity_show_picture_gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="4"
+        android:verticalSpacing="4dp"
+        android:horizontalSpacing="4dp"
+        android:layout_below="@+id/activity_show_picture_topbar"
+        android:layout_above="@+id/activity_show_picture_bottombar"
+        android:background="@color/gray">
+
+    </GridView>
+
+    <RelativeLayout
+        android:id="@+id/activity_show_picture_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/lowblcak">
+
+        <TextView
+            android:id="@+id/activity_show_picture_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预览"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/activity_show_picture_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

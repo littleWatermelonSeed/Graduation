@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_register_user_parent"
+    android:orientation="vertical"
+    android:background="@color/white5">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/activity_register_user_imageviewBack"
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:src="@drawable/back"
+            android:layout_marginLeft="15px"
+            android:layout_marginTop="10px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="注册账号"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/activity_register_user_imageviewCancle"
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:src="@drawable/cancle"
+            android:layout_marginRight="15px"
+            android:layout_marginTop="10px"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:layout_width="500px"
+            android:layout_height="90px"
+            android:padding="0px"
+            android:background="@android:drawable/editbox_background_normal">
+
+            <ImageView
+                android:id="@+id/activity_register_user_phoneIcon"
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5px"
+                android:src="@drawable/activity_register_phonenumber"/>
+
+            <EditText
+                android:id="@+id/activity_register_user_editTextPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="70px"
+                android:background="@null"
+                android:layout_toRightOf="@+id/activity_register_user_phoneIcon"
+                android:layout_centerVertical="true"
+                android:textSize="25px"
+                android:inputType="number"
+                android:maxLength="11"
+                android:hint="手机号"
+                android:gravity="center_vertical|left"
+                android:layout_marginRight="5px"
+                android:layout_marginLeft="20px"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="500px"
+            android:layout_height="90px"
+            android:padding="0px"
+            android:layout_marginTop="15px">
+
+            <RelativeLayout
+                android:layout_width="500px"
+                android:layout_height="90px"
+                android:padding="0px"
+                android:layout_toLeftOf="@+id/activity_register_user_buttonGetKeyCode"
+                android:background="@android:drawable/editbox_background_normal">
+
+                <ImageView
+                    android:id="@+id/activity_register_user_keyCodeIcon"
+                    android:layout_width="60px"
+                    android:layout_height="60px"
+                    android:layout_marginLeft="5px"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/activity_register_keycode"/>
+
+                <EditText
+                    android:id="@+id/activity_register_user_editTextKeyCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="70px"
+                    android:background="@null"
+                    android:layout_toRightOf="@+id/activity_register_user_keyCodeIcon"
+                    android:layout_centerVertical="true"
+                    android:textSize="25px"
+                    android:hint="验证码"
+                    android:inputType="number"
+                    android:gravity="center_vertical|left"
+                    android:layout_marginRight="5px"
+                    android:layout_marginLeft="20px"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/activity_register_user_buttonGetKeyCode"
+                android:layout_width="120px"
+                android:layout_height="80px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="发送验证码"
+                android:textSize="15px"
+                android:gravity="center"
+                android:background="@drawable/state_button1"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="500px"
+            android:layout_height="90px"
+            android:padding="0px"
+            android:layout_marginTop="15px"
+            android:background="@android:drawable/editbox_background_normal">
+
+            <ImageView
+                android:id="@+id/activity_register_user_passwordOne"
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5px"
+                android:src="@drawable/password_icon"/>
+
+            <EditText
+                android:id="@+id/activity_register_user_editTextPasswordOne"
+                android:layout_width="match_parent"
+                android:layout_height="70px"
+                android:background="@null"
+                android:layout_toRightOf="@+id/activity_register_user_passwordOne"
+                android:layout_centerVertical="true"
+                android:textSize="25px"
+                android:hint="密码(7~16字符)"
+                android:gravity="center_vertical|left"
+                android:layout_marginRight="5px"
+                android:layout_marginLeft="20px"
+                android:maxLength="16"
+                android:inputType="textPassword"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="500px"
+            android:layout_height="90px"
+            android:padding="0px"
+            android:layout_marginTop="15px"
+            android:background="@android:drawable/editbox_background_normal">
+
+            <ImageView
+                android:id="@+id/activity_register_user_passwordTwo"
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5px"
+                android:src="@drawable/password_icon"/>
+
+            <EditText
+                android:id="@+id/activity_register_user_editTextPasswordTwo"
+                android:layout_width="match_parent"
+                android:layout_height="70px"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/activity_register_user_passwordTwo"
+                android:textSize="25px"
+                android:hint="验证密码"
+                android:gravity="center_vertical|left"
+                android:layout_marginRight="5px"
+                android:layout_marginLeft="20px"
+                android:maxLength="16"
+                android:inputType="textPassword"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/activity_register_user_buttonRegister"
+            android:layout_width="500px"
+            android:layout_height="110px"
+            android:layout_marginTop="20px"
+            android:text="注      册"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/activity_login_enter_button"/>
+    </LinearLayout>
+
+</LinearLayout>

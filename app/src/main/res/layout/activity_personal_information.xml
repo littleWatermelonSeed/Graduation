@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/white1">
+
+    <com.sayhellototheworld.littlewatermelon.graduation.customwidget.LiTopBar
+        android:id="@+id/activity_personal_information_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        app:bodyBackground="@color/white1"
+        app:leftImageSrc="@color/white1"
+        app:leftImageViewWidth="5px"
+        app:leftText="取消"
+        app:leftTextColor="#707070"
+        app:lefttextSize="15px"
+        app:rightImageSrc="@color/white1"
+        app:rightImageViewWidth="5px"
+        app:rightText="保存"
+        app:rightTextColor="#707070"
+        app:rightTextSize="15px"
+        app:middleText="完善个人资料"
+        app:middleTextSize="13px"
+        app:middleTextColor="#707070"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/activity_personal_information_headPortrait"
+                android:layout_width="180px"
+                android:layout_height="180px"
+                android:layout_marginTop="10px"
+                android:src="@drawable/picture_error3"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10px"
+                android:text="点击设置头像"
+                android:textColor="@color/activity_login_register_uncheck"
+                android:textSize="10px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="昵称"
+                    android:textSize="25px"/>
+
+                <EditText
+                    android:id="@+id/activity_personal_information_editTextNickName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:hint="15字符以内"
+                    android:maxLength="15"
+                    android:textSize="25px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="2px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="性别"
+                    android:textSize="25px"/>
+
+                <RadioGroup
+                    android:id="@+id/activity_personal_information_radioGroupSex"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/activity_personal_information_radioMan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="男"
+                        android:checked="true"/>
+
+                    <RadioButton
+                        android:id="@+id/activity_personal_information_radioWoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50px"
+                        android:text="女"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="2px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="生日"
+                    android:textSize="25px"/>
+
+                <TextView
+                    android:id="@+id/activity_personal_information_textViewBirthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:maxLength="15"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textSize="25px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="30px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="所在地"
+                    android:textSize="25px"/>
+
+                <EditText
+                    android:id="@+id/activity_personal_information_editTextLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:gravity="center_vertical"
+                    android:textSize="25px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="2px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="学校"
+                    android:textSize="25px"/>
+
+                <EditText
+                    android:id="@+id/activity_personal_information_editTextSchool"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:maxLength="20"
+                    android:textSize="25px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="2px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="邮箱"
+                    android:textSize="25px"/>
+
+                <EditText
+                    android:id="@+id/activity_personal_information_editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:textSize="25px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:layout_marginLeft="20px"
+                    android:text="简介"
+                    android:textSize="25px"
+                    android:gravity="center_vertical"/>
+
+                <EditText
+                    android:id="@+id/activity_personal_information_editTextIntroduction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@null"
+                    android:maxLength="100"
+                    android:gravity="left"
+                    android:textSize="25px"
+                    android:hint="最多100字..."
+                    android:scrollHorizontally="false"
+                    android:paddingTop="25px"
+                    android:minLines="4"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

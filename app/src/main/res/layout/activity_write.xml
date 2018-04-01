@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@android:color/background_light"
+    tools:context="com.sayhellototheworld.littlewatermelon.shareplan.view.centerplaza_view.WriteActivity">
+
+    <com.sayhellototheworld.littlewatermelon.shareplan.customwidget.LiTopBar
+        android:id="@+id/activity_write_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        app:bodyBackground="@color/white1"
+        app:leftImageSrc="@color/white1"
+        app:leftImageViewWidth="5px"
+        app:leftText="取消"
+        app:leftTextColor="#707070"
+        app:lefttextSize="15px"
+        app:rightImageSrc="@color/white1"
+        app:rightImageViewWidth="5px"
+        app:rightText="提交"
+        app:rightTextColor="#707070"
+        app:rightTextSize="14px"/>
+
+    <View
+        android:id="@+id/activity_write_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/activity_write_topbar"
+        android:background="@color/white2"/>
+
+    <EditText
+        android:id="@+id/activity_write_editTitle"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_below="@+id/activity_write_line"
+        android:layout_marginTop="10px"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="计划标题(30字以内)..."
+        android:maxLength="30"
+        android:singleLine="true"
+        android:textColor="@color/white4"
+        android:textSize="30px"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/activity_write_bottomLayout"
+        android:layout_below="@+id/activity_write_editTitle"
+        android:background="@android:drawable/editbox_background_normal"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_write_editContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingTop="10px"
+                android:paddingBottom="10px"
+                android:lineSpacingMultiplier="1.5"
+                android:gravity="left"
+                android:hint="计划内容(500字以内)..."
+                android:maxLength="500"
+                android:minLines="4"
+                android:textColor="@color/white4"
+                android:textSize="35px"/>
+
+            <TextView
+                android:id="@+id/activity_write_beginTime"
+                android:layout_width="wrap_content"
+                android:layout_height="50px"
+                android:layout_marginTop="25px"
+                android:gravity="center_vertical"
+                android:text="开始时间："
+                android:textColor="@color/white4"
+                android:textSize="30px"/>
+
+            <TextView
+                android:id="@+id/activity_write_endTime"
+                android:layout_width="wrap_content"
+                android:layout_height="50px"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:text="结束时间："
+                android:textColor="@color/white4"
+                android:textSize="30px"/>
+
+            <com.sayhellototheworld.littlewatermelon.shareplan.customwidget.MyGridView
+                android:id="@+id/activity_write_cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
+                android:horizontalSpacing="15dp"
+                android:verticalSpacing="8dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/activity_write_bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:paddingTop="15px"
+        android:paddingBottom="15px">
+
+        <TextView
+            android:id="@+id/activity_write_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_background_buttongreen4"
+            android:gravity="center"
+            android:text="成都 红光"
+            android:textColor="@color/white4"
+            android:layout_marginLeft="15px"
+            android:textSize="25px"
+            android:minWidth="150px"
+            android:paddingBottom="5px"
+            android:paddingTop="5px"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/activity_write_permission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/radius_background_buttongreen4"
+            android:gravity="center"
+            android:text="公开"
+            android:layout_marginRight="15px"
+            android:textColor="@color/white4"
+            android:textSize="25px"
+            android:minWidth="100px"
+            android:paddingBottom="5px"
+            android:paddingTop="5px"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>
