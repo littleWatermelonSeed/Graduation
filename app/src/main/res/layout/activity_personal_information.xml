@@ -193,6 +193,32 @@
                     android:layout_width="80px"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20px"
+                    android:text="家乡"
+                    android:textSize="25px"/>
+
+                <EditText
+                    android:id="@+id/activity_personal_information_editTextHometown"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:textSize="25px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="2px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
                     android:text="学校"
                     android:textSize="25px"/>
 

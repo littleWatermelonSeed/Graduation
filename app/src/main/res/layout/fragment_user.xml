@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/green"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:context="com.sayhellototheworld.littlewatermelon.shareplan.view.centerplaza_view.centerplaza_fragment.UserFragment">
+    android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/fragment_user_headPortrait"

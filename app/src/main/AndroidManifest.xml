@@ -42,8 +42,6 @@
         </activity>
         <activity android:name=".view.center_activity.CenterActivity">
         </activity>
-
-
         <activity
             android:name=".view.user_view.LoginActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
@@ -74,7 +72,6 @@
         </activity>
         <activity android:name=".util.pictureselect.activity.PreviewBackgroundActivity">
         </activity>
-
     </application>
 
 </manifest>

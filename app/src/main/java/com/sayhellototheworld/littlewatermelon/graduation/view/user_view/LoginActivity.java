@@ -20,7 +20,6 @@ import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoa
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.MySharedPreferences;
-import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.BaseActivityDo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.UserLoginDo;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.center_plaza.ControlUserFragment;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
@@ -30,7 +29,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.Bas
 
 import cn.bmob.v3.exception.BmobException;
 
-public class LoginActivity extends BaseSlideBcakStatusActivity implements BaseActivityDo,View.OnClickListener,UserLoginDo {
+public class LoginActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener,UserLoginDo {
 
     private LinearLayout parentLayout;
     private EditText editText_userID;
@@ -48,20 +47,12 @@ public class LoginActivity extends BaseSlideBcakStatusActivity implements BaseAc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        init();
+        super.onCreate(savedInstanceState);
     }
 
     @Override
-    public void init() {
-        initWidget();
-        initParam();
-        initShow();
-    }
-
-    @Override
-    public void initWidget() {
+    protected void initWidget() {
         parentLayout = (LinearLayout)findViewById(R.id.activity_login_parent);
         editText_userID = (EditText)findViewById(R.id.activity_login_userID);
         editText_password = (EditText)findViewById(R.id.activity_login_userPassword);
@@ -74,7 +65,7 @@ public class LoginActivity extends BaseSlideBcakStatusActivity implements BaseAc
     }
 
     @Override
-    public void initParam() {
+    protected void initParam() {
         if(tintManager != null){
             tintManager.setStatusBarAlpha(0);
         }
@@ -98,7 +89,7 @@ public class LoginActivity extends BaseSlideBcakStatusActivity implements BaseAc
     }
 
     @Override
-    public void initShow() {
+    protected void initShow() {
         LayoutBackgroundUtil.setLayoutBackground(this,parentLayout,R.drawable.login_background);
         editText_userID.setText(userID);
         editText_password.setText(userPassword);

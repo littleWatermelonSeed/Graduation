@@ -10,31 +10,29 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogConfirm;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.LiTopBar;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
-import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.BaseActivityDo;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.center_plaza.ControlUserFragment;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
 
-public class UserSettingActivity extends BaseSlideBcakStatusActivity implements BaseActivityDo, View.OnClickListener {
+public class UserSettingActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener {
 
     private LiTopBar mLiTopBar;
     private Button button_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_setting);
-        init();
+        super.onCreate(savedInstanceState);
+//        init();
     }
 
-    @Override
-    public void init() {
-        initWidget();
-        initParam();
-        initShow();
-    }
+//    public void init() {
+//        initWidget();
+//        initParam();
+//        initShow();
+//    }
 
     @Override
-    public void initWidget() {
+    protected void initWidget() {
         button_login = (Button) findViewById(R.id.activity_user_setting_loginOutButton);
         button_login.setOnClickListener(this);
         mLiTopBar = (LiTopBar) findViewById(R.id.activity_user_setting_topbar);
@@ -47,12 +45,12 @@ public class UserSettingActivity extends BaseSlideBcakStatusActivity implements 
     }
 
     @Override
-    public void initParam() {
+    protected void initParam() {
 
     }
 
     @Override
-    public void initShow() {
+    protected void initShow() {
 
     }
 

@@ -2,4 +2,7 @@
     <string name="app_name">手掌校园</string>
     <string name="BmobException_note_VIP">这改app用的是免费的后端云,流量有限滴,现在流量用完啦,赶忙去给朕捐款！</string>
     <string name="BmobException_note_overflow">你特么少用点我的短信，要钱的！！</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

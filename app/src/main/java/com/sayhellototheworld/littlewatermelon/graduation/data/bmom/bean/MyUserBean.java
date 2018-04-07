@@ -19,6 +19,24 @@ public class MyUserBean extends BmobUser {
     private BmobFile skin;
     private BmobFile headPortrait;
     private String loginDeviceId;
+    private String role;
+    private String hometown;
+
+    public String getHometown() {
+        return hometown;
+    }
+
+    public void setHometown(String hometown) {
+        this.hometown = hometown;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getLoginDeviceId() {
         return loginDeviceId;

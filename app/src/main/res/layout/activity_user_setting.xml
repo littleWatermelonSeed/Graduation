@@ -7,10 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="@color/white5"
-    tools:context="com.sayhellototheworld.littlewatermelon.shareplan.view.user_view.UserSettingActivity">
+    android:background="@color/white5">
 
-    <com.sayhellototheworld.littlewatermelon.shareplan.customwidget.LiTopBar
+    <com.sayhellototheworld.littlewatermelon.graduation.customwidget.LiTopBar
         android:id="@+id/activity_user_setting_topbar"
         android:layout_width="match_parent"
         android:layout_height="100px"

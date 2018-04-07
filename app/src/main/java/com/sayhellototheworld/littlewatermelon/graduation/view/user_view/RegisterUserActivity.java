@@ -14,7 +14,6 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
-import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.BaseActivityDo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.ViRegisterUserCoDo;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.user_manage.ControlRegisterUser;
 import com.sayhellototheworld.littlewatermelon.graduation.util.CheckFormatUtil;
@@ -23,7 +22,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.StatusBarUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
 
-public class RegisterUserActivity extends BaseSlideBcakStatusActivity implements BaseActivityDo,View.OnClickListener {
+public class RegisterUserActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener {
 
     private LinearLayout parentLayout;
     private ImageView imageView_back;
@@ -44,20 +43,19 @@ public class RegisterUserActivity extends BaseSlideBcakStatusActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
-        init();
+        super.onCreate(savedInstanceState);
+//        init();
     }
 
-    @Override
-    public void init() {
-        initWidget();
-        initParam();
-        initShow();
-    }
+//    public void init() {
+//        initWidget();
+//        initParam();
+//        initShow();
+//    }
 
     @Override
-    public void initWidget() {
+    protected void initWidget() {
         parentLayout = (LinearLayout) findViewById(R.id.activity_register_user_parent);
         imageView_back = (ImageView) findViewById(R.id.activity_register_user_imageviewBack);
         imageView_back.setOnClickListener(this);
@@ -74,7 +72,7 @@ public class RegisterUserActivity extends BaseSlideBcakStatusActivity implements
     }
 
     @Override
-    public void initParam() {
+    protected void initParam() {
         if (tintManager != null) {
             tintManager.setStatusBarAlpha(0);
         }
@@ -83,7 +81,7 @@ public class RegisterUserActivity extends BaseSlideBcakStatusActivity implements
     }
 
     @Override
-    public void initShow() {
+    protected void initShow() {
         StatusBarUtils.setLayoutMargin(this, parentLayout);
         LayoutBackgroundUtil.setLayoutBackground(this, parentLayout, R.drawable.register_background1);
     }

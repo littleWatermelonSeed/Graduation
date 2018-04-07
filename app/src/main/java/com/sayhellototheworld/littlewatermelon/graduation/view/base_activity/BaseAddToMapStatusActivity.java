@@ -15,4 +15,19 @@ public class BaseAddToMapStatusActivity extends BaseStatusActivity {
         MyActivityManager myActivityManager = MyActivityManager.getDestoryed();
         myActivityManager.addActivityToMap(getLocalClassName(),this);
     }
+
+    @Override
+    protected void initWidget() {
+
+    }
+
+    @Override
+    protected void initParam() {
+
+    }
+
+    @Override
+    protected void initShow() {
+
+    }
 }

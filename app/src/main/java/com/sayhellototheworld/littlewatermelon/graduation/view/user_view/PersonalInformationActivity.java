@@ -24,7 +24,6 @@ import com.sayhellototheworld.littlewatermelon.graduation.customwidget.LiTopBar;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.GetFile;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.ManageFile;
-import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.BaseActivityDo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.ShowCurUserInfo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.ViUpdateUserCoDo;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.user_manage.ControlUpdateUser;
@@ -40,13 +39,14 @@ import java.util.Date;
 import cn.bmob.v3.datatype.BmobFile;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PersonalInformationActivity extends BaseStatusActivity implements BaseActivityDo,
+public class PersonalInformationActivity extends BaseStatusActivity implements
         View.OnClickListener, ShowCurUserInfo {
 
     private LiTopBar mLiTopBar;
     private CircleImageView mCircleImageView;
     private EditText editText_nickName;
     private EditText editText_school;
+    private EditText editText_hometown;
     private EditText editText_email;
     private EditText editText_introduction;
     private EditText editText_location;
@@ -55,6 +55,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements B
 
     private File headPortraitPath;
     private String nickName;
+    private String hometown;
     private String sex;
     private String birthday;
     private String loaction;
@@ -69,25 +70,24 @@ public class PersonalInformationActivity extends BaseStatusActivity implements B
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_information);
-        init();
+        super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void init() {
-        initWidget();
-        initParam();
-        initShow();
-    }
+//    public void init() {
+//        initWidget();
+//        initParam();
+//        initShow();
+//    }
 
     @Override
-    public void initWidget() {
+    protected void initWidget() {
         mCircleImageView = (CircleImageView) findViewById(R.id.activity_personal_information_headPortrait);
         mCircleImageView.setOnClickListener(this);
         editText_nickName = (EditText) findViewById(R.id.activity_personal_information_editTextNickName);
         editText_school = (EditText) findViewById(R.id.activity_personal_information_editTextSchool);
         editText_email = (EditText) findViewById(R.id.activity_personal_information_editTextEmail);
+        editText_hometown = (EditText) findViewById(R.id.activity_personal_information_editTextHometown);
         editText_location = (EditText) findViewById(R.id.activity_personal_information_editTextLocation);
         editText_introduction = (EditText) findViewById(R.id.activity_personal_information_editTextIntroduction);
         textView_birthday = (TextView) findViewById(R.id.activity_personal_information_textViewBirthday);
@@ -122,7 +122,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements B
     }
 
     @Override
-    public void initParam() {
+    protected void initParam() {
         sex = "男";
         mUserBean = new MyUserBean();
         baseActivityManager.addActivityToList(this);
@@ -131,7 +131,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements B
     }
 
     @Override
-    public void initShow() {
+    protected void initShow() {
 
     }
 
@@ -142,6 +142,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements B
 
         editText_nickName.setText(userBean.getNickName());
         textView_birthday.setText(userBean.getBirthday());
+        editText_hometown.setText(userBean.getHometown());
         editText_location.setText(userBean.getLocation());
         editText_school.setText(userBean.getSchoolName());
         editText_email.setText(userBean.getMyEmail());
@@ -178,6 +179,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements B
         loaction = editText_location.getText().toString();
         school = editText_school.getText().toString();
         email = editText_email.getText().toString();
+        hometown = editText_hometown.getText().toString();
         introduction = editText_introduction.getText().toString();
 
         if (nickName.equals("")) {
@@ -187,6 +189,9 @@ public class PersonalInformationActivity extends BaseStatusActivity implements B
 
         if (sex != null && !sex.equals("")) {
             mUserBean.setSex(sex);
+        }
+        if(hometown != null && !hometown.equals("")){
+            mUserBean.setHometown(hometown);
         }
         if (nickName != null && !nickName.equals("")) {
             mUserBean.setNickName(nickName);
@@ -206,6 +211,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements B
         if (introduction != null && !introduction.equals("")) {
             mUserBean.setIntroduction(introduction);
         }
+        mUserBean.setRole("s");
 
         if (headPortraitPath != null) {
             headPic = new BmobFile(headPortraitPath);

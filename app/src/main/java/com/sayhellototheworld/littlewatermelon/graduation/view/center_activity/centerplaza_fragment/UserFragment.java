@@ -1,6 +1,6 @@
 package com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -63,8 +63,10 @@ public class UserFragment extends Fragment implements BaseActivityDo, View.OnCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_user, null);
-        init();
+        if (mView == null){
+            mView = inflater.inflate(R.layout.fragment_user, null);
+            init();
+        }
         return mView;
     }
 
@@ -299,6 +301,7 @@ public class UserFragment extends Fragment implements BaseActivityDo, View.OnCli
         super.onDestroy();
         cuf.userFragmentDestroy();
         login = false;
+        mView = null;
     }
 
 }

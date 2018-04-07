@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:id="@+id/activity_login_parent"
     android:gravity="center"
+    android:fitsSystemWindows="true"
     android:background="@color/white5">
 
     <LinearLayout

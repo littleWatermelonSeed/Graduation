@@ -17,7 +17,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
  * Created by 123 on 2017/8/8.
  */
 
-public class BaseSlideBcakStatusActivity extends BaseStatusActivity {
+public abstract class BaseSlideBcakStatusActivity extends BaseStatusActivity {
 
     private View decorView;
     private boolean isBack = false;
@@ -43,8 +43,7 @@ public class BaseSlideBcakStatusActivity extends BaseStatusActivity {
     }
 
     protected void slideBackDo(){
-        String s = "";
-        s.indexOf("as");
+
     }
 
     @Override

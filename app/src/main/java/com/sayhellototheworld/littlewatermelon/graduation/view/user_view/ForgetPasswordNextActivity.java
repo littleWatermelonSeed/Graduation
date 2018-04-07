@@ -13,14 +13,13 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
-import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.BaseActivityDo;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.user_manage.ControlForgetPasswordNext;
 import com.sayhellototheworld.littlewatermelon.graduation.util.LayoutBackgroundUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.StatusBarUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
 
-public class ForgetPasswordNextActivity extends BaseSlideBcakStatusActivity implements BaseActivityDo,View.OnClickListener{
+public class ForgetPasswordNextActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener{
 
     private LinearLayout parentLayout;
     private ImageView imageView_back;
@@ -40,21 +39,19 @@ public class ForgetPasswordNextActivity extends BaseSlideBcakStatusActivity impl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password_next);
-        init();
+        super.onCreate(savedInstanceState);
+//        init();
     }
 
+//    public void init() {
+//        initWidget();
+//        initParam();
+//        initShow();
+//    }
 
     @Override
-    public void init() {
-        initWidget();
-        initParam();
-        initShow();
-    }
-
-    @Override
-    public void initWidget() {
+    protected void initWidget() {
         parentLayout = (LinearLayout)findViewById(R.id.activity_forget_password_next_parent);
         imageView_back = (ImageView)findViewById(R.id.activity_forget_password_next_imageViewBack);
         imageView_back.setOnClickListener(this);
@@ -70,7 +67,7 @@ public class ForgetPasswordNextActivity extends BaseSlideBcakStatusActivity impl
     }
 
     @Override
-    public void initParam() {
+    protected void initParam() {
         if(tintManager != null){
             tintManager.setStatusBarAlpha(0);
         }
@@ -80,7 +77,7 @@ public class ForgetPasswordNextActivity extends BaseSlideBcakStatusActivity impl
     }
 
     @Override
-    public void initShow() {
+    protected void initShow() {
         StatusBarUtils.setLayoutMargin(this,parentLayout);
         LayoutBackgroundUtil.setLayoutBackground(this,parentLayout,R.drawable.register_background1);
     }

@@ -16,4 +16,19 @@ public class BaseAddToListkStatusActivity extends BaseStatusActivity {
         myActivityManager.addActivityToList(this);
     }
 
+    @Override
+    protected void initWidget() {
+
+    }
+
+    @Override
+    protected void initParam() {
+
+    }
+
+    @Override
+    protected void initShow() {
+
+    }
+
 }

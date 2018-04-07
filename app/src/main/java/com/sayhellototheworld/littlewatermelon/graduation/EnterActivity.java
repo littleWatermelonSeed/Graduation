@@ -16,16 +16,26 @@ public class EnterActivity extends BaseStatusActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
-        initView();
+        super.onCreate(savedInstanceState);
     }
 
-    private void initView(){
+    @Override
+    protected void initWidget() {
         btn_enter = (Button) findViewById(R.id.activity_enter_enter);
         btn_enter.setOnClickListener(this);
         btn_test = (Button) findViewById(R.id.activity_enter_test);
         btn_test.setOnClickListener(this);
+    }
+
+    @Override
+    protected void initParam() {
+
+    }
+
+    @Override
+    protected void initShow() {
+
     }
 
     @Override

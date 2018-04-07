@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
-import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.BaseActivityDo;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.user_manage.ControlForgetPassword;
 import com.sayhellototheworld.littlewatermelon.graduation.util.CheckFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.LayoutBackgroundUtil;
@@ -20,7 +19,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.StatusBarUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
 
-public class ForgetPasswordActivity extends BaseSlideBcakStatusActivity implements BaseActivityDo,View.OnClickListener{
+public class ForgetPasswordActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener{
 
     private LinearLayout parentLayout;
     private ImageView imageView_back;
@@ -34,12 +33,11 @@ public class ForgetPasswordActivity extends BaseSlideBcakStatusActivity implemen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
+        super.onCreate(savedInstanceState);
         init();
     }
 
-    @Override
     public void init() {
         initWidget();
         initParam();
