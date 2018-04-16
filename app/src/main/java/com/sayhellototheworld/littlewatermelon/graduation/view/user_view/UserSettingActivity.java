@@ -12,6 +12,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.customwidget.LiTopBar;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.center_plaza.ControlUserFragment;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.HomePageFragment;
 
 public class UserSettingActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener {
 
@@ -75,6 +76,7 @@ public class UserSettingActivity extends BaseSlideBcakStatusActivity implements 
                 BmobManageUser.loginOutUser();
 
                 ControlUserFragment.syncUserFragment();
+                HomePageFragment.syncHomePageFragment();
                 LoginActivity.startLoginActivity(UserSettingActivity.this);
                 finish();
             }

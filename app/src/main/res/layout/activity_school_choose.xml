@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/white1"
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.function_view.SchoolChooseActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_school_choose_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:textSize="30px"/>
+
+        <TextView
+            android:id="@+id/activity_school_choose_ensure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:textSize="30px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择大学"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:textSize="35px"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_school_choose_frame_province"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:id="@+id/activity_school_choose_linear_province"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择学校省份:"
+                android:layout_marginLeft="15dp"/>
+
+            <TextView
+                android:id="@+id/activity_school_choose_txt_province"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/activity_school_choose_view_province"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white1"
+            android:alpha="0"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_school_choose_frame_city"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white"
+        android:layout_marginTop="2dp">
+
+        <LinearLayout
+            android:id="@+id/activity_school_choose_linear_city"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择学校城市:"
+                android:layout_marginLeft="15dp"/>
+
+            <TextView
+                android:id="@+id/activity_school_choose_txt_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/activity_school_choose_view_city"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white1"
+            android:alpha="0"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_school_choose_frame_college"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white"
+        android:layout_marginTop="2dp">
+
+        <LinearLayout
+            android:id="@+id/activity_school_choose_linear_college"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择学校名称:"
+                android:layout_marginLeft="15dp"/>
+
+            <TextView
+                android:id="@+id/activity_school_choose_txt_college"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginLeft="15dp"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/activity_school_choose_view_college"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white1"
+            android:alpha="0"/>
+    </FrameLayout>
+
+</LinearLayout>

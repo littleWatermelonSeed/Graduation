@@ -37,4 +37,8 @@
     <color name="plan_text_statue_unfinished">#fc1b1b</color>
     <color name="finish">#75b7f9</color>
     <color name="liked">#f3ca7e</color>
+
+    <color name="school_name">#71e7ff</color>
+    <color name="home_page_top_bar">#d9fff7</color>
+
 </resources>

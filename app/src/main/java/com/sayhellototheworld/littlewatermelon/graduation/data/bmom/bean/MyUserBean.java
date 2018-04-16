@@ -21,6 +21,15 @@ public class MyUserBean extends BmobUser {
     private String loginDeviceId;
     private String role;
     private String hometown;
+    private String schooleKey;
+
+    public String getSchooleKey() {
+        return schooleKey;
+    }
+
+    public void setSchooleKey(String schooleKey) {
+        this.schooleKey = schooleKey;
+    }
 
     public String getHometown() {
         return hometown;

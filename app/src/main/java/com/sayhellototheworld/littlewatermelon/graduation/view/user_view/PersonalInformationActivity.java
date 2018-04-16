@@ -1,10 +1,10 @@
 package com.sayhellototheworld.littlewatermelon.graduation.view.user_view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -31,6 +31,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.PictureUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.pictureselect.activity.ShowPictureActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.SchoolChooseActivity;
 
 import java.io.File;
 import java.util.Calendar;
@@ -45,11 +46,11 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
     private LiTopBar mLiTopBar;
     private CircleImageView mCircleImageView;
     private EditText editText_nickName;
-    private EditText editText_school;
     private EditText editText_hometown;
     private EditText editText_email;
     private EditText editText_introduction;
     private EditText editText_location;
+    private TextView textView_school;
     private TextView textView_birthday;
     private RadioGroup mRadioGroup;
 
@@ -62,11 +63,13 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
     private String school;
     private String email;
     private String introduction;
+    private String schoolKey;
 
     private ViUpdateUserCoDo vud;
     private MyUserBean mUserBean;
 
     private BmobFile headPic = null;
+    private boolean chooseSchool = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +88,14 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         mCircleImageView = (CircleImageView) findViewById(R.id.activity_personal_information_headPortrait);
         mCircleImageView.setOnClickListener(this);
         editText_nickName = (EditText) findViewById(R.id.activity_personal_information_editTextNickName);
-        editText_school = (EditText) findViewById(R.id.activity_personal_information_editTextSchool);
         editText_email = (EditText) findViewById(R.id.activity_personal_information_editTextEmail);
         editText_hometown = (EditText) findViewById(R.id.activity_personal_information_editTextHometown);
         editText_location = (EditText) findViewById(R.id.activity_personal_information_editTextLocation);
         editText_introduction = (EditText) findViewById(R.id.activity_personal_information_editTextIntroduction);
         textView_birthday = (TextView) findViewById(R.id.activity_personal_information_textViewBirthday);
         textView_birthday.setOnClickListener(this);
+        textView_school = (TextView) findViewById(R.id.activity_personal_information_txtSchool);
+        textView_school.setOnClickListener(this);
         mRadioGroup = (RadioGroup) findViewById(R.id.activity_personal_information_radioGroupSex);
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -144,7 +148,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         textView_birthday.setText(userBean.getBirthday());
         editText_hometown.setText(userBean.getHometown());
         editText_location.setText(userBean.getLocation());
-        editText_school.setText(userBean.getSchoolName());
+        textView_school.setText(userBean.getSchoolName());
         editText_email.setText(userBean.getMyEmail());
         editText_introduction.setText(userBean.getIntroduction());
         if (userBean.getSex().equals("男")) {
@@ -177,7 +181,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
     private boolean getUserbean() {
         nickName = editText_nickName.getText().toString();
         loaction = editText_location.getText().toString();
-        school = editText_school.getText().toString();
+        school = textView_school.getText().toString();
         email = editText_email.getText().toString();
         hometown = editText_hometown.getText().toString();
         introduction = editText_introduction.getText().toString();
@@ -204,6 +208,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         }
         if (school != null && !school.equals("")) {
             mUserBean.setSchoolName(school);
+            mUserBean.setSchooleKey(schoolKey);
         }
         if (email != null && !email.equals("")) {
             mUserBean.setMyEmail(email);
@@ -237,7 +242,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
     }
 
     public static void startPersonalInformationActivity(final Context context) {
-        ((Activity) context).startActivity(new Intent(context, PersonalInformationActivity.class));
+        context.startActivity(new Intent(context, PersonalInformationActivity.class));
     }
 
     @Override
@@ -249,7 +254,15 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
             case R.id.activity_personal_information_headPortrait:
                 getHeadPortrait();
                 break;
+            case R.id.activity_personal_information_txtSchool:
+                getSchoolMsg();
+                chooseSchool = true;
+                break;
         }
+    }
+
+    private void getSchoolMsg(){
+        SchoolChooseActivity.startSchoolChooseActivityForResult(this);
     }
 
     private void getBirthday() {
@@ -321,9 +334,10 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
 
     @Override
     protected void onRestart() {
-        if (isActive) {
+        if (isActive&&!chooseSchool) {
             refreshHeadPortrait();
         }
+        chooseSchool = false;
         super.onRestart();
     }
 
@@ -336,4 +350,13 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SchoolChooseActivity.SCHOOL_CHOOSE_REQUST_CODE && resultCode == RESULT_OK){
+            school = data.getStringExtra("schoolName");
+            schoolKey = data.getStringExtra("schoolKey");
+            textView_school.setText(school);
+            Log.i("niyuanjie","schoolName = " + school + "  schoolKey = " +schoolKey);
+        }
+    }
 }

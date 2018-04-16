@@ -72,6 +72,32 @@
         </activity>
         <activity android:name=".util.pictureselect.activity.PreviewBackgroundActivity">
         </activity>
+        <activity android:name=".view.function_view.SchoolChooseActivity">
+        </activity>
+        <activity android:name=".view.home_page_function_view.LostAndFindActivity"
+                  android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.FleaMarketActivity"
+                  android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.ResourceSharingActivity"
+                  android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.ClassScheduleActivity"
+                  android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.RequestRepairsActivity"
+                  android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.RespondRepairActivity"
+                  android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.RequestLeaveActivity"
+                  android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.RespondLeaveActivity"
+                  android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
     </application>
 
 </manifest>

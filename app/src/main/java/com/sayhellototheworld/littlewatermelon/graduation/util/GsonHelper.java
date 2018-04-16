@@ -19,6 +19,8 @@ import java.lang.reflect.Type;
 
 public class GsonHelper {
 
+    private static College college;
+
     public static String getJson(String fileName) {
         //将json数据变成字符串
         StringBuilder stringBuilder = new StringBuilder();
@@ -39,9 +41,17 @@ public class GsonHelper {
     }
 
     public static College getCollege(){
-        Type type = new TypeToken<College>() {}.getType();
-        College college = new Gson().fromJson(getJson("college.json"),type);
+        if (college == null){
+            Type type = new TypeToken<College>() {}.getType();
+            college = new Gson().fromJson(getJson("college.json"),type);
+        }
         return college;
+    }
+
+    public static void closeCollege(){
+        if (college != null){
+            college = null;
+        }
     }
 
 }

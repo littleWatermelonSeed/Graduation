@@ -2,19 +2,36 @@ package com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
+import com.sayhellototheworld.littlewatermelon.graduation.adapter.HomePageRecycleViewAdapter;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.util.StatusBarUtils;
+import com.sayhellototheworld.littlewatermelon.graduation.view.user_view.LoginActivity;
 
 
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends Fragment implements View.OnClickListener{
 
     private View mView;
     private LinearLayout parentLayout;
+    private TextView txt_shcool_name;
+    private TextView txt_user_name;
+    private RecyclerView mRecyclerView;
+    private View alphaView;
+    private TextView txt_login;
+
+    private static MyUserBean userBean;
+    private static boolean show = false;
+    private boolean login = false;
+    private static HomePageFragment homePageFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,14 +51,87 @@ public class HomePageFragment extends Fragment {
 
     private void initWidget(){
         parentLayout = (LinearLayout) mView.findViewById(R.id.fragment_home_page_parent);
+        txt_shcool_name = (TextView) mView.findViewById(R.id.fragment_home_page_school_name);
+        txt_user_name = (TextView) mView.findViewById(R.id.fragment_home_page_user_name);
+        mRecyclerView = (RecyclerView) mView.findViewById(R.id.fragment_home_page_recycle_view);
+        alphaView = mView.findViewById(R.id.fragment_home_page_view);
+        txt_login = (TextView) mView.findViewById(R.id.fragment_home_page_login_txt);
+        txt_login.setOnClickListener(this);
     }
 
     private void initParam(){
-
+        show = true;
+        homePageFragment = this;
+        userBean = BmobManageUser.getCurrentUser();
+        GridLayoutManager manager = new GridLayoutManager(getActivity(),2);
+        mRecyclerView.setLayoutManager(manager);
+        login = userBean != null;
     }
 
     private void initShow(){
         StatusBarUtils.setLayoutMargin(getActivity(),parentLayout);
+        showTopbar(login);
+        showRecycleView(login);
+    }
+
+    private void showTopbar(boolean login){
+        if (!login){
+            txt_user_name.setVisibility(View.GONE);
+            txt_shcool_name.setText("手掌校园");
+        }else {
+            txt_user_name.setVisibility(View.VISIBLE);
+            if (userBean.getRole().equalsIgnoreCase("s")){
+                txt_user_name.setText("学生  " + userBean.getNickName());
+            }else if (userBean.getRole().equalsIgnoreCase("r")){
+                txt_user_name.setText("维修员  " + userBean.getNickName());
+            }else if (userBean.getRole().equalsIgnoreCase("s")){
+                txt_user_name.setText("老师  " + userBean.getNickName());
+            }
+            if (userBean.getSchoolName() != null&&!userBean.getSchoolName().equals("")){
+                txt_shcool_name.setText(userBean.getSchoolName());
+            }else {
+                txt_shcool_name.setText("手掌校园");
+            }
+        }
+    }
+
+    private void showRecycleView(boolean login){
+        if (!login){
+            alphaView.setVisibility(View.VISIBLE);
+            txt_login.setVisibility(View.VISIBLE);
+            HomePageRecycleViewAdapter adapter = new HomePageRecycleViewAdapter(getActivity(),"s",login);
+            mRecyclerView.setAdapter(adapter);
+        }else {
+            alphaView.setVisibility(View.GONE);
+            txt_login.setVisibility(View.GONE);
+            HomePageRecycleViewAdapter adapter = new HomePageRecycleViewAdapter(getActivity(),userBean.getRole(),login);
+            mRecyclerView.setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        show = false;
+        userBean = null;
+        homePageFragment = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fragment_home_page_login_txt:
+                LoginActivity.startLoginActivity(getActivity());
+                break;
+        }
+    }
+
+    public static void syncHomePageFragment(){
+        if (!show)
+            return;
+        userBean = BmobManageUser.getCurrentUser();
+        homePageFragment.showTopbar(true);
+        homePageFragment.showRecycleView(true);
     }
 
 }

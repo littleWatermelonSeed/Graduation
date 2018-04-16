@@ -222,8 +222,8 @@
                     android:text="学校"
                     android:textSize="25px"/>
 
-                <EditText
-                    android:id="@+id/activity_personal_information_editTextSchool"
+                <TextView
+                    android:id="@+id/activity_personal_information_txtSchool"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="40px"

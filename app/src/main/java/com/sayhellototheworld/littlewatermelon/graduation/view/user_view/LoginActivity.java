@@ -26,6 +26,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil
 import com.sayhellototheworld.littlewatermelon.graduation.util.LayoutBackgroundUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.HomePageFragment;
 
 import cn.bmob.v3.exception.BmobException;
 
@@ -172,6 +173,7 @@ public class LoginActivity extends BaseSlideBcakStatusActivity implements View.O
         mPreferences.saveMessage(MySharedPreferences.KEY_USER_LOGIN_STATUS,true);
         DialogLoading.dismissLoadingDialog(handler,dialog,"登录成功", DialogLoading.MSG_SUCCESS);
         ControlUserFragment.syncUserFragment();
+        HomePageFragment.syncHomePageFragment();
         finish();
     }
 

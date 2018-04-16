@@ -70,13 +70,16 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
     public void onTabChanged(String tabId) {
         switch (tabId){
             case "首页":
-                tintManager.setStatusBarAlpha(0.9f);
+                tintManager.setStatusBarAlpha(1f);
+                tintManager.setStatusBarTintResource(R.color.home_page_top_bar);
                 break;
             case "同学圈":
-                tintManager.setStatusBarAlpha(0.9f);
+                tintManager.setStatusBarAlpha(1f);
+                tintManager.setStatusBarTintResource(R.color.white1);
                 break;
             case "消息":
-                tintManager.setStatusBarAlpha(0.9f);
+                tintManager.setStatusBarAlpha(1f);
+                tintManager.setStatusBarTintResource(R.color.white1);
                 break;
             case "我的":
                 tintManager.setStatusBarAlpha(0);
