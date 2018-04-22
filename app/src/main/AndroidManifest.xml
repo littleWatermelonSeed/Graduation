@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.sayhellototheworld.littlewatermelon.graduation"
           android:fitsSystemWindows="true">
 
@@ -15,12 +16,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        tools:replace="android:label"
         android:name=".SchoolApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/my_app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -74,28 +77,47 @@
         </activity>
         <activity android:name=".view.function_view.SchoolChooseActivity">
         </activity>
-        <activity android:name=".view.home_page_function_view.LostAndFindActivity"
-                  android:theme="@style/NoActionBarTranslucentTheme">
+        <activity
+            android:name=".view.home_page_function_view.lost_and_find.LostAndFindActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.FleaMarketActivity"
-                  android:theme="@style/NoActionBarTranslucentTheme">
+        <activity
+            android:name=".view.home_page_function_view.FleaMarketActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.ResourceSharingActivity"
-                  android:theme="@style/NoActionBarTranslucentTheme">
+        <activity
+            android:name=".view.home_page_function_view.ResourceSharingActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.ClassScheduleActivity"
-                  android:theme="@style/NoActionBarTranslucentTheme">
+        <activity
+            android:name=".view.home_page_function_view.ClassScheduleActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.RequestRepairsActivity"
-                  android:theme="@style/NoActionBarTranslucentTheme">
+        <activity
+            android:name=".view.home_page_function_view.RequestRepairsActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.RespondRepairActivity"
-                  android:theme="@style/NoActionBarTranslucentTheme">
+        <activity
+            android:name=".view.home_page_function_view.RespondRepairActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.RequestLeaveActivity"
-                  android:theme="@style/NoActionBarTranslucentTheme">
+        <activity
+            android:name=".view.home_page_function_view.RequestLeaveActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.RespondLeaveActivity"
+        <activity
+            android:name=".view.home_page_function_view.RespondLeaveActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.home_page_function_view.lost_and_find.SearchLostActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.home_page_function_view.lost_and_find.WriteLostActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.lost_and_find.OwnLostActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

@@ -43,6 +43,9 @@ public class DialogLoading {
             dialog.dismiss();
             if(msg == MSG_SUCCESS){
                 MyToastUtil.showToast(successMessage);
+                Message message = new Message();
+                message.arg1 = msg;
+                handler.sendMessage(message);
             }
         }else {
             new Thread(new Runnable() {

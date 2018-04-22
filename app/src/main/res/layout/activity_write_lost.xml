@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/white1"
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.WriteLostActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_write_lost_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="返回"
+            android:textSize="30px"/>
+
+        <TextView
+            android:id="@+id/activity_write_lost_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="发布"
+            android:textSize="30px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发布失物招领"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/activity_write_lost_edt_title"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_below="@+id/activity_write_line"
+        android:layout_marginTop="10px"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="标题(30字以内)..."
+        android:maxLength="30"
+        android:singleLine="true"
+        android:textColor="@color/white4"
+        android:textSize="30px"/>
+
+    <EditText
+        android:id="@+id/activity_write_lost_edt_keyword"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_below="@+id/activity_write_line"
+        android:layout_marginTop="10px"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="关键字(如饭卡、身份证)..."
+        android:maxLength="30"
+        android:singleLine="true"
+        android:textColor="@color/white4"
+        android:textSize="30px"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:drawable/editbox_background_normal"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/activity_write_lost_edt_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:paddingTop="10px"
+                    android:paddingBottom="10px"
+                    android:lineSpacingMultiplier="1.5"
+                    android:gravity="left"
+                    android:hint="详细内容(如联系方式,500字以内)..."
+                    android:maxLength="500"
+                    android:minLines="4"
+                    android:textColor="@color/white4"
+                    android:textSize="35px"/>
+
+                <com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView
+                    android:id="@+id/activity_write_lost_card_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numColumns="3"
+                    android:layout_marginTop="20px"
+                    android:gravity="center_horizontal"
+                    android:horizontalSpacing="15dp"
+                    android:verticalSpacing="8dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

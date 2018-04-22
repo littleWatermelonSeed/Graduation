@@ -24,7 +24,7 @@ import java.util.List;
  * Created by 123 on 2017/9/21.
  */
 
-public class PlanImageAdapter extends BaseAdapter {
+public class ShowImageAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> imagePath;
@@ -36,7 +36,7 @@ public class PlanImageAdapter extends BaseAdapter {
     public final static int TYPE_WRITE_PLAN = 0;
     public final static int TYPE_READ_PLAN = 1;
 
-    public PlanImageAdapter(Context context, List<String> imagePath, int type) {
+    public ShowImageAdapter(Context context, List<String> imagePath, int type) {
         this.context = context;
         this.imagePath = imagePath;
         this.type = type;

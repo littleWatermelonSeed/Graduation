@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.ClassScheduleActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.FleaMarketActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.LostAndFindActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestLeaveActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestRepairsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.ResourceSharingActivity;
