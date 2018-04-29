@@ -9,7 +9,6 @@ import com.othershe.nicedialog.NiceDialog;
 import com.othershe.nicedialog.ViewConvertListener;
 import com.othershe.nicedialog.ViewHolder;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
-import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 
 /**
  * Created by 123 on 2017/9/10.
@@ -42,7 +41,6 @@ public class DialogLoading {
         if (dialog.isVisible()){
             dialog.dismiss();
             if(msg == MSG_SUCCESS){
-                MyToastUtil.showToast(successMessage);
                 Message message = new Message();
                 message.arg1 = msg;
                 handler.sendMessage(message);

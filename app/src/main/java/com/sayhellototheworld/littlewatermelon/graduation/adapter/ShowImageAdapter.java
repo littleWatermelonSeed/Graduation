@@ -2,7 +2,6 @@ package com.sayhellototheworld.littlewatermelon.graduation.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,12 +89,12 @@ public class ShowImageAdapter extends BaseAdapter {
         }
         viewHolder.imageView_deltete.setVisibility(View.GONE);
         if (!imagePath.get(position).startsWith("http://")){
-            Log.i("niyuanjie","加载本地图片");
+//            Log.i("niyuanjie","加载本地图片");
             Glide.with(context)
                     .load(new File(imagePath.get(position)))
                     .into(viewHolder.imageView_content);
         }else {
-            Log.i("niyuanjie","加载网络图片");
+//            Log.i("niyuanjie","加载网络图片");
             Glide.with(context)
                     .load(imagePath.get(position))
                     .into(viewHolder.imageView_content);

@@ -17,6 +17,33 @@ public class LostAndFindBean extends BmobObject {
     private String content;
     private BmobDate releaseTime;
     private List<String> imageUrls;
+    private String schoolKey;
+    private Integer commentNum;
+    private Integer stars;
+
+    public Integer getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(Integer commentNum) {
+        this.commentNum = commentNum;
+    }
+
+    public Integer getStars() {
+        return stars;
+    }
+
+    public void setStars(Integer stars) {
+        this.stars = stars;
+    }
+
+    public String getSchoolKey() {
+        return schoolKey;
+    }
+
+    public void setSchoolKey(String schoolKey) {
+        this.schoolKey = schoolKey;
+    }
 
     public MyUserBean getUser() {
         return user;

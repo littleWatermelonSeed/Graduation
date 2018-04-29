@@ -9,7 +9,7 @@ import cn.bmob.v3.exception.BmobException;
  * Created by 123 on 2018/4/23.
  */
 
-public interface SaveMsgListener {
+public interface BmobSaveMsgWithImg {
 
     void msgSuccess(String objectID);
 

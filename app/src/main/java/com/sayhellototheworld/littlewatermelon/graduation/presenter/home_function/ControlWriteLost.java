@@ -12,8 +12,8 @@ import com.othershe.nicedialog.ViewHolder;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobMangeLostAndFind;
-import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.SaveMsgListener;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageLostAndFind;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobSaveMsgWithImg;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 
 import java.util.List;
@@ -25,11 +25,11 @@ import cn.bmob.v3.exception.BmobException;
  * Created by 123 on 2018/4/22.
  */
 
-public class ControlWriteLost implements SaveMsgListener{
+public class ControlWriteLost implements BmobSaveMsgWithImg {
 
     private Context context;
     private List<String> myImagePaths;
-    private BmobMangeLostAndFind manager;
+    private BmobManageLostAndFind manager;
 
     private BaseNiceDialog dialog;
     private final Handler handler = new Handler(){
@@ -41,7 +41,7 @@ public class ControlWriteLost implements SaveMsgListener{
                 MyToastUtil.showToast("发布失败");
             } else if (msg.arg1 == DialogLoading.MSG_SUCCESS) {
                 dialog.dismiss();
-                MyToastUtil.showToast("发布提交成功");
+                MyToastUtil.showToast("发布成功");
                 ((Activity) context).finish();
             }
         }
@@ -49,7 +49,7 @@ public class ControlWriteLost implements SaveMsgListener{
 
     public ControlWriteLost(Context context){
         this.context = context;
-        manager = BmobMangeLostAndFind.getManager();
+        manager = BmobManageLostAndFind.getManager();
     }
 
     public void releaseLost(final LostAndFindBean bean,final List<String> imgPath){

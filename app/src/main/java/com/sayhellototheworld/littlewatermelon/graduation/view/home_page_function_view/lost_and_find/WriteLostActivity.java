@@ -109,6 +109,9 @@ public class WriteLostActivity extends BaseSlideBcakStatusActivity implements Vi
         bean.setKeyWord(keyword);
         bean.setContent(details);
         bean.setReleaseTime(new BmobDate(new Date()));
+        bean.setCommentNum(0);
+        bean.setStars(0);
+        bean.setSchoolKey(BmobManageUser.getCurrentUser().getSchooleKey());
         cwl.releaseLost(bean,imagePath);
     }
 

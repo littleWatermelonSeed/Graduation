@@ -175,7 +175,7 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
     }
 
     private void startLostAndFind(){
-        LostAndFindActivity.go2Activity(context);
+        LostAndFindActivity.go2Activity(context,false);
     }
 
     private void startFleaMarket(){

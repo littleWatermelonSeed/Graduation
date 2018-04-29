@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +16,18 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.home_function.ControlLostAndFind;
+import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.ScreenUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.MsgDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener{
 
     private TextView txt_back;
+    private TextView txt_msg;
     private ImageView img_more;
     private TextView txt_no_msg;
     private LinearLayout ll_search;
@@ -30,6 +36,10 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
     private TextView txt_write_lost;
     private TextView txt_own_lost;
     private PopupWindow pop_window;
+    private RecyclerView mRecyclerView;
+    private ControlLostAndFind cla;
+
+    private boolean privateLost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +49,7 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
 
     @Override
     protected void initWidget() {
+        txt_msg = (TextView) findViewById(R.id.activity_lost_and_find_msg);
         txt_back = (TextView) findViewById(R.id.activity_lost_and_find_back);
         txt_back.setOnClickListener(this);
         img_more = (ImageView) findViewById(R.id.activity_lost_and_find_more);
@@ -52,7 +63,9 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
         txt_write_lost.setOnClickListener(this);
         txt_own_lost = (TextView) pop_window_view.findViewById(R.id.pop_window_lost_and_find_view_own);
         txt_own_lost.setOnClickListener(this);
+        mRecyclerView = (RecyclerView) findViewById(R.id.activity_lost_and_find_recycler_view);
         refreshLayout.setEnableScrollContentWhenRefreshed(true);
+        refreshLayout.setEnableScrollContentWhenLoaded(true);
         refreshLayout.setEnableAutoLoadMore(false);
         refreshLayout.setDisableContentWhenRefresh(true);//是否在刷新的时候禁止列表的操作
         refreshLayout.setDisableContentWhenLoading(true);//是否在加载的时候禁止列表的操作
@@ -60,16 +73,20 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
 
     @Override
     protected void initParam() {
+        Intent intent = getIntent();
+        privateLost = intent.getBooleanExtra("privateLost",false);
+        cla = new ControlLostAndFind(this,refreshLayout,mRecyclerView,privateLost);
         tintManager.setStatusBarTintResource(R.color.white);
     }
 
     @Override
     protected void initShow() {
-
-    }
-
-    public static void go2Activity(Context context){
-        context.startActivity(new Intent(context,LostAndFindActivity.class));
+        refreshLayout.autoRefresh();
+        if (privateLost){
+            ll_search.setVisibility(View.GONE);
+            img_more.setVisibility(View.GONE);
+            txt_msg.setText("我的发布");
+        }
     }
 
     @Override
@@ -89,14 +106,41 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
                 SearchLostActivity.go2Activity(this);
                 break;
             case R.id.pop_window_lost_and_find_view_write:
+                if (BmobManageUser.getCurrentUser().getSchooleKey() == null ||
+                        BmobManageUser.getCurrentUser().getSchooleKey().equals("")){
+                    pop_window.dismiss();
+                    MyToastUtil.showToast("请先去个人设置中设置自己的学校");
+                    return;
+                }
                 pop_window.dismiss();
                 WriteLostActivity.go2Activity(this);
                 break;
             case R.id.pop_window_lost_and_find_view_own:
                 pop_window.dismiss();
-                OwnLostActivity.go2Activity(this);
+                LostAndFindActivity.go2Activity(this,true);
                 break;
         }
     }
 
+    public static void go2Activity(Context context,boolean privateLost){
+        Intent intent = new Intent(context,LostAndFindActivity.class);
+        intent.putExtra("privateLost",privateLost);
+        context.startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == MsgDetailsActivity.MSG_DETAILS_REQUEST_CODE){
+            if (resultCode == RESULT_OK){
+                refreshLayout.autoRefresh();
+            }
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        cla.notifData();
+    }
 }
