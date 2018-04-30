@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.ClassScheduleActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.FleaMarketActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestLeaveActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestRepairsActivity;
@@ -179,7 +179,7 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
     }
 
     private void startFleaMarket(){
-        FleaMarketActivity.go2Activity(context);
+        FleaMarketActivity.go2Activity(context,FleaMarketActivity.TYPE_FLEA_MARK_HOME);
     }
 
     private void startResourceSharing(){

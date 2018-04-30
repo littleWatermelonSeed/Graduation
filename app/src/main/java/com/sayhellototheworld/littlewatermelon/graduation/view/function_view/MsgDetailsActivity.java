@@ -54,7 +54,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener,OnLoadMoreListener,OnRefreshListener,
         BmobQueryDone{
 
-    private TextView txt;
     private TextView txt_back;
     private ImageView img_more;
     private TextView txt_title;

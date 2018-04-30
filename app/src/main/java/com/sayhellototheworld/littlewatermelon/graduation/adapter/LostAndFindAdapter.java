@@ -56,10 +56,10 @@ public class LostAndFindAdapter extends RecyclerView.Adapter<LostAndFindAdapter.
 //        holder.txt_content.setOnClickListener(listener);
         holder.txt_commentNum.setText(bean.get(position).getCommentNum() + "");
         holder.txt_likeNum.setText(bean.get(position).getStars() + "");
-        holder.mGridView.setAdapter(null);
         holder.ll_comment.setOnClickListener(listener);
         holder.ll_star.setOnClickListener(listener);
         holder.ll_body.setOnClickListener(listener);
+        holder.mGridView.setAdapter(null);
         if (bean.get(position).getImageUrls() != null && bean.get(position).getImageUrls().size() > 0){
             ShowImageAdapter adapter = new ShowImageAdapter(context,bean.get(position).getImageUrls(),ShowImageAdapter.TYPE_READ_PLAN);
             holder.mGridView.setAdapter(adapter);

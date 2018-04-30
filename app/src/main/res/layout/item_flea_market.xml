@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/radius_background4"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:layout_marginTop="8dp">
+
+    <RelativeLayout
+        android:id="@+id/item_flea_market_other_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radius_background7"
+        android:orientation="horizontal"
+        android:paddingBottom="10px"
+        android:paddingLeft="15px"
+        android:paddingRight="15px"
+        android:paddingTop="10px">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_flea_market_head_portrait"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:src="@drawable/head_log1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/item_flea_market_head_portrait">
+
+            <TextView
+                android:id="@+id/item_flea_market_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15px"
+                android:gravity="center_vertical"
+                android:textColor="@color/plan_user_name_text_color"
+                android:textSize="25px"/>
+
+            <TextView
+                android:id="@+id/activity_flea_mark_flea_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5px"
+                android:textSize="15px"
+                android:text="的店铺"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_flea_market_go_to_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:src="@drawable/private_store_icon"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="进入TA的店铺"
+                android:textSize="15px"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_flea_market_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="35px"/>
+
+    <com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView
+        android:id="@+id/item_flea_market_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:horizontalSpacing="15dp"
+        android:numColumns="3"
+        android:verticalSpacing="8dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/item_flea_market_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textSize="25px"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/item_flea_market_price_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_background_buttongreen1"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:paddingTop="5px"
+            android:paddingBottom="5px"
+            android:textSize="15px"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/item_flea_market_money_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥"
+            android:textColor="@color/red2"
+            android:layout_marginLeft="15px"
+            android:layout_toRightOf="@+id/item_flea_market_price_type"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/item_flea_market_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px"
+            android:textColor="@color/red2"
+            android:layout_toRightOf="@+id/item_flea_market_money_icon"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/item_flea_market_leave_word_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px"
+            android:textSize="20px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_flea_market_create_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20px"
+        android:layout_marginTop="2dp"/>
+
+</LinearLayout>

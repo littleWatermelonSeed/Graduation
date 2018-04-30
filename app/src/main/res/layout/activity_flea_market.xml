@@ -7,12 +7,173 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@color/white"
-    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.FleaMarketActivity">
+    android:background="@color/white1"
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="跳蚤市场"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_flea_mark_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="返回"
+            android:textSize="30px"/>
+
+        <ImageView
+            android:id="@+id/activity_flea_mark_more"
+            android:layout_width="50px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/more1"/>
+
+        <TextView
+            android:id="@+id/activity_flea_mark_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="跳蚤市场"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_flea_mark_smart_refresh"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/white2"
+        app:srlPrimaryColor="@color/gray"
+        app:srlAccentColor="@color/white"
+        app:srlEnablePreviewInEditMode="true">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_srlBackgroundColor="@color/gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/activity_flea_mark_search"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginTop="5px"-->
+                <!--android:background="@drawable/radius_background4"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_marginRight="5dp">-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:src="@drawable/search"/>-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="试试搜索你掉的物品的关键字"-->
+                    <!--android:textColor="@color/white3"-->
+                    <!--android:textSize="10sp"/>-->
+            <!--</LinearLayout>-->
+
+            <TextView
+                android:id="@+id/activity_flea_mark_no_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15px"
+                android:gravity="center"
+                android:text="还没有失物招领信息哟~"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:id="@+id/activity_flea_mark_other_page"
+                android:layout_width="match_parent"
+                android:layout_height="120px"
+                android:background="@drawable/radius_background7"
+                android:orientation="horizontal"
+                android:paddingBottom="10px"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:paddingTop="10px"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:visibility="gone">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/activity_flea_mark_head_portrait"
+                    android:layout_width="70px"
+                    android:layout_height="70px"
+                    android:src="@drawable/head_log1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20px"
+                    android:orientation="vertical"
+                    android:layout_toRightOf="@+id/activity_flea_mark_head_portrait">
+
+                    <TextView
+                        android:id="@+id/activity_flea_mark_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15px"
+                        android:gravity="center_vertical"
+                        android:text="不穿休闲裤"
+                        android:textColor="@color/plan_user_name_text_color"
+                        android:textSize="25px"/>
+
+                    <TextView
+                        android:id="@+id/activity_flea_mark_flea_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5px"
+                        android:textSize="25px"
+                        android:text="他的商品 0件"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:layout_width="60px"
+                        android:layout_height="60px"
+                        android:src="@drawable/private_store_icon"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="私人店铺"
+                        android:textSize="15px"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_flea_mark_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+        </LinearLayout>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_srlBackgroundColor="@color/gray"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

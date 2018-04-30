@@ -11,8 +11,8 @@ import com.othershe.nicedialog.BaseNiceDialog;
 import com.othershe.nicedialog.ViewHolder;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageLostAndFind;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarkBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaMark;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobSaveMsgWithImg;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
@@ -23,13 +23,13 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 
 /**
- * Created by 123 on 2018/4/22.
+ * Created by 123 on 2018/4/30.
  */
 
-public class ControlWriteLost implements BmobSaveMsgWithImg {
+public class ControlWriteFlea implements BmobSaveMsgWithImg {
 
     private Context context;
-    private BmobManageLostAndFind manager;
+    private BmobManageFleaMark manager;
 
     private BaseNiceDialog dialog;
     private final Handler handler = new Handler(){
@@ -47,12 +47,12 @@ public class ControlWriteLost implements BmobSaveMsgWithImg {
         }
     };
 
-    public ControlWriteLost(Context context){
+    public ControlWriteFlea(Context context){
         this.context = context;
-        manager = BmobManageLostAndFind.getManager();
+        manager = BmobManageFleaMark.getManager();
     }
 
-    public void releaseLost(final LostAndFindBean bean,final List<String> imgPath){
+    public void releaseFlea(final FleaMarkBean bean, final List<String> imgPath){
         DialogLoading.showLoadingDialog(((FragmentActivity) context).getSupportFragmentManager(),
                 new DialogLoading.ShowLoadingDone() {
                     @Override
@@ -61,9 +61,9 @@ public class ControlWriteLost implements BmobSaveMsgWithImg {
                         TextView textView = viewHolder.getView(R.id.nicedialog_loading_textView);
                         textView.setText("发布中...");
                         if (imgPath == null || imgPath.size() <= 0){
-                            manager.uploadMsgWithoutImg(bean,ControlWriteLost.this);
+                            manager.uploadMsgWithoutImg(bean,ControlWriteFlea.this);
                         }else {
-                            manager.uploadMsgWithImg(bean,imgPath,ControlWriteLost.this);
+                            manager.uploadMsgWithImg(bean,imgPath,ControlWriteFlea.this);
                         }
                     }
                 });
