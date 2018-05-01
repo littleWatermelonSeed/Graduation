@@ -14,7 +14,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_functio
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestLeaveActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestRepairsActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.ResourceSharingActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.ResourceSharingActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RespondLeaveActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RespondRepairActivity;
 import com.zhy.autolayout.utils.AutoUtils;

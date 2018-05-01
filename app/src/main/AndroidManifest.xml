@@ -86,7 +86,7 @@
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.ResourceSharingActivity"
+            android:name=".view.home_page_function_view.resource_share.ResourceSharingActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity

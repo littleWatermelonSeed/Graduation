@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.ResourceSharingActivity">
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.ResourceSharingActivity">
 
     <TextView
         android:layout_width="wrap_content"
