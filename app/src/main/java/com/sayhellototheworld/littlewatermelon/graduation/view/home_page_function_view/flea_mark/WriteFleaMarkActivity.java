@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.ShowImageAdapter;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarkBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.home_function.ControlWriteFlea;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
@@ -126,7 +126,7 @@ public class WriteFleaMarkActivity extends BaseSlideBcakStatusActivity implement
     private void releaseFlea(){
         if (!checkMsg())
             return;
-        FleaMarkBean bean = new FleaMarkBean();
+        FleaMarketBean bean = new FleaMarketBean();
         bean.setUser(BmobManageUser.getCurrentUser());
         bean.setTitle(title);
         bean.setCommentNum(0);

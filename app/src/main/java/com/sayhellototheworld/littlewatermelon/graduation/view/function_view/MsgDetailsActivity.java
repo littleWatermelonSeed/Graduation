@@ -232,7 +232,7 @@ public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements V
     }
 
     private void ensureDel() {
-        DialogConfirm.newInstance("提示", "确定取消修改/完善个人资料?", new DialogConfirm.CancleAndOkDo() {
+        DialogConfirm.newInstance("提示", "确定删除此贴?", new DialogConfirm.CancleAndOkDo() {
             @Override
             public void cancle() {
             }
@@ -245,7 +245,7 @@ public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements V
                                 dialog = baseNiceDialog;
                                 TextView textView = viewHolder.getView(R.id.nicedialog_loading_textView);
                                 textView.setText("删除中...");
-                                delLost();
+                                delMsg();
                             }
                         });
             }
@@ -299,7 +299,7 @@ public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements V
         txt_like.setTextColor(getResources().getColor(R.color.black1));
     }
 
-    private void delLost(){
+    private void delMsg(){
         switch (details_type){
             case DETAILS_TYPE_LOST:
                 LostAndFindBean lostAndFindBean = (LostAndFindBean) bmobObject;

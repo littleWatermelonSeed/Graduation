@@ -13,9 +13,12 @@ import com.othershe.nicedialog.BaseNiceDialog;
 import com.othershe.nicedialog.ViewHolder;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaCommentBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostCommentBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageLostComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobSaveMsgWithoutImg;
@@ -33,6 +36,7 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
 
     private TextView textView_back;
     private TextView textView_send;
+    private TextView textView_msg;
     private EditText editText;
     private BaseNiceDialog dialog;
 
@@ -41,6 +45,7 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
     private static int comment_type = -1;
 
     public final static int COMMENT_TYPE_LOST_AND_FIND = 0;
+    public final static int COMMENT_TYPE_FLEA_MARKET = 1;
 
     private Handler handler = new Handler(){
         @Override
@@ -68,7 +73,9 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
         textView_back.setOnClickListener(this);
         textView_send = (TextView)findViewById(R.id.activity_write_comment_send);
         textView_send.setOnClickListener(this);
+        textView_msg = (TextView) findViewById(R.id.activity_write_comment_msg);
         editText = (EditText)findViewById(R.id.activity_write_comment_edit);
+
     }
 
     @Override
@@ -79,7 +86,14 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
 
     @Override
     protected void initShow() {
-
+        switch (comment_type){
+            case COMMENT_TYPE_LOST_AND_FIND:
+                textView_msg.setText("写评论");
+                break;
+            case COMMENT_TYPE_FLEA_MARKET:
+                textView_msg.setText("留言");
+                break;
+        }
     }
 
     @Override
@@ -119,12 +133,16 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
             case COMMENT_TYPE_LOST_AND_FIND:
                 sendLostComment(commentContent);
                 break;
+            case COMMENT_TYPE_FLEA_MARKET:
+                sendFleaComment(commentContent);
+                break;
         }
     }
 
     private void sendLostComment(String commentContent) {
         LostAndFindBean lostAndFindBean = (LostAndFindBean) bmobObject;
         lostAndFindBean.setCommentNum(lostAndFindBean.getCommentNum() + 1);
+
         LostCommentBean lostCommentBean = new LostCommentBean();
         lostCommentBean.setUser(userBean);
         lostCommentBean.setReleaseTime(new BmobDate(new Date()));
@@ -132,6 +150,17 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
         lostCommentBean.setRead(false);
         lostCommentBean.setLost(lostAndFindBean);
         BmobManageLostComment.getManager().uploadMsg(lostCommentBean,this);
+    }
+
+    private void sendFleaComment(String commentContent){
+        FleaMarketBean fleaMarketBean = (FleaMarketBean) bmobObject;
+        FleaCommentBean fleaMarketCommentBean = new FleaCommentBean();
+        fleaMarketCommentBean.setUser(userBean);
+        fleaMarketCommentBean.setReleaseTime(new BmobDate(new Date()));
+        fleaMarketCommentBean.setContent(commentContent);
+        fleaMarketCommentBean.setRead(false);
+        fleaMarketCommentBean.setFleaMarkte(fleaMarketBean);
+        BmobManageFleaComment.getManager().uploadMsg(fleaMarketCommentBean,this);
     }
 
     @Override

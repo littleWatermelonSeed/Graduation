@@ -11,7 +11,7 @@ import com.othershe.nicedialog.BaseNiceDialog;
 import com.othershe.nicedialog.ViewHolder;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarkBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaMark;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobSaveMsgWithImg;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
@@ -52,7 +52,7 @@ public class ControlWriteFlea implements BmobSaveMsgWithImg {
         manager = BmobManageFleaMark.getManager();
     }
 
-    public void releaseFlea(final FleaMarkBean bean, final List<String> imgPath){
+    public void releaseFlea(final FleaMarketBean bean, final List<String> imgPath){
         DialogLoading.showLoadingDialog(((FragmentActivity) context).getSupportFragmentManager(),
                 new DialogLoading.ShowLoadingDone() {
                     @Override

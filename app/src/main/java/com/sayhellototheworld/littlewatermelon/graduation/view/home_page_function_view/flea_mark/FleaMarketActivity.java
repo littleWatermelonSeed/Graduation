@@ -28,6 +28,8 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMsgDetailsActivity.FLEA_MARKER_DEL_CODE;
+
 public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener{
 
     private TextView txt_back;
@@ -37,8 +39,9 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
     private LinearLayout ll_search;
     private SmartRefreshLayout refreshLayout;
     private View pop_window_view;
-    private TextView txt_write_lost;
-    private TextView txt_own_lost;
+    private TextView txt_write_flea;
+    private TextView txt_own_flea;
+    private TextView txt_own_flea_collect;
     private PopupWindow pop_window;
     private RecyclerView mRecyclerView;
     private RelativeLayout rl_other_page;
@@ -49,6 +52,7 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
     public final static int TYPE_FLEA_MARK_HOME = 0;
     public final static int TYPE_FLEA_MARK_OWN = 1;
     public final static int TYPE_FLEA_MARK_OTHER = 2;
+    public final static int TYPE_FLEA_MARK_COLLECT = 3;
 
     private int fleaMarkType;
     private static MyUserBean other_user = null;
@@ -72,10 +76,12 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
 //        ll_search.setOnClickListener(this);
         refreshLayout = (SmartRefreshLayout) findViewById(R.id.activity_flea_mark_smart_refresh);
         pop_window_view= LayoutInflater.from(this).inflate(R.layout.pop_window_flea_mark_more, null, false);
-        txt_write_lost = (TextView) pop_window_view.findViewById(R.id.pop_window_flea_mark_more_write);
-        txt_write_lost.setOnClickListener(this);
-        txt_own_lost = (TextView) pop_window_view.findViewById(R.id.pop_window_flea_mark_more_own);
-        txt_own_lost.setOnClickListener(this);
+        txt_write_flea = (TextView) pop_window_view.findViewById(R.id.pop_window_flea_mark_more_write);
+        txt_write_flea.setOnClickListener(this);
+        txt_own_flea = (TextView) pop_window_view.findViewById(R.id.pop_window_flea_mark_more_own);
+        txt_own_flea.setOnClickListener(this);
+        txt_own_flea_collect = (TextView) pop_window_view.findViewById(R.id.pop_window_flea_mark_more_collect);
+        txt_own_flea_collect.setOnClickListener(this);
         rl_other_page = (RelativeLayout) findViewById(R.id.activity_flea_mark_other_page);
         txt_other_user_name = (TextView) findViewById(R.id.activity_flea_mark_name);
         txt_other_flea_num = (TextView) findViewById(R.id.activity_flea_mark_flea_num);
@@ -127,6 +133,10 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
                 img_more.setVisibility(View.GONE);
                 txt_msg.setText("我的铺子");
                 break;
+            case TYPE_FLEA_MARK_COLLECT:
+                img_more.setVisibility(View.GONE);
+                txt_msg.setText("我收藏的宝贝");
+                break;
         }
     }
 
@@ -160,6 +170,10 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
                 pop_window.dismiss();
                 FleaMarketActivity.go2Activity(this,TYPE_FLEA_MARK_OWN);
                 break;
+            case R.id.pop_window_flea_mark_more_collect:
+                pop_window.dismiss();
+                FleaMarketActivity.go2Activity(this,TYPE_FLEA_MARK_COLLECT);
+                break;
         }
     }
 
@@ -167,6 +181,16 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
         Intent intent = new Intent(context,FleaMarketActivity.class);
         intent.putExtra("fleaMarkType",fleaMarkType);
         context.startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FLEA_MARKER_DEL_CODE){
+            if (resultCode == RESULT_OK){
+                refreshLayout.autoRefresh();
+            }
+        }
     }
 
     public static void go2Activity(Context context,MyUserBean userBean){

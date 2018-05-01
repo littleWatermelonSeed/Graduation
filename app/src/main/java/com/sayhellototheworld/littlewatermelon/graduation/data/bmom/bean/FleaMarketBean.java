@@ -9,7 +9,7 @@ import cn.bmob.v3.datatype.BmobDate;
  * Created by 123 on 2018/4/30.
  */
 
-public class FleaMarkBean extends BmobObject {
+public class FleaMarketBean extends BmobObject {
 
     private MyUserBean user;
     private String title;

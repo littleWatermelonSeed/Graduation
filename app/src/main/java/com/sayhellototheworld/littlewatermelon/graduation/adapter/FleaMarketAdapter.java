@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarkBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMsgDetailsActivity;
@@ -23,6 +23,7 @@ import java.util.List;
 
 import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity.TYPE_FLEA_MARK_OTHER;
 import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity.TYPE_FLEA_MARK_OWN;
+import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMsgDetailsActivity.FLEA_MARKER_DEL_CODE;
 
 /**
  * Created by 123 on 2018/4/30.
@@ -31,10 +32,10 @@ import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_
 public class FleaMarketAdapter extends RecyclerView.Adapter<FleaMarketAdapter.FleaMarketViewHolder> {
 
     private Context context;
-    private List<FleaMarkBean> data;
+    private List<FleaMarketBean> data;
     private int fleaMarkType;
 
-    public FleaMarketAdapter(Context context,List<FleaMarkBean> data,int fleaMarkType){
+    public FleaMarketAdapter(Context context, List<FleaMarketBean> data, int fleaMarkType){
         this.context = context;
         this.data = data;
         this.fleaMarkType = fleaMarkType;
@@ -143,7 +144,11 @@ public class FleaMarketAdapter extends RecyclerView.Adapter<FleaMarketAdapter.Fl
                     break;
                 case R.id.item_flea_market_title:
                 case R.id.item_flea_market_content:
-                    FleaMsgDetailsActivity.go2Activity(context,fleaMarkType);
+                    if (fleaMarkType == TYPE_FLEA_MARK_OWN){
+                        FleaMsgDetailsActivity.go2Activity(context,fleaMarkType,data.get(position),FLEA_MARKER_DEL_CODE);
+                    }else {
+                        FleaMsgDetailsActivity.go2Activity(context,fleaMarkType,data.get(position));
+                    }
                     break;
             }
         }

@@ -48,7 +48,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white1">
+        android:background="@color/white">
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -69,7 +69,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white6"
+                android:background="@color/white"
                 android:fillViewport="false">
 
                 <LinearLayout
@@ -212,7 +212,8 @@
                         android:id="@+id/activity_msg_details_comment_list"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="5dp"
+                        android:divider="@null"/>
 
                 </LinearLayout>
             </ScrollView>

@@ -25,6 +25,7 @@
             android:text="取消"/>
 
         <TextView
+            android:id="@+id/activity_write_comment_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -51,7 +52,7 @@
         android:padding="15px"
         android:textColor="@color/black1"
         android:textSize="30px"
-        android:hint="写评论..."
+        android:hint="留下点东西吧..."
         android:background="@null"/>
 
 </LinearLayout>

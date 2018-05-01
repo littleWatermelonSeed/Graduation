@@ -6,10 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.FleaMarketAdapter;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarkBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaCollectBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaCollect;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaMark;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.QueryCountListener;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
@@ -24,6 +27,7 @@ import java.util.List;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
+import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity.TYPE_FLEA_MARK_COLLECT;
 import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity.TYPE_FLEA_MARK_HOME;
 import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity.TYPE_FLEA_MARK_OTHER;
 import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity.TYPE_FLEA_MARK_OWN;
@@ -32,7 +36,8 @@ import static com.sayhellototheworld.littlewatermelon.graduation.view.home_page_
  * Created by 123 on 2018/5/1.
  */
 
-public class ControlFleaMarket extends FindListener<FleaMarkBean> implements OnLoadMoreListener, OnRefreshListener ,QueryCountListener{
+public class ControlFleaMarket extends FindListener<FleaMarketBean> implements OnLoadMoreListener, OnRefreshListener ,QueryCountListener,
+        BmobQueryDone<FleaCollectBean> {
 
     private Context context;
     private SmartRefreshLayout refreshLayout;
@@ -42,7 +47,7 @@ public class ControlFleaMarket extends FindListener<FleaMarkBean> implements OnL
 
     private BmobManageFleaMark manager;
     private FleaMarketAdapter adapter;
-    private List<FleaMarkBean> fleaData;
+    private List<FleaMarketBean> fleaData;
 
     private boolean loading = false;
     private int nowSkip = 0;
@@ -78,6 +83,9 @@ public class ControlFleaMarket extends FindListener<FleaMarkBean> implements OnL
             case TYPE_FLEA_MARK_OTHER:
                 manager.queryByUser(other_user,this,nowSkip);
                 break;
+            case TYPE_FLEA_MARK_COLLECT:
+                BmobManageFleaCollect.getManager().queryMsgByUser(BmobManageUser.getCurrentUser(),nowSkip,this);
+                break;
         }
     }
 
@@ -96,11 +104,14 @@ public class ControlFleaMarket extends FindListener<FleaMarkBean> implements OnL
                 manager.queryByUser(other_user,this,nowSkip);
                 manager.queryCount(other_user,this);
                 break;
+            case TYPE_FLEA_MARK_COLLECT:
+                BmobManageFleaCollect.getManager().queryMsgByUser(BmobManageUser.getCurrentUser(),nowSkip,this);
+                break;
         }
     }
 
     @Override
-    public void done(List<FleaMarkBean> list, BmobException e) {
+    public void done(List<FleaMarketBean> list, BmobException e) {
         if (e == null){
             if (!loading){
                 fleaData.clear();
@@ -136,6 +147,33 @@ public class ControlFleaMarket extends FindListener<FleaMarkBean> implements OnL
 
     @Override
     public void queryCountFailed(BmobException e) {
+        BmobExceptionUtil.dealWithException(context,e);
+    }
+
+    @Override
+    public void querySuccess(List<FleaCollectBean> data) {
+        if (!loading){
+            fleaData.clear();
+            for (FleaCollectBean f:data){
+                fleaData.add(f.getFleaMarket());
+            }
+        }else {
+            for (FleaCollectBean f:data){
+                fleaData.add(f.getFleaMarket());
+            }
+        }
+
+        if (data.size() == 0){
+            MyToastUtil.showToast("到底啦,没有更多数据啦~");
+        }
+        adapter.notifyDataSetChanged();
+        finishSmart(true);
+        nowSkip++;
+    }
+
+    @Override
+    public void queryFailed(BmobException e) {
+        finishSmart(false);
         BmobExceptionUtil.dealWithException(context,e);
     }
 }

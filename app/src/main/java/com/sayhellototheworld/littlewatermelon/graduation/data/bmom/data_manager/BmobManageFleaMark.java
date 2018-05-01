@@ -1,8 +1,8 @@
 package com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager;
 
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarkBean;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobDeletMsgDone;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobSaveMsgWithImg;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.QueryCountListener;
 
@@ -40,7 +40,7 @@ public class BmobManageFleaMark {
         return manager;
     }
 
-    public void uploadMsgWithoutImg(FleaMarkBean bean, final BmobSaveMsgWithImg listener) {
+    public void uploadMsgWithoutImg(FleaMarketBean bean, final BmobSaveMsgWithImg listener) {
         bean.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
@@ -53,7 +53,7 @@ public class BmobManageFleaMark {
         });
     }
 
-    public void uploadMsgWithImg(final FleaMarkBean bean, final List<String> path, final BmobSaveMsgWithImg listener) {
+    public void uploadMsgWithImg(final FleaMarketBean bean, final List<String> path, final BmobSaveMsgWithImg listener) {
         BmobImageManager.getManager().uploadImageMultiple(path, new UploadBatchListener() {
             @Override
             public void onSuccess(List<BmobFile> list, List<String> list1) {
@@ -75,8 +75,8 @@ public class BmobManageFleaMark {
         });
     }
 
-    public void queryBySchoolKey(String schoolKey, FindListener<FleaMarkBean> listener, int skip){
-        BmobQuery<FleaMarkBean> query = new BmobQuery<>();
+    public void queryBySchoolKey(String schoolKey, FindListener<FleaMarketBean> listener, int skip){
+        BmobQuery<FleaMarketBean> query = new BmobQuery<>();
         query.addWhereEqualTo("schoolKey",schoolKey);
         query.include("user");
         query.setLimit(10);
@@ -85,8 +85,8 @@ public class BmobManageFleaMark {
         query.findObjects(listener);
     }
 
-    public void queryByUser(MyUserBean user, FindListener<FleaMarkBean> listener, int skip){
-        BmobQuery<FleaMarkBean> query = new BmobQuery<>();
+    public void queryByUser(MyUserBean user, FindListener<FleaMarketBean> listener, int skip){
+        BmobQuery<FleaMarketBean> query = new BmobQuery<>();
         query.addWhereEqualTo("user",user);
         query.include("user");
         query.setLimit(10);
@@ -96,9 +96,9 @@ public class BmobManageFleaMark {
     }
 
     public void queryCount(MyUserBean user, final QueryCountListener listener){
-        BmobQuery<FleaMarkBean> query = new BmobQuery<>();
+        BmobQuery<FleaMarketBean> query = new BmobQuery<>();
         query.addWhereEqualTo("user",user);
-        query.count(FleaMarkBean.class, new CountListener() {
+        query.count(FleaMarketBean.class, new CountListener() {
             @Override
             public void done(Integer integer, BmobException e) {
                 if (e == null){
@@ -110,8 +110,17 @@ public class BmobManageFleaMark {
         });
     }
 
-    public void delMsg(LostAndFindBean bean, UpdateListener listener){
-        bean.delete(listener);
+    public void delMsg(FleaMarketBean bean, final BmobDeletMsgDone listener){
+        bean.delete(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null){
+                    listener.delMsgSuc();
+                }else {
+                    listener.delMsgFailed(e);
+                }
+            }
+        });
     }
 
 }
