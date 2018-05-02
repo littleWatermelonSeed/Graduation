@@ -33,13 +33,29 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/more1"/>
 
-        <TextView
-            android:id="@+id/activity_lost_and_find_msg"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="失物招领"
-            android:textSize="15sp"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_lost_and_find_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="失物招领"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/activity_lost_and_find_school_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="15px"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+        </LinearLayout>
     </RelativeLayout>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout

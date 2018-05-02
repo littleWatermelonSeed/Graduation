@@ -183,7 +183,7 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
     }
 
     private void startResourceSharing(){
-        ResourceSharingActivity.go2Activity(context);
+        ResourceSharingActivity.go2Activity(context,ResourceSharingActivity.TYPE_RESOURCE_SHARE_HOME);
     }
 
     private void startClassSchedule(){

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/white1"
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.WriteResourceShareActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_write_resource_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="返回"
+            android:textSize="30px"/>
+
+        <TextView
+            android:id="@+id/activity_write_resource_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="发布"
+            android:textSize="30px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发布学习资源"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:drawable/editbox_background_normal"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_write_resource_edt_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="描述一下资源(500字以内)..."
+                android:lineSpacingMultiplier="1.5"
+                android:maxLength="500"
+                android:minLines="4"
+                android:paddingBottom="10px"
+                android:paddingTop="10px"
+                android:textColor="@color/white4"
+                android:textSize="30px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="云盘链接："/>
+
+                <EditText
+                    android:id="@+id/activity_write_resource_edt_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="70px"
+                    android:layout_below="@+id/activity_write_line"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:hint="链接..."
+                    android:singleLine="true"
+                    android:textColor="@color/white4"
+                    android:textSize="30px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="云盘种类："/>
+
+                <EditText
+                    android:id="@+id/activity_write_resource_edt_link_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="70px"
+                    android:layout_below="@+id/activity_write_line"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:hint="如：百度云盘..."
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textColor="@color/white4"
+                    android:textSize="30px"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="万一有人想答谢你的分享呢~所以留下你的各种收款二维码吧"
+                android:layout_marginTop="20dp"
+                android:textSize="15px"
+                android:textColor="@color/green"/>
+
+            <com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView
+                android:id="@+id/activity_write_resource_card_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5px"
+                android:gravity="center_horizontal"
+                android:horizontalSpacing="15dp"
+                android:numColumns="3"
+                android:verticalSpacing="8dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

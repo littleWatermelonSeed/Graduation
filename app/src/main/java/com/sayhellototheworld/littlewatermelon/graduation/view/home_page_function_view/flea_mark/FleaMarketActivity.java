@@ -34,6 +34,7 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
 
     private TextView txt_back;
     private TextView txt_msg;
+    private TextView txt_school_name;
     private ImageView img_more;
     private TextView txt_no_msg;
     private LinearLayout ll_search;
@@ -68,6 +69,7 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
     protected void initWidget() {
         txt_msg = (TextView) findViewById(R.id.activity_flea_mark_msg);
         txt_back = (TextView) findViewById(R.id.activity_flea_mark_back);
+        txt_school_name = (TextView) findViewById(R.id.activity_flea_mark_school_name);
         txt_back.setOnClickListener(this);
         img_more = (ImageView) findViewById(R.id.activity_flea_mark_more);
         img_more.setOnClickListener(this);
@@ -110,6 +112,8 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
     private void showTop(){
         switch (fleaMarkType){
             case TYPE_FLEA_MARK_HOME:
+                txt_school_name.setVisibility(View.VISIBLE);
+                txt_school_name.setText(BmobManageUser.getCurrentUser().getSchoolName());
                 break;
             case TYPE_FLEA_MARK_OTHER:
                 rl_other_page.setVisibility(View.VISIBLE);
@@ -177,12 +181,6 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
         }
     }
 
-    public static void go2Activity(Context context,int fleaMarkType){
-        Intent intent = new Intent(context,FleaMarketActivity.class);
-        intent.putExtra("fleaMarkType",fleaMarkType);
-        context.startActivity(intent);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -191,6 +189,12 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
                 refreshLayout.autoRefresh();
             }
         }
+    }
+
+    public static void go2Activity(Context context,int fleaMarkType){
+        Intent intent = new Intent(context,FleaMarketActivity.class);
+        intent.putExtra("fleaMarkType",fleaMarkType);
+        context.startActivity(intent);
     }
 
     public static void go2Activity(Context context,MyUserBean userBean){

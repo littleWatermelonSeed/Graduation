@@ -132,10 +132,15 @@
         <activity
             android:name=".view.function_view.MsgDetailsActivity"
             android:theme="@style/NoActionBarTranslucentTheme"/>
-        <activity android:name=".view.home_page_function_view.flea_mark.WriteFleaMarkActivity"
-                  android:theme="@style/NoActionBarTranslucentTheme">
+        <activity
+            android:name=".view.home_page_function_view.flea_mark.WriteFleaMarkActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.flea_mark.FleaMsgDetailsActivity"
+        <activity
+            android:name=".view.home_page_function_view.flea_mark.FleaMsgDetailsActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.resource_share.WriteResourceShareActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

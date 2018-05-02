@@ -33,13 +33,30 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/more1"/>
 
-        <TextView
-            android:id="@+id/activity_flea_mark_msg"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="跳蚤市场"
-            android:textSize="15sp"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_flea_mark_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="跳蚤市场"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/activity_flea_mark_school_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="15px"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+        </LinearLayout>
+
     </RelativeLayout>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout

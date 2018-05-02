@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="105dp"
+        android:background="@drawable/radius_background2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pop_window_resource_sharing_more_write"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="发布资源"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/pop_window_resource_sharing_more_own"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="我的资源"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/pop_window_resource_sharing_more_collect"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="收藏的资源"
+            android:layout_weight="1"
+            android:gravity="center"/>
+    </LinearLayout>
+    
+</LinearLayout>

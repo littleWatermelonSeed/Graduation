@@ -28,6 +28,7 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
 
     private TextView txt_back;
     private TextView txt_msg;
+    private TextView txt_school_name;
     private ImageView img_more;
     private TextView txt_no_msg;
     private LinearLayout ll_search;
@@ -51,6 +52,7 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
     protected void initWidget() {
         txt_msg = (TextView) findViewById(R.id.activity_lost_and_find_msg);
         txt_back = (TextView) findViewById(R.id.activity_lost_and_find_back);
+        txt_school_name = (TextView) findViewById(R.id.activity_lost_and_find_school_name);
         txt_back.setOnClickListener(this);
         img_more = (ImageView) findViewById(R.id.activity_lost_and_find_more);
         img_more.setOnClickListener(this);
@@ -86,6 +88,9 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
             ll_search.setVisibility(View.GONE);
             img_more.setVisibility(View.GONE);
             txt_msg.setText("我的发布");
+        }else {
+            txt_school_name.setVisibility(View.VISIBLE);
+            txt_school_name.setText(BmobManageUser.getCurrentUser().getSchoolName());
         }
     }
 
