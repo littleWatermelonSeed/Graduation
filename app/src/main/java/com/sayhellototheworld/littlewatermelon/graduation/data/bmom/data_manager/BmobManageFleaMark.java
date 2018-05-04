@@ -4,6 +4,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMar
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobDeletMsgDone;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobSaveMsgWithImg;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobSaveMsgWithoutImg;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.QueryCountListener;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class BmobManageFleaMark {
         return manager;
     }
 
-    public void uploadMsgWithoutImg(FleaMarketBean bean, final BmobSaveMsgWithImg listener) {
+    public void uploadMsgWithoutImg(FleaMarketBean bean, final BmobSaveMsgWithoutImg listener) {
         bean.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {

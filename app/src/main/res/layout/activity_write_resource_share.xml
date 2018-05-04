@@ -116,6 +116,30 @@
                     android:textSize="30px"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="链接密码："/>
+
+                <EditText
+                    android:id="@+id/activity_write_resource_edt_link_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="70px"
+                    android:layout_below="@+id/activity_write_line"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textColor="@color/white4"
+                    android:textSize="30px"/>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -3,17 +3,12 @@ package com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_int
 import java.util.List;
 
 import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
 
 /**
  * Created by 123 on 2018/4/23.
  */
 
-public interface BmobSaveMsgWithImg {
-
-    void msgSuccess(String objectID);
-
-    void msgFailed(BmobException e);
+public interface BmobSaveMsgWithImg extends BmobSaveMsgWithoutImg{
 
     void imgSuccess(List<BmobFile> list, List<String> urls);
 
