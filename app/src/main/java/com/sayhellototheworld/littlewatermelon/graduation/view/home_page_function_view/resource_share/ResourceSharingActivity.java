@@ -19,9 +19,11 @@ import com.bumptech.glide.Glide;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.home_function.ControlResourceShare;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.ScreenUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -42,7 +44,7 @@ public class ResourceSharingActivity extends BaseSlideBcakStatusActivity impleme
     private RecyclerView mRecyclerView;
     private RelativeLayout rl_other_page;
     private TextView txt_other_user_name;
-    private TextView txt_other_flea_num;
+    private TextView txt_other_resource_num;
     private CircleImageView img_head;
 
     public final static int RESOURCE_SHARE_DEL_CODE = 20;
@@ -53,6 +55,7 @@ public class ResourceSharingActivity extends BaseSlideBcakStatusActivity impleme
 
     private int resourceType;
     private static MyUserBean other_user;
+    private ControlResourceShare crs;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +82,9 @@ public class ResourceSharingActivity extends BaseSlideBcakStatusActivity impleme
         txt_own_flea_collect.setOnClickListener(this);
         rl_other_page = (RelativeLayout) findViewById(R.id.activity_resource_sharing_other_page);
         txt_other_user_name = (TextView) findViewById(R.id.activity_resource_sharing_name);
-        txt_other_flea_num = (TextView) findViewById(R.id.activity_resource_sharing_flea_num);
+        txt_other_resource_num = (TextView) findViewById(R.id.activity_resource_sharing_flea_num);
         img_head = (CircleImageView) findViewById(R.id.activity_resource_sharing_head_portrait);
+        img_head.setOnClickListener(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.activity_resource_sharing_recycler_view);
         refreshLayout.setEnableScrollContentWhenRefreshed(true);
         refreshLayout.setEnableScrollContentWhenLoaded(true);
@@ -92,25 +96,27 @@ public class ResourceSharingActivity extends BaseSlideBcakStatusActivity impleme
     @Override
     protected void initParam() {
         resourceType = getIntent().getIntExtra("resourceType",-1);
+        crs = new ControlResourceShare(this,other_user,refreshLayout,mRecyclerView,resourceType,txt_other_resource_num);
     }
 
     @Override
     protected void initShow() {
         tintManager.setStatusBarTintResource(R.color.white);
         showTop();
+        refreshLayout.autoRefresh();
     }
 
     private void showTop(){
         switch (resourceType){
             case TYPE_RESOURCE_SHARE_HOME:
                 txt_school_name.setVisibility(View.VISIBLE);
-                txt_school_name.setText(BmobManageUser.getCurrentUser().getSchoolName());
+                txt_school_name.setText("全国");
                 break;
             case TYPE_RESOURCE_SHARE_OTHER:
                 rl_other_page.setVisibility(View.VISIBLE);
                 img_more.setVisibility(View.GONE);
                 txt_msg.setText(other_user.getNickName() + "的资源");
-                txt_other_flea_num.setText("Ta贡献的资源 0");
+                txt_other_resource_num.setText("Ta贡献的资源 0");
                 txt_other_user_name.setText(other_user.getNickName());
                 if (other_user.getHeadPortrait() != null && !other_user.getHeadPortrait().getUrl().equals("")){
                     Glide.with(this)
@@ -178,6 +184,9 @@ public class ResourceSharingActivity extends BaseSlideBcakStatusActivity impleme
             case R.id.pop_window_resource_sharing_more_collect:
                 pop_window.dismiss();
                 ResourceSharingActivity.go2Activity(this,TYPE_RESOURCE_SHARE_COLLECT);
+                break;
+            case R.id.activity_resource_sharing_head_portrait:
+                UserDetailsActivity.go2Activity(this,other_user.getObjectId());
                 break;
         }
     }

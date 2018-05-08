@@ -15,6 +15,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMsgDetailsActivity;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -77,6 +78,7 @@ public class FleaMarketAdapter extends RecyclerView.Adapter<FleaMarketAdapter.Fl
                         .dontAnimate()
                         .into(holder.img_head_portrait);
             }
+            holder.img_head_portrait.setOnClickListener(listener);
         }
 
         if (data.get(position).getPriceType() == 0){
@@ -149,6 +151,9 @@ public class FleaMarketAdapter extends RecyclerView.Adapter<FleaMarketAdapter.Fl
                     }else {
                         FleaMsgDetailsActivity.go2Activity(context,fleaMarkType,data.get(position));
                     }
+                    break;
+                case R.id.item_flea_market_head_portrait:
+                    UserDetailsActivity.go2Activity(context,data.get(position).getUser().getObjectId());
                     break;
             }
         }

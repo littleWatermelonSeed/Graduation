@@ -2,7 +2,6 @@ package com.sayhellototheworld.littlewatermelon.graduation.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridVie
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.MsgDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.WriteCommentActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -134,7 +134,7 @@ public class LostAndFindAdapter extends RecyclerView.Adapter<LostAndFindAdapter.
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.item_lost_and_find_head_portrait:
-                    Log.i("niyuanjie","点击头像");
+                    UserDetailsActivity.go2Activity(context,bean.get(position).getUser().getObjectId());
                     break;
                 case R.id.item_lost_and_find_body:
                     MsgDetailsActivity.go2Activity(context,star,bean.get(position),MsgDetailsActivity.DETAILS_TYPE_LOST,privateLost);

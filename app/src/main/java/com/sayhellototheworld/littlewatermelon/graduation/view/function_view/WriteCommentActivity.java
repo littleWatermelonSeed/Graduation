@@ -13,13 +13,16 @@ import com.othershe.nicedialog.BaseNiceDialog;
 import com.othershe.nicedialog.ViewHolder;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaCommentBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostCommentBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ResourceCommentBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ResourceShareBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageLostComment;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageResourceComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobSaveMsgWithoutImg;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
@@ -46,6 +49,7 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
 
     public final static int COMMENT_TYPE_LOST_AND_FIND = 0;
     public final static int COMMENT_TYPE_FLEA_MARKET = 1;
+    public final static int COMMENT_TYPE_FLEA_RRSOURCE_SHARE = 2;
 
     private Handler handler = new Handler(){
         @Override
@@ -93,6 +97,9 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
             case COMMENT_TYPE_FLEA_MARKET:
                 textView_msg.setText("留言");
                 break;
+            case COMMENT_TYPE_FLEA_RRSOURCE_SHARE:
+                textView_msg.setText("写评论");
+                break;
         }
     }
 
@@ -136,6 +143,9 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
             case COMMENT_TYPE_FLEA_MARKET:
                 sendFleaComment(commentContent);
                 break;
+            case COMMENT_TYPE_FLEA_RRSOURCE_SHARE:
+                sendResourceComment(commentContent);
+                break;
         }
     }
 
@@ -155,12 +165,25 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
     private void sendFleaComment(String commentContent){
         FleaMarketBean fleaMarketBean = (FleaMarketBean) bmobObject;
         FleaCommentBean fleaMarketCommentBean = new FleaCommentBean();
+
         fleaMarketCommentBean.setUser(userBean);
         fleaMarketCommentBean.setReleaseTime(new BmobDate(new Date()));
         fleaMarketCommentBean.setContent(commentContent);
         fleaMarketCommentBean.setRead(false);
         fleaMarketCommentBean.setFleaMarkte(fleaMarketBean);
         BmobManageFleaComment.getManager().uploadMsg(fleaMarketCommentBean,this);
+    }
+
+    private void sendResourceComment(String commentContent){
+        ResourceShareBean resourceShareBean = (ResourceShareBean) bmobObject;
+        ResourceCommentBean resourceCommentBean = new ResourceCommentBean();
+
+        resourceCommentBean.setUser(userBean);
+        resourceCommentBean.setReleaseTime(new BmobDate(new Date()));
+        resourceCommentBean.setContent(commentContent);
+        resourceCommentBean.setRead(false);
+        resourceCommentBean.setResource(resourceShareBean);
+        BmobManageResourceComment.getManager().uploadMsg(resourceCommentBean,this);
     }
 
     @Override

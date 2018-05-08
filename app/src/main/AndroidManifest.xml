@@ -140,7 +140,15 @@
             android:name=".view.home_page_function_view.flea_mark.FleaMsgDetailsActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.resource_share.WriteResourceShareActivity"
+        <activity
+            android:name=".view.home_page_function_view.resource_share.WriteResourceShareActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.function_view.UserDetailsActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.resource_share.ResourceShareDetailsActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

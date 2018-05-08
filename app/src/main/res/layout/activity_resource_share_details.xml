@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share_details.ResourceShareDetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_resource_share_details_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="返回"
+            android:textSize="30px"/>
+
+        <ImageView
+            android:id="@+id/activity_resource_share_details_more"
+            android:layout_width="50px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/more1"/>
+
+        <TextView
+            android:id="@+id/activity_resource_share_details_title"
+            android:layout_width="400px"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textSize="25px"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white1">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/activity_resource_share_details_refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/activity_resource_share_details_bottom"
+            android:background="@color/white"
+            app:srlAccentColor="@color/white"
+            app:srlEnablePreviewInEditMode="false"
+            app:srlPrimaryColor="@color/gray">
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_srlBackgroundColor="@color/white6"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fillViewport="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="15px">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/white6"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="90px"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10px"
+                        android:paddingLeft="15px"
+                        android:paddingRight="15px"
+                        android:paddingTop="10px">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/activity_resource_share_details_head_portrait"
+                            android:layout_width="70px"
+                            android:layout_height="70px"
+                            android:src="@drawable/head_log1"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20px"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_user_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15px"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/plan_user_name_text_color"
+                                android:textSize="25px"/>
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_create_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5px"
+                                android:textSize="15px"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/activity_resource_share_details_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10px"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:lineSpacingMultiplier="1.5"
+                        android:paddingBottom="15px"
+                        android:paddingLeft="15px"
+                        android:paddingRight="15px"
+                        android:paddingTop="15px"
+                        android:textIsSelectable="true"
+                        android:textSize="30px"
+                        android:text="asdashgd"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="15px"
+                        android:paddingLeft="25px"
+                        android:paddingRight="25px"
+                        android:paddingTop="5px">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5px"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_txt1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="云盘链接："/>
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_link"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15px"
+                                android:layout_marginRight="10px"
+                                android:layout_toLeftOf="@+id/activity_resource_share_details_copy"
+                                android:layout_toRightOf="@+id/activity_resource_share_details_txt1"
+                                android:textIsSelectable="true"/>
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_copy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/radius_background_buttongreen1"
+                                android:padding="10px"
+                                android:text="复制链接"
+                                android:textSize="15px"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15px"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_txt2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="云盘种类："/>
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_link_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15px"
+                                android:layout_toRightOf="@+id/activity_resource_share_details_txt2"/>
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="18px">
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_txt3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="链接密码："/>
+
+                            <TextView
+                                android:id="@+id/activity_resource_share_details_link_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15px"
+                                android:layout_toRightOf="@+id/activity_resource_share_details_txt3"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/activity_resource_share_details_comment_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15px"
+                        android:paddingBottom="5px"
+                        android:paddingLeft="10px"
+                        android:paddingRight="10px"
+                        android:paddingTop="5px"
+                        android:text="评论"
+                        android:textSize="20px"/>
+
+                    <com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyListView
+                        android:id="@+id/activity_resource_share_details_comment_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:divider="@null"/>
+
+                </LinearLayout>
+            </ScrollView>
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_srlBackgroundColor="@color/white6"/>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/activity_resource_share_details_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/activity_resource_share_details_commentLayout"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30px"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/comment"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5px"
+                    android:text="评论"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_resource_share_details_collectLayout"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/activity_resource_share_details_collect_icon"
+                    android:layout_width="20px"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/collect_icon"/>
+
+                <TextView
+                    android:id="@+id/activity_resource_share_details_collect_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5px"
+                    android:text="收藏"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_resource_share_details_acknowledgeLayout"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/activity_resource_share_details_acknowledge_icon"
+                    android:layout_width="20px"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/acknowledge_icon"/>
+
+                <TextView
+                    android:id="@+id/activity_resource_share_details_acknowledge_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5px"
+                    android:text="答谢"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
