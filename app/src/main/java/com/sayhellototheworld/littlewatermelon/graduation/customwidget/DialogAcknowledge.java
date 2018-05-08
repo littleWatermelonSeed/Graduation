@@ -129,7 +129,6 @@ public class DialogAcknowledge {
 //                out.close();
 //// 插入图库
 //                MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), bitmap, null);
-//
 //            }
 //        } catch (FileNotFoundException e) {
 //            e.printStackTrace();
