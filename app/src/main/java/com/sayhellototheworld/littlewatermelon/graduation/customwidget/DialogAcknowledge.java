@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentManager;
@@ -96,13 +97,13 @@ public class DialogAcknowledge {
         saveImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (saveIng){
+                if (saveIng) {
                     MyToastUtil.showToast("图片正在保存,请稍等");
                     return;
                 }
                 saveIng = true;
-                beginSave(context,imageUrls.get(nowPosition));
-                Log.i("niyuanjie","图片url为：" + imageUrls.get(nowPosition));
+                beginSave(context, imageUrls.get(nowPosition));
+                Log.i("niyuanjie", "图片url为：" + imageUrls.get(nowPosition));
             }
         });
     }
@@ -140,7 +141,7 @@ public class DialogAcknowledge {
 //        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + fileName)));
 //    }
 
-    public static void beginSave(final Context context,String url){
+    public static void beginSave(final Context context, String url) {
         final String imageName = "bmob" + System.currentTimeMillis();
         Glide.with(context)
                 .load(url)
@@ -148,18 +149,25 @@ public class DialogAcknowledge {
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        saveBmp2Gallery(context,resource,imageName);
+                        saveBmp2Gallery(context, resource, imageName);
                     }
                 });
     }
 
     public static void saveBmp2Gallery(Context context, Bitmap bmp, String picName) {
-        Log.i("niyuanjie","开始保存图片");
+        Log.i("niyuanjie", "开始保存图片");
         String fileName = null;
-        //系统相册目录
-        String galleryPath = Environment.getExternalStorageDirectory()
-                + File.separator + Environment.DIRECTORY_DCIM
-                + File.separator + "Camera" + File.separator;
+        String galleryPath = null;
+//        //系统相册目录
+//        galleryPath = Environment.getExternalStorageDirectory()
+//                + File.separator + Environment.DIRECTORY_DCIM
+//                + File.separator + "Camera" + File.separator;
+
+        if (Build.BRAND.equals("Xiaomi")) { // 小米手机
+            galleryPath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/";
+        } else {  // Meizu 、Oppo
+            galleryPath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/";
+        }
 
         // 声明文件对象
         File file = null;
@@ -170,6 +178,11 @@ public class DialogAcknowledge {
             // 如果有目标文件，直接获得文件对象，否则创建一个以filename为名称的文件
             file = new File(galleryPath, picName + ".jpg");
 
+            if (file.exists()) {
+                file.delete();
+            }
+            file.createNewFile();
+
             // 获得文件相对路径
             fileName = file.toString();
             // 获得输出流，如果文件中有内容，追加内容
@@ -177,27 +190,29 @@ public class DialogAcknowledge {
             if (null != outStream) {
                 bmp.compress(Bitmap.CompressFormat.JPEG, 90, outStream);
             }
+
+            MediaStore.Images.Media.insertImage(context.getContentResolver(), bmp, fileName, null);
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri = Uri.fromFile(file);
+            intent.setData(uri);
+            context.sendBroadcast(intent);
+
+            MyToastUtil.showToast("图片保存成功");
         } catch (Exception e) {
             e.getStackTrace();
-            Log.i("niyuanjie","保存图片出错 错误信息：" + e.getMessage());
+            MyToastUtil.showToast("保存图片出错 错误信息：" + e.getMessage());
+            Log.i("niyuanjie", "保存图片出错 错误信息：" + e.getMessage());
         } finally {
             try {
                 if (outStream != null) {
                     outStream.close();
                 }
+                saveIng = false;
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.i("niyuanjie","保存图片final出错 错误信息：" + e.getMessage());
+                Log.i("niyuanjie", "保存图片final出错 错误信息：" + e.getMessage());
             }
         }
-        MediaStore.Images.Media.insertImage(context.getContentResolver(), bmp, fileName, null);
-        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        Uri uri = Uri.fromFile(file);
-        intent.setData(uri);
-        context.sendBroadcast(intent);
-
-        MyToastUtil.showToast("图片保存成功");
-        saveIng = false;
     }
 
 }

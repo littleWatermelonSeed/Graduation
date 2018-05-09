@@ -102,11 +102,11 @@
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.RequestLeaveActivity"
+            android:name=".view.home_page_function_view.request_leave_student.RequestLeaveActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.RespondLeaveActivity"
+            android:name=".view.home_page_function_view.request_leave_teacher.RespondLeaveActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity

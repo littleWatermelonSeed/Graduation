@@ -12,10 +12,10 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.ClassScheduleActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestLeaveActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave_student.RequestLeaveActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestRepairsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.ResourceSharingActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RespondLeaveActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave_teacher.RespondLeaveActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RespondRepairActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 

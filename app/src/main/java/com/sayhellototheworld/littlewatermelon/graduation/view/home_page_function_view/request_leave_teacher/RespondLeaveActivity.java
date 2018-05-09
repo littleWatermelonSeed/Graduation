@@ -1,4 +1,4 @@
-package com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view;
+package com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave_teacher;
 
 import android.content.Context;
 import android.content.Intent;

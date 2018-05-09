@@ -1,4 +1,4 @@
-package com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view;
+package com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave_student;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +27,7 @@ public class RequestLeaveActivity extends BaseSlideBcakStatusActivity {
 
     @Override
     protected void initShow() {
-
+        tintManager.setStatusBarTintResource(R.color.white);
     }
 
     public static void go2Activity(Context context){

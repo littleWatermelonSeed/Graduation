@@ -84,7 +84,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
                 txt_user_name.setText("学生  " + userBean.getNickName());
             }else if (userBean.getRole().equalsIgnoreCase("r")){
                 txt_user_name.setText("维修员  " + userBean.getNickName());
-            }else if (userBean.getRole().equalsIgnoreCase("s")){
+            }else if (userBean.getRole().equalsIgnoreCase("t")){
                 txt_user_name.setText("老师  " + userBean.getNickName());
             }
             if (userBean.getSchoolName() != null&&!userBean.getSchoolName().equals("")){
