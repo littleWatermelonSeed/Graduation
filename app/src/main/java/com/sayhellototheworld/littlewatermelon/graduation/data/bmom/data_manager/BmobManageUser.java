@@ -10,6 +10,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.GetFil
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.ManageFile;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.MySharedPreferences;
 import com.sayhellototheworld.littlewatermelon.graduation.data.thread_manager.JoinToThreadPool;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.DeleteFileDo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.DownLoadFileDo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.QueryUserDo;
@@ -23,6 +24,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil
 import com.sayhellototheworld.littlewatermelon.graduation.util.PictureUtil;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobInstallation;
@@ -232,6 +234,24 @@ public class BmobManageUser {
                         }
                     }
                 });
+            }
+        });
+    }
+
+    public void queryByID(String userID, final BmobQueryDone<MyUserBean> listener){
+        BmobQuery<MyUserBean> query = new BmobQuery<>();
+        query.getObject(userID, new QueryListener<MyUserBean>() {
+            @Override
+            public void done(MyUserBean myUserBean, BmobException e) {
+                if (e == null){
+                    List<MyUserBean> data = new ArrayList<>();
+                    if (myUserBean != null){
+                        data.add(myUserBean);
+                    }
+                    listener.querySuccess(data);
+                }else {
+                    listener.queryFailed(e);
+                }
             }
         });
     }

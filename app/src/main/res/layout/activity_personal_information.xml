@@ -55,10 +55,121 @@
                 android:textColor="@color/activity_login_register_uncheck"
                 android:textSize="10px"/>
 
+            <RelativeLayout
+                android:id="@+id/activity_personal_information_teacherLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/activity_personal_information_txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="我的辅导员"
+                    android:textSize="25px"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/activity_personal_information_teacher_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:gravity="center_vertical"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:maxLength="15"
+                    android:textSize="25px"
+                    android:layout_centerInParent="true"/>
+
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="35px"
+                    android:src="@drawable/enter"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_personal_information_InvitationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/activity_personal_information_txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="我的学生邀请码"
+                    android:textSize="25px"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/activity_personal_information_Invitation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:gravity="center_vertical"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:maxLength="15"
+                    android:textSize="25px"
+                    android:layout_centerInParent="true"/>
+
+                <TextView
+                    android:id="@+id/activity_personal_information_invitation_code_copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="35px"
+                    android:text="复  制"
+                    android:textSize="20px"
+                    android:background="@drawable/radius_background_buttongreen1"
+                    android:paddingLeft="15px"
+                    android:paddingRight="15px"
+                    android:paddingBottom="5px"
+                    android:paddingTop="5px"/>
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80px"
                 android:layout_marginTop="20px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="姓名"
+                    android:textSize="25px"/>
+
+                <EditText
+                    android:id="@+id/activity_personal_information_editTextRealName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:hint="15字符以内"
+                    android:maxLength="15"
+                    android:textSize="25px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="2px"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">

@@ -12,6 +12,7 @@ public class MyUserBean extends BmobUser {
     private String sex;
     private String myEmail;
     private String nickName;
+    private String realName;
     private String birthday;
     private String schoolName;
     private String location;
@@ -22,6 +23,14 @@ public class MyUserBean extends BmobUser {
     private String role;
     private String hometown;
     private String schooleKey;
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 
     public String getSchooleKey() {
         return schooleKey;

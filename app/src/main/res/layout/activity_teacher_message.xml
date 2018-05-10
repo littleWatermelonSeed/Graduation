@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.user_view.TeacherMessageActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_teacher_message_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="返回"
+            android:textSize="30px"/>
+
+        <ImageView
+            android:id="@+id/activity_teacher_message_more"
+            android:layout_width="50px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/more1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_teacher_message_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="我的辅导员"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/activity_teacher_message_school_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15px"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray"/>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/activity_teacher_message_smart_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white1"
+        app:srlAccentColor="@color/white"
+        app:srlEnablePreviewInEditMode="true"
+        app:srlPrimaryColor="@color/gray">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_srlBackgroundColor="@color/gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_teacher_message_no_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25px"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="你还没有绑定辅导员哟,快点击右上角绑定吧~"/>
+
+            <TextView
+                android:id="@+id/activity_teacher_message_un_agree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15px"
+                android:textColor="@color/red1"
+                android:gravity="center"
+                android:textSize="20px"
+                android:text="已经申请绑定,等待老师处中..."
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/activity_teacher_message_agree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15px"
+                android:textColor="@color/green"
+                android:gravity="center"
+                android:textSize="20px"
+                android:text="已绑定"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/activity_teacher_message_msg_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/activity_teacher_message_headPortrait"
+                    android:layout_width="180px"
+                    android:layout_height="180px"
+                    android:layout_marginTop="20px"
+                    android:src="@drawable/picture_error3"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="点击进入辅导员主页"
+                    android:textColor="@color/activity_login_register_uncheck"
+                    android:textSize="10px"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80px"
+                    android:layout_marginTop="25px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20px"
+                        android:text="姓名"
+                        android:textSize="25px"/>
+
+                    <TextView
+                        android:id="@+id/activity_teacher_message_realName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="40px"
+                        android:layout_marginRight="40px"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLength="15"
+                        android:textSize="25px"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/white1"
+                    android:layout_marginRight="30px"
+                    android:layout_marginLeft="30px"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80px"
+                    android:layout_marginTop="2px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20px"
+                        android:text="昵称"
+                        android:textSize="25px"/>
+
+                    <TextView
+                        android:id="@+id/activity_teacher_message_nickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="40px"
+                        android:layout_marginRight="40px"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLength="15"
+                        android:textSize="25px"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/white1"
+                    android:layout_marginRight="30px"
+                    android:layout_marginLeft="30px"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80px"
+                    android:layout_marginTop="2px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20px"
+                        android:text="性别"
+                        android:textSize="25px"/>
+
+                    <TextView
+                        android:id="@+id/activity_teacher_message_sex"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="40px"
+                        android:layout_marginRight="40px"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLength="15"
+                        android:textSize="25px"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/white1"
+                    android:layout_marginRight="30px"
+                    android:layout_marginLeft="30px"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20px"
+                        android:text="学校"
+                        android:textSize="25px"/>
+
+                    <TextView
+                        android:id="@+id/activity_teacher_message_txtSchool"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="40px"
+                        android:layout_marginRight="40px"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:maxLength="20"
+                        android:textSize="25px"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_srlBackgroundColor="@color/gray"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</LinearLayout>

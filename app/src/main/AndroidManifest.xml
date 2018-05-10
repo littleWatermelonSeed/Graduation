@@ -148,7 +148,11 @@
             android:name=".view.function_view.UserDetailsActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.resource_share.ResourceShareDetailsActivity"
+        <activity
+            android:name=".view.home_page_function_view.resource_share.ResourceShareDetailsActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.user_view.TeacherMessageActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

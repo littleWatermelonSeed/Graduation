@@ -1,5 +1,7 @@
 package com.sayhellototheworld.littlewatermelon.graduation.view.user_view;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
@@ -22,6 +25,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogConfirm;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.LiTopBar;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.GetFile;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.ManageFile;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.ShowCurUserInfo;
@@ -44,8 +48,14 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         View.OnClickListener, ShowCurUserInfo {
 
     private LiTopBar mLiTopBar;
+    private RelativeLayout rl_invitation;
+    private RelativeLayout rl_teacher;
+    private TextView txt_teacher_name;
+    private TextView txt_invitation_code_copy;
+    private TextView txt_invitation_code;
     private CircleImageView mCircleImageView;
     private EditText editText_nickName;
+    private EditText editText_realName;
     private EditText editText_hometown;
     private EditText editText_email;
     private EditText editText_introduction;
@@ -56,6 +66,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
 
     private File headPortraitPath;
     private String nickName;
+    private String realName;
     private String hometown;
     private String sex;
     private String birthday;
@@ -64,6 +75,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
     private String email;
     private String introduction;
     private String schoolKey;
+    private String role = "";
 
     private ViUpdateUserCoDo vud;
     private MyUserBean mUserBean;
@@ -77,17 +89,19 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         super.onCreate(savedInstanceState);
     }
 
-//    public void init() {
-//        initWidget();
-//        initParam();
-//        initShow();
-//    }
-
     @Override
     protected void initWidget() {
+        rl_teacher = (RelativeLayout) findViewById(R.id.activity_personal_information_teacherLayout);
+        rl_teacher.setOnClickListener(this);
+        txt_teacher_name = (TextView) findViewById(R.id.activity_personal_information_teacher_name);
+        rl_invitation = (RelativeLayout) findViewById(R.id.activity_personal_information_InvitationLayout);
+        txt_invitation_code_copy = (TextView) findViewById(R.id.activity_personal_information_invitation_code_copy);
+        txt_invitation_code_copy.setOnClickListener(this);
+        txt_invitation_code = (TextView) findViewById(R.id.activity_personal_information_Invitation);
         mCircleImageView = (CircleImageView) findViewById(R.id.activity_personal_information_headPortrait);
         mCircleImageView.setOnClickListener(this);
         editText_nickName = (EditText) findViewById(R.id.activity_personal_information_editTextNickName);
+        editText_realName = (EditText) findViewById(R.id.activity_personal_information_editTextRealName);
         editText_email = (EditText) findViewById(R.id.activity_personal_information_editTextEmail);
         editText_hometown = (EditText) findViewById(R.id.activity_personal_information_editTextHometown);
         editText_location = (EditText) findViewById(R.id.activity_personal_information_editTextLocation);
@@ -131,7 +145,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         mUserBean = new MyUserBean();
         baseActivityManager.addActivityToList(this);
         vud = new ControlUpdateUser(this, this);
-        baseActivityManager.addActivityToUserMap(this,getClass().getSimpleName());
+        baseActivityManager.addActivityToUserMap(this, getClass().getSimpleName());
     }
 
     @Override
@@ -143,8 +157,22 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
     public void showUserInformation(MyUserBean userBean) {
         if (userBean == null)
             return;
-
+        if (userBean.getRole().equalsIgnoreCase("t")) {
+            rl_invitation.setVisibility(View.VISIBLE);
+            rl_teacher.setVisibility(View.GONE);
+            txt_invitation_code.setText(userBean.getObjectId());
+        }
+        if (userBean.getRole().equalsIgnoreCase("s")) {
+            rl_teacher.setVisibility(View.VISIBLE);
+            rl_invitation.setVisibility(View.GONE);
+        }
+        if (userBean.getRole().equalsIgnoreCase("r")) {
+            rl_teacher.setVisibility(View.GONE);
+            rl_invitation.setVisibility(View.GONE);
+        }
+        role = userBean.getRole();
         editText_nickName.setText(userBean.getNickName());
+        editText_realName.setText(userBean.getRealName());
         textView_birthday.setText(userBean.getBirthday());
         editText_hometown.setText(userBean.getHometown());
         editText_location.setText(userBean.getLocation());
@@ -180,6 +208,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
 
     private boolean getUserbean() {
         nickName = editText_nickName.getText().toString();
+        realName = editText_realName.getText().toString();
         loaction = editText_location.getText().toString();
         school = textView_school.getText().toString();
         email = editText_email.getText().toString();
@@ -194,11 +223,14 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         if (sex != null && !sex.equals("")) {
             mUserBean.setSex(sex);
         }
-        if(hometown != null && !hometown.equals("")){
+        if (hometown != null && !hometown.equals("")) {
             mUserBean.setHometown(hometown);
         }
         if (nickName != null && !nickName.equals("")) {
             mUserBean.setNickName(nickName);
+        }
+        if (realName != null && !realName.equals("")) {
+            mUserBean.setRealName(realName);
         }
         if (birthday != null && !birthday.equals("")) {
             mUserBean.setBirthday(birthday);
@@ -216,7 +248,10 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         if (introduction != null && !introduction.equals("")) {
             mUserBean.setIntroduction(introduction);
         }
-        mUserBean.setRole("s");
+
+        if (role == null || role.equals("")) {
+            mUserBean.setRole("s");
+        }
 
         if (headPortraitPath != null) {
             headPic = new BmobFile(headPortraitPath);
@@ -255,13 +290,30 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
                 getHeadPortrait();
                 break;
             case R.id.activity_personal_information_txtSchool:
+                if (BmobManageUser.getCurrentUser().getRole().equalsIgnoreCase("t")) {
+                    MyToastUtil.showToast("您是教师,不能自行更改学校名称");
+                    return;
+                }
+                if (BmobManageUser.getCurrentUser().getRole().equalsIgnoreCase("r")) {
+                    MyToastUtil.showToast("您是维修人员,不能自行更改学校名称");
+                    return;
+                }
                 getSchoolMsg();
                 chooseSchool = true;
+                break;
+            case R.id.activity_personal_information_invitation_code_copy:
+                ClipboardManager cm = (ClipboardManager) (getSystemService(Context.CLIPBOARD_SERVICE));// 创建普通字符型ClipData
+                ClipData mClipData = ClipData.newPlainText("text", txt_invitation_code.getText().toString());// 将ClipData内容放到系统剪贴板里。
+                cm.setPrimaryClip(mClipData);
+                MyToastUtil.showToast("邀请码复制成功,发给学生加入你的管理吧~");
+                break;
+            case R.id.activity_personal_information_teacherLayout:
+                TeacherMessageActivity.go2Activity(this);
                 break;
         }
     }
 
-    private void getSchoolMsg(){
+    private void getSchoolMsg() {
         SchoolChooseActivity.startSchoolChooseActivityForResult(this);
     }
 
@@ -334,7 +386,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
 
     @Override
     protected void onRestart() {
-        if (isActive&&!chooseSchool) {
+        if (isActive && !chooseSchool) {
             refreshHeadPortrait();
         }
         chooseSchool = false;
@@ -352,11 +404,11 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SchoolChooseActivity.SCHOOL_CHOOSE_REQUST_CODE && resultCode == RESULT_OK){
+        if (requestCode == SchoolChooseActivity.SCHOOL_CHOOSE_REQUST_CODE && resultCode == RESULT_OK) {
             school = data.getStringExtra("schoolName");
             schoolKey = data.getStringExtra("schoolKey");
             textView_school.setText(school);
-            Log.i("niyuanjie","schoolName = " + school + "  schoolKey = " +schoolKey);
+            Log.i("niyuanjie", "schoolName = " + school + "  schoolKey = " + schoolKey);
         }
     }
 }
