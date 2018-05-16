@@ -7,9 +7,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostCommentBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageLostComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.json.College;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.util.GsonHelper;
 import com.sayhellototheworld.littlewatermelon.graduation.view.user_view.LoginActivity;
+
+import java.util.List;
+
+import cn.bmob.v3.exception.BmobException;
 
 public class SDriverActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,7 +33,22 @@ public class SDriverActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
 //        testUserMoudle();
-        testGson();
+//        testGson();
+        testQuery();
+    }
+
+    private void testQuery(){
+        BmobManageLostComment.getManager().queryToMsg(0, new BmobQueryDone<LostCommentBean>() {
+            @Override
+            public void querySuccess(List<LostCommentBean> data) {
+                Log.i("niyuanjie","查询成功 数据量：" + data.size());
+            }
+
+            @Override
+            public void queryFailed(BmobException e) {
+                Log.i("niyuanjie","查询出错");
+            }
+        });
     }
 
     private void testUserMoudle() {

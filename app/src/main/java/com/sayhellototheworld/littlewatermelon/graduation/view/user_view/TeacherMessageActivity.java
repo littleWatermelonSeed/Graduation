@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,8 +45,10 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.util.Date;
 import java.util.List;
 
+import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.exception.BmobException;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -287,7 +290,7 @@ public class TeacherMessageActivity extends BaseSlideBcakStatusActivity implemen
                                         } else {
                                             BmobExceptionUtil.dealWithException(TeacherMessageActivity.this, e);
                                         }
-                                        dialog.dismiss();
+                                        baseNiceDialog.dismiss();
                                     }
                                 });
                             }
@@ -317,6 +320,7 @@ public class TeacherMessageActivity extends BaseSlideBcakStatusActivity implemen
         TextView txt_school_name = holder.getView(R.id.pop_bind_teacher_two_school_name);
         TextView txt_cancle = holder.getView(R.id.pop_bind_teacher_two_cancle);
         TextView txt_bind = holder.getView(R.id.pop_bind_teacher_two_bind);
+        final EditText remark = holder.getView(R.id.pop_bind_teacher_two_remark);
         txt_real_name.setText(teacher.getRealName());
         txt_school_name.setText(teacher.getSchoolName());
 
@@ -334,16 +338,23 @@ public class TeacherMessageActivity extends BaseSlideBcakStatusActivity implemen
                         new DialogLoading.ShowLoadingDone() {
                             @Override
                             public void done(ViewHolder viewHolder, final BaseNiceDialog baseNiceDialog) {
+                                String remarkMsg = remark.getText().toString().trim();
                                 TextView textView = viewHolder.getView(R.id.nicedialog_loading_textView);
                                 textView.setText("绑定中...");
                                 TeacherBean teacherBean = new TeacherBean();
                                 teacherBean.setStudent(BmobManageUser.getCurrentUser());
                                 teacherBean.setTeacher(teacher);
-                                teacherBean.setAgreen(false);
+                                teacherBean.setStatue(0);
+                                teacherBean.settRead(false);
+                                teacherBean.setCreateTime(new BmobDate(new Date()));
+                                if (remarkMsg != null && !remarkMsg.equals("")){
+                                    teacherBean.setRemark(remarkMsg);
+                                    Log.i("niyuanjie","备注不为空：" + remarkMsg);
+                                }
                                 teacherManager.uploadMsg(teacherBean, new BmobSaveMsgWithoutImg() {
                                     @Override
                                     public void msgSuccess(String objectID) {
-                                        MyToastUtil.showToast("绑定成功");
+                                        MyToastUtil.showToast("成功申请绑定");
                                         dialog.dismiss();
                                         baseNiceDialog.dismiss();
                                         refreshLayout.autoRefresh();
@@ -384,10 +395,10 @@ public class TeacherMessageActivity extends BaseSlideBcakStatusActivity implemen
     @Override
     public void querySuccess(List<TeacherBean> data) {
         if (data.size() > 0) {
-            if (!data.get(0).getAgreen()){
+            if (data.get(0).getStatue() == 0){
                 txt_un_green.setVisibility(View.VISIBLE);
                 txt_green.setVisibility(View.GONE);
-            }else {
+            }else if (data.get(0).getStatue() == 1){
                 txt_un_green.setVisibility(View.GONE);
                 txt_green.setVisibility(View.VISIBLE);
             }

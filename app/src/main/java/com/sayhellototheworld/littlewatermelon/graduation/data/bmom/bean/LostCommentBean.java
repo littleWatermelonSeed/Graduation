@@ -10,10 +10,19 @@ import cn.bmob.v3.datatype.BmobDate;
 public class LostCommentBean extends BmobObject {
 
     private MyUserBean user;
+    private MyUserBean publishUser;
     private LostAndFindBean lost;
     private String content;
     private Boolean read;
     private BmobDate releaseTime;
+
+    public MyUserBean getPublishUser() {
+        return publishUser;
+    }
+
+    public void setPublishUser(MyUserBean publishUser) {
+        this.publishUser = publishUser;
+    }
 
     public LostAndFindBean getLost() {
         return lost;

@@ -69,6 +69,15 @@
             android:textSize="35px"/>
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/pop_bind_teacher_two_remark"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_gravity="center"
+        android:maxLength="50"
+        android:hint="备注信息(如：姓名,班级...)"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"

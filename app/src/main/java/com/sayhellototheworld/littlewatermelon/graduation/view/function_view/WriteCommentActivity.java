@@ -155,6 +155,7 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
 
         LostCommentBean lostCommentBean = new LostCommentBean();
         lostCommentBean.setUser(userBean);
+        lostCommentBean.setPublishUser(lostAndFindBean.getUser());
         lostCommentBean.setReleaseTime(new BmobDate(new Date()));
         lostCommentBean.setContent(commentContent);
         lostCommentBean.setRead(false);
@@ -167,6 +168,7 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
         FleaCommentBean fleaMarketCommentBean = new FleaCommentBean();
 
         fleaMarketCommentBean.setUser(userBean);
+        fleaMarketCommentBean.setPublishUser(fleaMarketBean.getUser());
         fleaMarketCommentBean.setReleaseTime(new BmobDate(new Date()));
         fleaMarketCommentBean.setContent(commentContent);
         fleaMarketCommentBean.setRead(false);
@@ -178,6 +180,7 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
         ResourceShareBean resourceShareBean = (ResourceShareBean) bmobObject;
         ResourceCommentBean resourceCommentBean = new ResourceCommentBean();
 
+        resourceCommentBean.setPublishUser(resourceShareBean.getUser());
         resourceCommentBean.setUser(userBean);
         resourceCommentBean.setReleaseTime(new BmobDate(new Date()));
         resourceCommentBean.setContent(commentContent);

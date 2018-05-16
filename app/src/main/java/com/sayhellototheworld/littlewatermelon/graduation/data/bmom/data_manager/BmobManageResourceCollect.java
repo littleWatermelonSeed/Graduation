@@ -79,7 +79,7 @@ public class BmobManageResourceCollect {
         BmobQuery<ResourceCollectBean> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("user",user);
         BmobQuery<ResourceCollectBean> query2 = new BmobQuery<>();
-        query1.addWhereEqualTo("resourceShareBean",resourceShareBean);
+        query2.addWhereEqualTo("resourceShareBean",resourceShareBean);
 
         List<BmobQuery<ResourceCollectBean>> andQuerys = new ArrayList<BmobQuery<ResourceCollectBean>>();
         andQuerys.add(query1);

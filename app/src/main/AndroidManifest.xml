@@ -152,7 +152,15 @@
             android:name=".view.home_page_function_view.resource_share.ResourceShareDetailsActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.user_view.TeacherMessageActivity"
+        <activity
+            android:name=".view.user_view.TeacherMessageActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.message_function_view.CommonMessageActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.message_function_view.BindTeacherMsgActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

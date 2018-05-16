@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:layout_marginTop="20px"
+    android:background="@drawable/radius_background4"
+    android:orientation="vertical"
+    android:paddingBottom="20px"
+    android:paddingLeft="20px"
+    android:paddingRight="20px"
+    android:paddingTop="10px">
+
+    <TextView
+        android:id="@+id/item_bind_teacher_msg_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="25px"
+        android:textColor="@color/green"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90px"
+        android:background="@color/white"
+        android:paddingBottom="10px"
+        android:paddingTop="10px">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_bind_teacher_msg_head_portrait"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:layout_centerVertical="true"
+            android:src="@drawable/head_log1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@+id/item_bind_teacher_msg_head_portrait"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_bind_teacher_msg_real_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15px"
+                android:gravity="center_vertical"
+                android:textColor="@color/plan_user_name_text_color"
+                android:textSize="25px"/>
+
+            <TextView
+                android:id="@+id/item_bind_teacher_msg_create_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5px"
+                android:textSize="15px"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备注信息："
+            android:textColor="@color/red1"/>
+
+        <TextView
+            android:id="@+id/item_bind_teacher_msg_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_bind_teacher_msg_chose_body"
+        android:layout_width="match_parent"
+        android:layout_height="70px"
+        android:layout_marginTop="20px"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/item_bind_teacher_msg_disagree"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radius_background_buttongreen1"
+            android:gravity="center"
+            android:text="不同意绑定"/>
+
+        <TextView
+            android:id="@+id/item_bind_teacher_msg_agree"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5px"
+            android:layout_weight="1"
+            android:background="@drawable/radius_background_buttongreen1"
+            android:gravity="center"
+            android:text="同意绑定"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/item_bind_teacher_msg_statue"
+        android:layout_width="match_parent"
+        android:layout_height="70px"
+        android:layout_marginTop="20px"
+        android:background="@drawable/radius_background_buttongreen1"
+        android:gravity="center"
+        android:text="已同意"
+        android:visibility="gone"/>
+
+</LinearLayout>

@@ -31,7 +31,8 @@ public class ClassScheduleActivity extends BaseSlideBcakStatusActivity {
     }
 
     public static void go2Activity(Context context){
-        context.startActivity(new Intent(context,ClassScheduleActivity.class));
+        Intent intent = new Intent(context,ClassScheduleActivity.class);
+        context.startActivity(intent);
     }
 
 }

@@ -10,10 +10,19 @@ import cn.bmob.v3.datatype.BmobDate;
 public class ResourceCommentBean extends BmobObject{
 
     private MyUserBean user;
+    private MyUserBean publishUser;
     private ResourceShareBean resource;
     private String content;
     private Boolean read;
     private BmobDate releaseTime;
+
+    public MyUserBean getPublishUser() {
+        return publishUser;
+    }
+
+    public void setPublishUser(MyUserBean publishUser) {
+        this.publishUser = publishUser;
+    }
 
     public MyUserBean getUser() {
         return user;
