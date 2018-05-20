@@ -1,10 +1,12 @@
 package com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by 123 on 2018/5/16.
  */
 
-public class StudentBean {
+public class StudentBean extends BmobObject{
 
     private MyUserBean student;
     private MyUserBean teacher;

@@ -7,11 +7,11 @@ import android.os.Bundle;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
 
-public class ClassScheduleActivity extends BaseSlideBcakStatusActivity {
+public class AnnouncementActivity extends BaseSlideBcakStatusActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_class_schedule);
+        setContentView(R.layout.activity_announcement);
         super.onCreate(savedInstanceState);
     }
 
@@ -31,7 +31,7 @@ public class ClassScheduleActivity extends BaseSlideBcakStatusActivity {
     }
 
     public static void go2Activity(Context context){
-        Intent intent = new Intent(context,ClassScheduleActivity.class);
+        Intent intent = new Intent(context,AnnouncementActivity.class);
         context.startActivity(intent);
     }
 

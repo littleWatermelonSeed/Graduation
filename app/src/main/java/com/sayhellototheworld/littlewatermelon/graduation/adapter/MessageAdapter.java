@@ -44,13 +44,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public final static int MSG_TYPE_REPAIRS = 6;
     public final static int MSG_TYPE_STUDENT_BIND = 7;
     public final static int MSG_TYPE_TEACHER_BIND = 8;
+    public final static int MSG_TYPE_ANNOUNCEMENT = 9;
 
     private String[] studentMsg = {"失物招领   的消息", "跳蚤市场   的消息", "资源共享   的消息", "同学圈   的消息", "好友私聊   的消息", "来自陌生人   的消息",
-            "教师绑定   的消息"};
+            "教师绑定   的消息","教师公告   的消息"};
     private int[] studentType = {MSG_TYPE_LOST, MSG_TYPE_FLEA, MSG_TYPE_SHARE, MSG_TYPE_FORUM, MSG_TYPE_FRIEND, MSG_TYPE_STRANGER,
-             MSG_TYPE_STUDENT_BIND};
+             MSG_TYPE_STUDENT_BIND,MSG_TYPE_ANNOUNCEMENT};
     private int[] studentIcon = {R.drawable.lost_and_find, R.drawable.flea_market, R.drawable.resource_sharing, R.drawable.forum, R.drawable.friend,
-            R.drawable.stranger,  R.drawable.teacher};
+            R.drawable.stranger,  R.drawable.teacher,R.drawable.announcement_icon};
 
     private String[] teacherMsg = {"失物招领   的消息", "跳蚤市场   的消息", "资源共享   的消息", "同学圈   的消息", "好友私聊   的消息", "来自陌生人   的消息",
             "学生绑定请求   的消息"};
@@ -163,6 +164,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             case MSG_TYPE_FRIEND:
                 break;
             case MSG_TYPE_STRANGER:
+                break;
+            case MSG_TYPE_ANNOUNCEMENT:
                 break;
         }
         noReadNum[position] = 0;

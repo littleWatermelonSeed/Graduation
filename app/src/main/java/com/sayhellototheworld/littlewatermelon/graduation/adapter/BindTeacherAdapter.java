@@ -1,6 +1,7 @@
 package com.sayhellototheworld.littlewatermelon.graduation.adapter;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.othershe.nicedialog.BaseNiceDialog;
+import com.othershe.nicedialog.ViewHolder;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
+import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogConfirm;
+import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.TeacherBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageTeacher;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobUpdateDone;
+import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.BindTeacherMsgActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;
 
+import cn.bmob.v3.exception.BmobException;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -48,7 +58,7 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
     public void onBindViewHolder(BindTeacherViewHolder holder, int position) {
         listener = new ItemClick(position);
         if (type == BindTeacherMsgActivity.BIND_TEACHER_TYPE_STUDENT){
-            studentBindViewHolder(holder, position);
+            studentBindViewHolder(holder, position,listener);
         }else if (type == BindTeacherMsgActivity.BIND_TEACHER_TYPE_TEACHER){
             teacherBindViewHolder(holder, position,listener);
         }
@@ -59,10 +69,10 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
         return data.size();
     }
 
-    private void studentBindViewHolder(BindTeacherViewHolder holder, int position){
+    private void studentBindViewHolder(BindTeacherViewHolder holder, int position,ItemClick listener){
         holder.ll_chos_body.setVisibility(View.GONE);
         holder.txt_statue.setVisibility(View.VISIBLE);
-        holder.txt_title.setText("我的申请信息");
+        holder.txt_title.setText("我的申请消息");
 
         if (data.get(position).getStatue() == 0){
             holder.txt_statue.setText("等待老师处理中...");
@@ -76,9 +86,9 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
         }
 
         if (data.get(position).getTeacher().getRealName() == null || data.get(position).getTeacher().getRealName().equals("")){
-            holder.txt_user_name.setText(data.get(position).getTeacher().getNickName());
+            holder.txt_user_name.setText("老师  " + data.get(position).getTeacher().getNickName());
         }else {
-            holder.txt_user_name.setText(data.get(position).getTeacher().getRealName());
+            holder.txt_user_name.setText("老师  " + data.get(position).getTeacher().getRealName());
         }
 
         holder.txt_time.setText(TimeFormatUtil.DateToRealTime(TimeFormatUtil.bmobDateToDate(data.get(position).getCreatedAt())));
@@ -97,11 +107,12 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
                     .dontAnimate()
                     .into(holder.head);
         }
+        holder.head.setOnClickListener(listener);
 
     }
 
     private void teacherBindViewHolder(BindTeacherViewHolder holder, int position,ItemClick listener){
-        holder.txt_title.setText("学生的申请信息");
+        holder.txt_title.setText("学生的申请消息");
 
         if (data.get(position).getStatue() == 0){
             holder.ll_chos_body.setVisibility(View.VISIBLE);
@@ -121,9 +132,9 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
         }
 
         if (data.get(position).getStudent().getRealName() == null || data.get(position).getStudent().getRealName().equals("")){
-            holder.txt_user_name.setText(data.get(position).getStudent().getNickName());
+            holder.txt_user_name.setText("学生  " + data.get(position).getStudent().getNickName());
         }else {
-            holder.txt_user_name.setText(data.get(position).getStudent().getRealName());
+            holder.txt_user_name.setText("学生  " + data.get(position).getStudent().getRealName());
         }
 
         holder.txt_time.setText(TimeFormatUtil.DateToRealTime(TimeFormatUtil.bmobDateToDate(data.get(position).getCreatedAt())));
@@ -142,6 +153,7 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
                     .dontAnimate()
                     .into(holder.head);
         }
+        holder.head.setOnClickListener(listener);
     }
 
     class BindTeacherViewHolder extends RecyclerView.ViewHolder{
@@ -183,10 +195,85 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.item_bind_teacher_msg_disagree:
+                    disAgree();
                     break;
                 case R.id.item_bind_teacher_msg_agree:
+                    agree();
+                    break;
+                case R.id.item_bind_teacher_msg_head_portrait:
+                    if (type == BindTeacherMsgActivity.BIND_TEACHER_TYPE_STUDENT){
+                        UserDetailsActivity.go2Activity(context,data.get(position).getTeacher().getObjectId());
+                    }else if (type == BindTeacherMsgActivity.BIND_TEACHER_TYPE_TEACHER){
+                        UserDetailsActivity.go2Activity(context,data.get(position).getStudent().getObjectId());
+                    }
                     break;
             }
+        }
+
+        private void agree() {
+            DialogConfirm.newInstance("提示", "确定同意同学的申请?", new DialogConfirm.CancleAndOkDo() {
+                @Override
+                public void cancle() {
+                }
+                @Override
+                public void ok() {
+                    DialogLoading.showLoadingDialog(((FragmentActivity)context).getSupportFragmentManager(),
+                            new DialogLoading.ShowLoadingDone() {
+                                @Override
+                                public void done(ViewHolder viewHolder, final BaseNiceDialog baseNiceDialog) {
+                                    TextView textView = viewHolder.getView(R.id.nicedialog_loading_textView);
+                                    textView.setText("同意绑定中...");
+                                    BmobManageTeacher.getManager().agreeBind(data.get(position), new BmobUpdateDone() {
+                                        @Override
+                                        public void done(BmobException e) {
+                                            if (e == null){
+                                                data.get(position).setStatue(1);
+                                                notifyDataSetChanged();
+                                            }else {
+                                                BmobExceptionUtil.dealWithException(context,e);
+                                            }
+                                            baseNiceDialog.dismiss();
+                                        }
+                                    });
+                                }
+                            });
+                }
+            }).setMargin(60)
+                    .setOutCancel(false)
+                    .show(((FragmentActivity)context).getSupportFragmentManager());
+        }
+
+        private void disAgree() {
+            DialogConfirm.newInstance("提示", "确定拒绝该同学的申请?", new DialogConfirm.CancleAndOkDo() {
+                @Override
+                public void cancle() {
+                }
+                @Override
+                public void ok() {
+                    DialogLoading.showLoadingDialog(((FragmentActivity)context).getSupportFragmentManager(),
+                            new DialogLoading.ShowLoadingDone() {
+                                @Override
+                                public void done(ViewHolder viewHolder, final BaseNiceDialog baseNiceDialog) {
+                                    TextView textView = viewHolder.getView(R.id.nicedialog_loading_textView);
+                                    textView.setText("拒绝中...");
+                                    BmobManageTeacher.getManager().disAgreeBind(data.get(position), new BmobUpdateDone() {
+                                        @Override
+                                        public void done(BmobException e) {
+                                            if (e == null){
+                                                data.get(position).setStatue(-1);
+                                                notifyDataSetChanged();
+                                            }else {
+                                                BmobExceptionUtil.dealWithException(context,e);
+                                            }
+                                            baseNiceDialog.dismiss();
+                                        }
+                                    });
+                                }
+                            });
+                }
+            }).setMargin(60)
+                    .setOutCancel(false)
+                    .show(((FragmentActivity)context).getSupportFragmentManager());
         }
     }
     

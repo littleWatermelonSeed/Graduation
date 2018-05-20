@@ -75,7 +75,7 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
                 break;
             case "同学圈":
                 tintManager.setStatusBarAlpha(1f);
-                tintManager.setStatusBarTintResource(R.color.white1);
+                tintManager.setStatusBarTintResource(R.color.home_page_top_bar);
                 break;
             case "消息":
                 tintManager.setStatusBarAlpha(1f);

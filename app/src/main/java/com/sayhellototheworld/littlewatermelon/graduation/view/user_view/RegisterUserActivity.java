@@ -174,6 +174,7 @@ public class RegisterUserActivity extends BaseSlideBcakStatusActivity implements
         userBean.setMobilePhoneNumber(phoneNum);
         userBean.setNickName(phoneNum);
         userBean.setSex("男");
+        userBean.setRole("s");
         userBean.setPassword(passwordOne);
         return true;
     }

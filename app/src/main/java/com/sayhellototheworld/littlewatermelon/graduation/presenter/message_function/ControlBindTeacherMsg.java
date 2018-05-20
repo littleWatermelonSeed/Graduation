@@ -6,6 +6,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.BindTeacherAdapter;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.TeacherBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageTeacher;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
+import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
+import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
+import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.BindTeacherMsgActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -13,6 +18,8 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.exception.BmobException;
 
 /**
  * Created by 123 on 2018/5/16.
@@ -51,6 +58,7 @@ public class ControlBindTeacherMsg implements OnRefreshListener, OnLoadMoreListe
     @Override
     public void onLoadMore(RefreshLayout refreshLayout) {
         loading = true;
+        queryMsg();
     }
 
     @Override
@@ -58,6 +66,64 @@ public class ControlBindTeacherMsg implements OnRefreshListener, OnLoadMoreListe
         loading = false;
         nowSkip = 0;
         messageData.clear();
+        queryMsg();
+    }
+
+    private void queryMsg(){
+        switch (type){
+            case BindTeacherMsgActivity.BIND_TEACHER_TYPE_STUDENT:
+                queryStudent();
+                break;
+            case BindTeacherMsgActivity.BIND_TEACHER_TYPE_TEACHER:
+                queryTeacher();
+                break;
+        }
+    }
+
+    private void queryStudent(){
+        BmobManageTeacher.getManager().queryStudentMsg(nowSkip, new BmobQueryDone<TeacherBean>() {
+            @Override
+            public void querySuccess(List<TeacherBean> data) {
+                if (data.size() <= 0){
+                    MyToastUtil.showToast("已经到底啦~");
+                }else {
+                    messageData.addAll(data);
+                }
+                adapter.notifyDataSetChanged();
+                nowSkip++;
+                finishSmart(true);
+                BmobManageTeacher.getManager().updateSReadBatch(data);
+            }
+
+            @Override
+            public void queryFailed(BmobException e) {
+                BmobExceptionUtil.dealWithException(context,e);
+                finishSmart(false);
+            }
+        });
+    }
+
+    private void queryTeacher(){
+        BmobManageTeacher.getManager().queryTeacherMsg(nowSkip, new BmobQueryDone<TeacherBean>() {
+            @Override
+            public void querySuccess(List<TeacherBean> data) {
+                if (data.size() <= 0){
+                    MyToastUtil.showToast("已经到底啦~");
+                }else {
+                    messageData.addAll(data);
+                }
+                adapter.notifyDataSetChanged();
+                nowSkip++;
+                finishSmart(true);
+                BmobManageTeacher.getManager().updateTReadBatch(data);
+            }
+
+            @Override
+            public void queryFailed(BmobException e) {
+                BmobExceptionUtil.dealWithException(context,e);
+                finishSmart(false);
+            }
+        });
     }
 
     private void finishSmart(boolean success) {

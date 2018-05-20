@@ -29,8 +29,8 @@ public class BindTeacherMsgActivity extends BaseSlideBcakStatusActivity implemen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bind_teacher_msg);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -58,6 +58,7 @@ public class BindTeacherMsgActivity extends BaseSlideBcakStatusActivity implemen
     protected void initShow() {
         tintManager.setStatusBarTintResource(R.color.white);
         showTitle();
+        refreshLayout.autoRefresh();
     }
 
     private void showTitle(){
@@ -72,7 +73,7 @@ public class BindTeacherMsgActivity extends BaseSlideBcakStatusActivity implemen
     }
 
     public static void go2Activity(Context context, int type) {
-        Intent intent = new Intent(context, CommonMessageActivity.class);
+        Intent intent = new Intent(context, BindTeacherMsgActivity.class);
         intent.putExtra("type", type);
         context.startActivity(intent);
     }

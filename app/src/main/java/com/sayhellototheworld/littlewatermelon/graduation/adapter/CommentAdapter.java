@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.bean.CommentBean;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;
@@ -24,6 +25,8 @@ public class CommentAdapter extends BaseAdapter{
     private List<CommentBean> data;
     private Context context;
     private LayoutInflater inflater;
+
+    private ItemClick listener;
 
     public CommentAdapter(Context context,List<CommentBean> data){
         this.context = context;
@@ -49,6 +52,7 @@ public class CommentAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         CommentViewHolder viewHolder;
+        listener = new ItemClick(position);
         if (convertView == null){
             convertView = inflater.inflate(R.layout.item_comment,parent,false);
             viewHolder = new CommentViewHolder();
@@ -75,6 +79,7 @@ public class CommentAdapter extends BaseAdapter{
                     .dontAnimate()
                     .into(viewHolder.img_head);
         }
+        viewHolder.img_head.setOnClickListener(listener);
         return convertView;
     }
 
@@ -83,6 +88,24 @@ public class CommentAdapter extends BaseAdapter{
         public TextView txt_user_name;
         public TextView txt_content;
         public TextView txt_create_time;
+    }
+
+    class ItemClick implements View.OnClickListener{
+
+        private int position;
+
+        public ItemClick(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.item_comment_head_portrait:
+                    UserDetailsActivity.go2Activity(context,data.get(position).getUser().getObjectId());
+                    break;
+            }
+        }
     }
 
 }

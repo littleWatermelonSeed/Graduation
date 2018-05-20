@@ -152,18 +152,25 @@ public class ControlFleaMarket extends FindListener<FleaMarketBean> implements O
 
     @Override
     public void querySuccess(List<FleaCollectBean> data) {
+        int dataNum = 0;
         if (!loading){
             fleaData.clear();
             for (FleaCollectBean f:data){
-                fleaData.add(f.getFleaMarket());
+                if(f.getFleaMarket().getReleaseTime() != null){
+                    fleaData.add(f.getFleaMarket());
+                    dataNum++;
+                }
             }
         }else {
             for (FleaCollectBean f:data){
-                fleaData.add(f.getFleaMarket());
+                if(f.getFleaMarket().getReleaseTime() != null){
+                    fleaData.add(f.getFleaMarket());
+                    dataNum++;
+                }
             }
         }
 
-        if (data.size() == 0){
+        if (dataNum == 0){
             MyToastUtil.showToast("到底啦,没有更多数据啦~");
         }
         adapter.notifyDataSetChanged();

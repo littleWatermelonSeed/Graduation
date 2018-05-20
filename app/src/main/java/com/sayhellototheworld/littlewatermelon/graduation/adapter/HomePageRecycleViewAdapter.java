@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.ClassScheduleActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.AnnouncementActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave_student.RequestLeaveActivity;
@@ -26,14 +26,14 @@ import com.zhy.autolayout.utils.AutoUtils;
 public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRecycleViewAdapter.MyViewHolder>{
 
     private int[] icons_student = {R.drawable.lost_and_find,R.drawable.flea_market,R.drawable.resource_sharing,
-            R.drawable.class_schedule,R.drawable.repairs,R.drawable.ask_for_leave};
+            R.drawable.repairs,R.drawable.ask_for_leave};
     private int[] icons_repairman = {R.drawable.lost_and_find,R.drawable.flea_market,R.drawable.resource_sharing,
             R.drawable.repairs};
     private int[] icons_teacher = {R.drawable.lost_and_find,R.drawable.flea_market,R.drawable.resource_sharing,
-            R.drawable.repairs,R.drawable.ask_for_leave};
-    private String[] itemName_student = {"失物招领","跳蚤市场","资源共享","课表","我要报修","我要请假"};
+            R.drawable.repairs,R.drawable.ask_for_leave,R.drawable.announcement_icon};
+    private String[] itemName_student = {"失物招领","跳蚤市场","资源共享","我要报修","我要请假"};
     private String[] itemName_repairman = {"失物招领","跳蚤市场","资源共享","维修申请"};
-    private String[] itemName_teacher = {"失物招领","跳蚤市场","资源共享","我要报修","学生请假"};
+    private String[] itemName_teacher = {"失物招领","跳蚤市场","资源共享","我要报修","学生请假","发布公告"};
 
     private int[] icons;
     private String[] itemName;
@@ -125,13 +125,13 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
             case 2:
                 startResourceSharing();
                 break;
+//            case 3:
+//                startClassSchedule();
+//                break;
             case 3:
-                startClassSchedule();
-                break;
-            case 4:
                 RequestRepairsActivity.go2Activity(context);
                 break;
-            case 5:
+            case 4:
                 RequestLeaveActivity.go2Activity(context);
                 break;
         }
@@ -171,6 +171,9 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
             case 4:
                 RespondLeaveActivity.go2Activity(context);
                 break;
+            case 5:
+                AnnouncementActivity.go2Activity(context);
+                break;
         }
     }
 
@@ -187,7 +190,7 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
     }
 
     private void startClassSchedule(){
-        ClassScheduleActivity.go2Activity(context);
+        AnnouncementActivity.go2Activity(context);
     }
 
 }

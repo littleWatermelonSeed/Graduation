@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogConfirm;
@@ -18,6 +19,7 @@ public class UserSettingActivity extends BaseSlideBcakStatusActivity implements 
 
     private LiTopBar mLiTopBar;
     private Button button_login;
+    private RelativeLayout ll_change_ps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class UserSettingActivity extends BaseSlideBcakStatusActivity implements 
                 finish();
             }
         });
+        ll_change_ps = (RelativeLayout) findViewById(R.id.activity_user_setting_change_ps);
+        ll_change_ps.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +64,9 @@ public class UserSettingActivity extends BaseSlideBcakStatusActivity implements 
         switch (v.getId()) {
             case R.id.activity_user_setting_loginOutButton:
                 loginOut();
+                break;
+            case R.id.activity_user_setting_change_ps:
+                ForgetPasswordActivity.startLoginActivity(this);
                 break;
         }
     }

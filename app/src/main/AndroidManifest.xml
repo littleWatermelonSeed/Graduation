@@ -90,7 +90,7 @@
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.ClassScheduleActivity"
+            android:name=".view.home_page_function_view.AnnouncementActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
@@ -160,7 +160,11 @@
             android:name=".view.message_function_view.CommonMessageActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.message_function_view.BindTeacherMsgActivity"
+        <activity
+            android:name=".view.message_function_view.BindTeacherMsgActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.request_leave_student.WriteLeaveActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

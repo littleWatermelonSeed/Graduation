@@ -119,6 +119,7 @@ public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements V
         img_more.setOnClickListener(this);
         txt_title = (TextView) findViewById(R.id.activity_msg_details_title);
         img_head = (CircleImageView) findViewById(R.id.activity_msg_details_head_portrait);
+        img_head.setOnClickListener(this);
         txt_user_name = (TextView) findViewById(R.id.activity_msg_details_name);
         txt_create_time = (TextView) findViewById(R.id.activity_msg_details_create_time);
         txt_content = (TextView) findViewById(R.id.activity_msg_details_content);
@@ -227,6 +228,10 @@ public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements V
             case R.id.pop_window_manage_lost_del:
                 pop_window.dismiss();
                 ensureDel();
+                break;
+            case R.id.activity_msg_details_head_portrait:
+                LostAndFindBean lostAndFindBean = (LostAndFindBean) bmobObject;
+                UserDetailsActivity.go2Activity(this,lostAndFindBean.getUser().getObjectId());
                 break;
         }
     }

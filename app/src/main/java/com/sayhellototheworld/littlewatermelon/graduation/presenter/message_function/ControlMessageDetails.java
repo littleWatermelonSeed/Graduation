@@ -96,12 +96,16 @@ public class ControlMessageDetails implements OnRefreshListener, OnLoadMoreListe
         BmobManageLostComment.getManager().queryToMsg(nowSkip, new BmobQueryDone<LostCommentBean>() {
             @Override
             public void querySuccess(List<LostCommentBean> data) {
+                int dataNum = 0;
                 finishSmart(true);
                 if (data.size() <= 0){
-                    MyToastUtil.showToast("已经到底啦~");
+                    MyToastUtil.showToast("没有更多消息啦,已经到底啦~");
                 }else {
                     MessageDetailsBean bean;
                     for (LostCommentBean l:data){
+                        if (l.getLost().getReleaseTime() == null){
+                            continue;
+                        }
                         bean = new MessageDetailsBean();
                         bean.setRead(l.getRead());
                         bean.setBmobObject(l.getLost());
@@ -114,10 +118,14 @@ public class ControlMessageDetails implements OnRefreshListener, OnLoadMoreListe
                             bean.setFirstImgUrl(l.getLost().getImageUrls().get(0));
                         }
                         messageData.add(bean);
+                        dataNum++;
                     }
                     adapter.notifyDataSetChanged();
                     nowSkip++;
                     BmobManageLostComment.getManager().updateReadBatch(data);
+                }
+                if (dataNum == 0){
+                    MyToastUtil.showToast("没有更多消息啦,已经到底啦~");
                 }
             }
 
@@ -133,12 +141,16 @@ public class ControlMessageDetails implements OnRefreshListener, OnLoadMoreListe
         BmobManageFleaComment.getManager().queryToMsg(nowSkip, new BmobQueryDone<FleaCommentBean>() {
             @Override
             public void querySuccess(List<FleaCommentBean> data) {
+                int dataNum = 0;
                 finishSmart(true);
                 if (data.size() <= 0){
                     MyToastUtil.showToast("没有更多消息啦,已经到底啦~");
                 }else {
                     MessageDetailsBean bean;
                     for (FleaCommentBean l:data){
+                        if (l.getFleaMarkte().getReleaseTime() == null){
+                            continue;
+                        }
                         bean = new MessageDetailsBean();
                         bean.setRead(l.getRead());
                         bean.setBmobObject(l.getFleaMarkte());
@@ -151,10 +163,14 @@ public class ControlMessageDetails implements OnRefreshListener, OnLoadMoreListe
                             bean.setFirstImgUrl(l.getFleaMarkte().getImageUrls().get(0));
                         }
                         messageData.add(bean);
+                        dataNum++;
                     }
                     adapter.notifyDataSetChanged();
                     nowSkip++;
                     BmobManageFleaComment.getManager().updateReadBatch(data);
+                }
+                if (dataNum == 0){
+                    MyToastUtil.showToast("没有更多消息啦,已经到底啦~");
                 }
             }
 
@@ -170,12 +186,16 @@ public class ControlMessageDetails implements OnRefreshListener, OnLoadMoreListe
         BmobManageResourceComment.getManager().queryToMsg(nowSkip, new BmobQueryDone<ResourceCommentBean>() {
             @Override
             public void querySuccess(List<ResourceCommentBean> data) {
+                int dataNum = 0;
                 finishSmart(true);
                 if (data.size() <= 0){
-                    MyToastUtil.showToast("已经到底啦~");
+                    MyToastUtil.showToast("没有更多消息啦,已经到底啦~");
                 }else {
                     MessageDetailsBean bean;
                     for (ResourceCommentBean l:data){
+                        if (l.getResource().getReleaseTime() == null){
+                            continue;
+                        }
                         bean = new MessageDetailsBean();
                         bean.setRead(l.getRead());
                         bean.setBmobObject(l.getResource());
@@ -188,10 +208,14 @@ public class ControlMessageDetails implements OnRefreshListener, OnLoadMoreListe
                             bean.setFirstImgUrl(l.getResource().getImageUrls().get(0));
                         }
                         messageData.add(bean);
+                        dataNum++;
                     }
                     adapter.notifyDataSetChanged();
                     nowSkip++;
                     BmobManageResourceComment.getManager().updateReadBatch(data);
+                }
+                if (dataNum == 0){
+                    MyToastUtil.showToast("没有更多消息啦,已经到底啦~");
                 }
             }
 

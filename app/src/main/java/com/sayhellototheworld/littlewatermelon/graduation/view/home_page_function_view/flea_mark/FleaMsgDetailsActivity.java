@@ -28,9 +28,9 @@ import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogCon
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyListView;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaCollectBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaCommentBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaCollectBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaCollect;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaMark;
@@ -44,6 +44,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.ScreenUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.WriteCommentActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -145,6 +146,7 @@ public class FleaMsgDetailsActivity extends BaseSlideBcakStatusActivity implemen
         ll_collect = (LinearLayout) findViewById(R.id.activity_flea_msg_details_collectLayout);
         ll_collect.setOnClickListener(this);
         img_head = (CircleImageView) findViewById(R.id.activity_flea_msg_details_head_portrait);
+        img_head.setOnClickListener(this);
         img_collect_icon = (ImageView) findViewById(R.id.activity_flea_msg_details_collect_icon);
         txt_collect = (TextView) findViewById(R.id.activity_flea_msg_details_collect_txt);
         refreshLayout = (SmartRefreshLayout) findViewById(R.id.activity_flea_msg_details_refreshLayout);
@@ -256,6 +258,9 @@ public class FleaMsgDetailsActivity extends BaseSlideBcakStatusActivity implemen
             case R.id.pop_window_manage_lost_del:
                 pop_window.dismiss();
                 ensureDel();
+                break;
+            case R.id.activity_flea_msg_details_head_portrait:
+                UserDetailsActivity.go2Activity(this,fleaMarkBean.getUser().getObjectId());
                 break;
         }
     }

@@ -24,6 +24,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.presenter.home_functio
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.ScreenUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -88,6 +89,7 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
         txt_other_user_name = (TextView) findViewById(R.id.activity_flea_mark_name);
         txt_other_flea_num = (TextView) findViewById(R.id.activity_flea_mark_flea_num);
         img_head = (CircleImageView) findViewById(R.id.activity_flea_mark_head_portrait);
+        img_head.setOnClickListener(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.activity_flea_mark_recycler_view);
         refreshLayout.setEnableScrollContentWhenRefreshed(true);
         refreshLayout.setEnableScrollContentWhenLoaded(true);
@@ -177,6 +179,9 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
             case R.id.pop_window_flea_mark_more_collect:
                 pop_window.dismiss();
                 FleaMarketActivity.go2Activity(this,TYPE_FLEA_MARK_COLLECT);
+                break;
+            case R.id.activity_flea_mark_head_portrait:
+                UserDetailsActivity.go2Activity(this,other_user.getObjectId());
                 break;
         }
     }

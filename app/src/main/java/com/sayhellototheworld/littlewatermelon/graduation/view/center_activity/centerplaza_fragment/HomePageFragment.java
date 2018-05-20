@@ -31,6 +31,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
     private static MyUserBean userBean;
     private static boolean show = false;
     private boolean login = false;
+    private boolean bindScool = false;
     private static HomePageFragment homePageFragment;
 
     @Override
