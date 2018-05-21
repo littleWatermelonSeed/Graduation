@@ -41,4 +41,10 @@
     <color name="school_name">#71e7ff</color>
     <color name="home_page_top_bar">#d9fff7</color>
 
+    <color name="statue0">#67a4ff</color>
+    <color name="statue1">#afdab9</color>
+    <color name="statue2">#ff991c</color>
+    <color name="statue_1">#fd5a5a</color>
+    <color name="statue_2">#ff5b2a</color>
+
 </resources>

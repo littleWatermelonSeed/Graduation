@@ -89,6 +89,32 @@ public class BmobManageTeacher {
         });
     }
 
+    public void queryBindedByStudent(MyUserBean student, final BmobQueryDone<TeacherBean> listener){
+        BmobQuery<TeacherBean> query1 = new BmobQuery<>();
+        query1.addWhereEqualTo("student",student);
+        BmobQuery<TeacherBean> query2 = new BmobQuery<>();
+        query2.addWhereEqualTo("statue",1);
+
+        List<BmobQuery<TeacherBean>> andQuerys = new ArrayList<BmobQuery<TeacherBean>>();
+        andQuerys.add(query1);
+        andQuerys.add(query2);
+
+        BmobQuery<TeacherBean> query = new BmobQuery<TeacherBean>();
+        query.and(andQuerys);
+
+        query.include("teacher");
+        query.findObjects(new FindListener<TeacherBean>() {
+            @Override
+            public void done(List<TeacherBean> list, BmobException e) {
+                if (e == null){
+                    listener.querySuccess(list);
+                }else {
+                    listener.queryFailed(e);
+                }
+            }
+        });
+    }
+
     public void queryStudentMsg(int skip,final BmobQueryDone<TeacherBean> listener){
         BmobQuery<TeacherBean> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("student",BmobManageUser.getCurrentUser());

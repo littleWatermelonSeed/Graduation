@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave_student.RequestLeaveActivity">
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave.RequestLeaveActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

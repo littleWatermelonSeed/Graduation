@@ -102,11 +102,11 @@
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.request_leave_student.RequestLeaveActivity"
+            android:name=".view.home_page_function_view.request_leave.RequestLeaveActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.request_leave_teacher.RespondLeaveActivity"
+            android:name=".view.home_page_function_view.respond_leave.RespondLeaveActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
@@ -164,7 +164,7 @@
             android:name=".view.message_function_view.BindTeacherMsgActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.request_leave_student.WriteLeaveActivity"
+        <activity android:name=".view.home_page_function_view.request_leave.WriteLeaveActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

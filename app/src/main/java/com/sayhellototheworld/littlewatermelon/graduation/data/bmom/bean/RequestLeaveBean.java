@@ -18,8 +18,33 @@ public class RequestLeaveBean extends BmobObject {
     private String endTime;
     private BmobDate releaseTime;
     private Integer statue;
-    private Boolean back;
-    private Boolean backOnTime;
+    private BmobDate backTime;
+    private Boolean sRead;
+    private Boolean tRead;
+
+    public Boolean getsRead() {
+        return sRead;
+    }
+
+    public void setsRead(Boolean sRead) {
+        this.sRead = sRead;
+    }
+
+    public Boolean gettRead() {
+        return tRead;
+    }
+
+    public void settRead(Boolean tRead) {
+        this.tRead = tRead;
+    }
+
+    public BmobDate getBackTime() {
+        return backTime;
+    }
+
+    public void setBackTime(BmobDate backTime) {
+        this.backTime = backTime;
+    }
 
     public BmobDate getReleaseTime() {
         return releaseTime;
@@ -93,19 +118,4 @@ public class RequestLeaveBean extends BmobObject {
         this.statue = statue;
     }
 
-    public Boolean getBack() {
-        return back;
-    }
-
-    public void setBack(Boolean back) {
-        this.back = back;
-    }
-
-    public Boolean getBackOnTime() {
-        return backOnTime;
-    }
-
-    public void setBackOnTime(Boolean backOnTime) {
-        this.backOnTime = backOnTime;
-    }
 }

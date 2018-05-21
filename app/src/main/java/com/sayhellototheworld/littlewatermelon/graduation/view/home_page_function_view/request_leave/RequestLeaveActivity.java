@@ -1,4 +1,4 @@
-package com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave_student;
+package com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +16,21 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
+import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogConfirm;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.TeacherBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageTeacher;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.home_function.ControlRequestLeave;
+import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.ScreenUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.user_view.TeacherMessageActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import java.util.List;
+
+import cn.bmob.v3.exception.BmobException;
 
 public class RequestLeaveActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener{
 
@@ -29,6 +41,8 @@ public class RequestLeaveActivity extends BaseSlideBcakStatusActivity implements
     private View pop_window_view;
     private TextView txt_write_leave;
     private PopupWindow pop_window;
+
+    private ControlRequestLeave crl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +73,13 @@ public class RequestLeaveActivity extends BaseSlideBcakStatusActivity implements
 
     @Override
     protected void initParam() {
-
+        crl = new ControlRequestLeave(this,refreshLayout,recyclerView);
     }
 
     @Override
     protected void initShow() {
         tintManager.setStatusBarTintResource(R.color.white);
+        refreshLayout.autoRefresh();
     }
 
     public static void go2Activity(Context context){
@@ -85,9 +100,41 @@ public class RequestLeaveActivity extends BaseSlideBcakStatusActivity implements
                 pop_window.showAtLocation(img_more, Gravity.TOP | Gravity.START,arr[0] - 50,arr[1] - 50);
                 break;
             case R.id.pop_window_request_leave_more_write:
-                pop_window.dismiss();
-                WriteLeaveActivity.go2Activity(this);
+                writeLeave();
                 break;
         }
     }
+
+    private void writeLeave() {
+        pop_window.dismiss();
+        BmobManageTeacher.getManager().queryBindedByStudent(BmobManageUser.getCurrentUser(), new BmobQueryDone<TeacherBean>() {
+            @Override
+            public void querySuccess(List<TeacherBean> data) {
+                if (data.size() > 0){
+                    WriteLeaveActivity.go2Activity(RequestLeaveActivity.this,data.get(0).getTeacher());
+                }else {
+                    DialogConfirm.newInstance("提示", "你还没有绑定教师,或者你的绑定申请还没有通过,是否前去绑定教师/查看绑定申请状态?",
+                            new DialogConfirm.CancleAndOkDo() {
+                        @Override
+                        public void cancle() {
+
+                        }
+
+                        @Override
+                        public void ok() {
+                            TeacherMessageActivity.go2Activity(RequestLeaveActivity.this);
+                        }
+                    }).setMargin(60)
+                            .setOutCancel(false)
+                            .show(getSupportFragmentManager());
+                }
+            }
+
+            @Override
+            public void queryFailed(BmobException e) {
+                BmobExceptionUtil.dealWithException(RequestLeaveActivity.this,e);
+            }
+        });
+    }
+
 }

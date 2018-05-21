@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/radius_background4"
+    android:paddingTop="10px"
+    android:paddingBottom="20px"
+    android:paddingRight="30px"
+    android:paddingLeft="30px"
+    android:layout_marginTop="20px"
+    android:layout_marginRight="10px"
+    android:layout_marginLeft="10px">
+
+    <TextView
+        android:id="@+id/item_request_leave_student_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="等待教师处理中.."
+        android:gravity="center"
+        android:textColor="@color/statue_2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="处理教师："
+        android:textSize="20px"
+        android:textColor="@color/green"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90px"
+        android:background="@color/white"
+        android:paddingBottom="10px"
+        android:paddingTop="10px">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_request_leave_student_head_portrait"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:src="@drawable/head_log1"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/item_request_leave_student_head_portrait"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/item_request_leave_student_teacher_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15px"
+                android:gravity="center_vertical"
+                android:textColor="@color/plan_user_name_text_color"
+                android:textSize="25px"
+                android:text="倪远杰"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请假信息："
+        android:textSize="20px"
+        android:textColor="@color/green"
+        android:layout_marginTop="10px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓         名："/>
+
+        <TextView
+            android:id="@+id/item_request_leave_student_student_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="倪远杰"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="班         级："/>
+
+        <TextView
+            android:id="@+id/item_request_leave_student_class_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="六年二班"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请假原因："/>
+
+        <TextView
+            android:id="@+id/item_request_leave_student_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阿萨德很骄傲斯柯达进口红酒"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始时间："/>
+
+        <TextView
+            android:id="@+id/item_request_leave_student_begin_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018-8-21"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="归假时间："/>
+
+        <TextView
+            android:id="@+id/item_request_leave_student_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2019-5-1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10px"
+        android:layout_marginTop="15px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="申请时间："
+            android:textSize="15px"
+            android:textColor="@color/red1"/>
+
+        <TextView
+            android:id="@+id/item_request_leave_student_release_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:textSize="15px"
+            android:text="2019-5-1"
+            android:textColor="@color/red1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_request_leave_student_cancle"
+            android:layout_width="0px"
+            android:layout_height="80px"
+            android:layout_weight="1"
+            android:background="@drawable/radius_background_buttongreen4"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="取消请假"
+            android:textSize="35px"/>
+
+        <TextView
+            android:id="@+id/item_request_leave_student_back"
+            android:layout_width="0px"
+            android:layout_height="80px"
+            android:layout_weight="1"
+            android:background="@drawable/radius_background_buttongreen4"
+            android:textColor="@color/white"
+            android:layout_marginLeft="2px"
+            android:gravity="center"
+            android:text="归    假"
+            android:textSize="35px"/>
+    </LinearLayout>
+
+</LinearLayout>
