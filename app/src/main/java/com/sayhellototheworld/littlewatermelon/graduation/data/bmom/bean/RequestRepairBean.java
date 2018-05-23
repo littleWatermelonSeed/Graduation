@@ -11,10 +11,62 @@ public class RequestRepairBean extends BmobObject {
     private MyUserBean user;
     private MyUserBean repairman;
     private String schoolKey;
-    private String schoolName;
-    private String location;
+    private String place;
+    private String userName;
+    private String contact;
     private String describe;
     private Integer statue;
+    private String appointmentTime;
+    private Boolean uRead;
+    private Boolean rRead;
+
+    public Boolean getuRead() {
+        return uRead;
+    }
+
+    public void setuRead(Boolean uRead) {
+        this.uRead = uRead;
+    }
+
+    public Boolean getrRead() {
+        return rRead;
+    }
+
+    public void setrRead(Boolean rRead) {
+        this.rRead = rRead;
+    }
+
+    public String getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
 
     public MyUserBean getRepairman() {
         return repairman;
@@ -38,22 +90,6 @@ public class RequestRepairBean extends BmobObject {
 
     public void setSchoolKey(String schoolKey) {
         this.schoolKey = schoolKey;
-    }
-
-    public String getSchoolName() {
-        return schoolName;
-    }
-
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getDescribe() {

@@ -12,10 +12,20 @@ import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.HomePageRecycleViewAdapter;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.AnnouncementBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.TeacherBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageAnnouncement;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageTeacher;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.util.StatusBarUtils;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.announcement.AnnouncementActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.user_view.LoginActivity;
+
+import java.util.List;
+
+import cn.bmob.v3.exception.BmobException;
 
 
 public class HomePageFragment extends Fragment implements View.OnClickListener{
@@ -27,12 +37,16 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
     private RecyclerView mRecyclerView;
     private View alphaView;
     private TextView txt_login;
+    private LinearLayout ll_announcement_body;
+    private TextView txt_announcement_title;
+    private TextView txt_announcement_content;
 
     private static MyUserBean userBean;
     private static boolean show = false;
     private boolean login = false;
     private boolean bindScool = false;
     private static HomePageFragment homePageFragment;
+    private MyUserBean teacher;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +72,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
         alphaView = mView.findViewById(R.id.fragment_home_page_view);
         txt_login = (TextView) mView.findViewById(R.id.fragment_home_page_login_txt);
         txt_login.setOnClickListener(this);
+        ll_announcement_body = (LinearLayout) mView.findViewById(R.id.fragment_home_page_announcement_body);
+        ll_announcement_body.setOnClickListener(this);
+        txt_announcement_title = (TextView) mView.findViewById(R.id.fragment_home_page_announcement_title);
+        txt_announcement_content = (TextView) mView.findViewById(R.id.fragment_home_page_announcement_content);
     }
 
     private void initParam(){
@@ -78,15 +96,20 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
     private void showTopbar(boolean login){
         if (!login){
             txt_user_name.setVisibility(View.GONE);
+            ll_announcement_body.setVisibility(View.GONE);
             txt_shcool_name.setText("手掌校园");
         }else {
             txt_user_name.setVisibility(View.VISIBLE);
             if (userBean.getRole().equalsIgnoreCase("s")){
                 txt_user_name.setText("学生  " + userBean.getNickName());
+                ll_announcement_body.setVisibility(View.GONE);
+                showAnnouncement();
             }else if (userBean.getRole().equalsIgnoreCase("r")){
                 txt_user_name.setText("维修员  " + userBean.getNickName());
+                ll_announcement_body.setVisibility(View.GONE);
             }else if (userBean.getRole().equalsIgnoreCase("t")){
                 txt_user_name.setText("老师  " + userBean.getNickName());
+                ll_announcement_body.setVisibility(View.GONE);
             }
             if (userBean.getSchoolName() != null&&!userBean.getSchoolName().equals("")){
                 txt_shcool_name.setText(userBean.getSchoolName());
@@ -94,6 +117,39 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
                 txt_shcool_name.setText("手掌校园");
             }
         }
+    }
+
+    private void showAnnouncement(){
+        BmobManageTeacher.getManager().queryBindedByStudent(BmobManageUser.getCurrentUser(), new BmobQueryDone<TeacherBean>() {
+            @Override
+            public void querySuccess(List<TeacherBean> data) {
+                if (data.size() > 0){
+                    teacher = data.get(0).getTeacher();
+                    BmobManageAnnouncement.getManager().queryOneByUser(teacher, new BmobQueryDone<AnnouncementBean>() {
+                        @Override
+                        public void querySuccess(List<AnnouncementBean> data) {
+                            if (data.size() > 0){
+                                ll_announcement_body.setVisibility(View.VISIBLE);
+                                txt_announcement_title.setText(data.get(0).getTitle());
+                                txt_announcement_content.setText(data.get(0).getContent());
+                            }
+                        }
+
+                        @Override
+                        public void queryFailed(BmobException e) {
+
+                        }
+                    });
+                }else {
+
+                }
+            }
+
+            @Override
+            public void queryFailed(BmobException e) {
+
+            }
+        });
     }
 
     private void showRecycleView(boolean login){
@@ -123,6 +179,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.fragment_home_page_login_txt:
                 LoginActivity.startLoginActivity(getActivity());
+                break;
+            case R.id.fragment_home_page_announcement_body:
+                AnnouncementActivity.go2Activity(getContext(),teacher);
                 break;
         }
     }

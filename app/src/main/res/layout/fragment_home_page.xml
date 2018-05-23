@@ -34,6 +34,92 @@
             android:layout_marginTop="7dp"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/fragment_home_page_announcement_body"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:orientation="horizontal"
+        android:layout_marginTop="10px">
+
+        <LinearLayout
+            android:layout_width="60px"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="10px"
+            android:layout_marginLeft="20px">
+
+            <ImageView
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:src="@drawable/student_announcement_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最新教师公告"
+                android:textColor="@color/statue2"
+                android:textSize="15px"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/radius_background8"
+            android:layout_marginLeft="15px"
+            android:layout_marginTop="10px"
+            android:layout_marginRight="20px"
+            android:orientation="vertical"
+            android:padding="10px">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="标题："
+                    android:textColor="@color/white"
+                    android:textSize="30px"/>
+
+                <TextView
+                    android:id="@+id/fragment_home_page_announcement_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="30px"
+                    android:singleLine="true"
+                    android:ellipsize="end"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="内容："
+                    android:textColor="@color/white"
+                    android:textSize="25px"/>
+
+                <TextView
+                    android:id="@+id/fragment_home_page_announcement_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="25px"
+                    android:singleLine="true"
+                    android:ellipsize="end"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

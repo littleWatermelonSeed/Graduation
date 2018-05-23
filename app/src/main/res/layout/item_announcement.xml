@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/radius_background4"
+    android:orientation="vertical"
+    android:layout_marginTop="20px"
+    android:layout_marginRight="10px"
+    android:layout_marginLeft="10px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingTop="10px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="标题："
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:textSize="35px"/>
+
+        <TextView
+            android:id="@+id/item_announcement_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:textSize="35px"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingTop="10px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="内容："
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:textSize="28px"/>
+
+        <TextView
+            android:id="@+id/item_announcement_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:textSize="28px"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_announcement_teacher_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingTop="10px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="发布教师："
+            android:layout_marginLeft="25px"
+            android:textSize="25px"/>
+
+        <TextView
+            android:id="@+id/item_announcement_teacher_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="25px"
+            android:textSize="25px"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingTop="10px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="发布时间："
+            android:layout_marginLeft="25px"
+            android:textSize="15px"
+            android:textColor="@color/red1"/>
+
+        <TextView
+            android:id="@+id/item_announcement_release_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="25px"
+            android:textSize="15px"
+            android:textColor="@color/red1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_announcement_delete"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:orientation="horizontal"
+        android:background="@drawable/radius_background_buttongreen4"
+        android:gravity="center"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:layout_marginBottom="15px">
+
+        <ImageView
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:src="@drawable/delete_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删   除"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="25px"
+            android:textSize="30px"/>
+    </LinearLayout>
+
+</LinearLayout>

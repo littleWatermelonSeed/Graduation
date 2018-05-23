@@ -33,37 +33,29 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by 123 on 2018/5/21.
  */
 
-/**
- * -2：取消请假且教师还没有处理
- * -1：拒绝申请
- * 0:审核中
- * 1：同意申请
- * 2:取消请假且教师已同意
- * 3：已归假
- */
-
-public class RequestLeaveAdapter extends RecyclerView.Adapter<RequestLeaveAdapter.RequestLeaveViewHolder> {
+public class RespondLeaveAdapter extends RecyclerView.Adapter<RespondLeaveAdapter.RespondLeaveViewHolder>{
 
     private Context context;
     private List<RequestLeaveBean> data;
 
     private ItemClick listener;
 
-    public RequestLeaveAdapter(Context context, List<RequestLeaveBean> data) {
+    public RespondLeaveAdapter(Context context, List<RequestLeaveBean> data) {
         this.context = context;
         this.data = data;
     }
 
+
     @Override
-    public RequestLeaveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_request_leave_student, parent, false);
+    public RespondLeaveViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_respond_leave, parent, false);
         AutoUtils.autoSize(view);
-        RequestLeaveViewHolder viewHolder = new RequestLeaveViewHolder(view);
+        RespondLeaveViewHolder viewHolder = new RespondLeaveViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RequestLeaveViewHolder holder, int position) {
+    public void onBindViewHolder(RespondLeaveViewHolder holder, int position) {
         listener = new ItemClick(position);
 
         holder.txt_student_name.setText(data.get(position).getStudenName());
@@ -74,55 +66,50 @@ public class RequestLeaveAdapter extends RecyclerView.Adapter<RequestLeaveAdapte
         holder.txt_release_time.setText(TimeFormatUtil.DateToRealTime(TimeFormatUtil.bmobDateToDate(data.get(position).getReleaseTime().getDate())));
 
         if (data.get(position).getStatue() == 0){
-            holder.txt_title.setText("等待老师处理中");
+            holder.txt_title.setText("等待您的处理中");
             holder.txt_title.setTextColor(context.getResources().getColor(R.color.statue0));
-            holder.txt_back.setVisibility(View.GONE);
-            holder.txt_cancle.setVisibility(View.VISIBLE);
-            holder.ll_real_back_time.setVisibility(View.GONE);
+            holder.txt_agree.setVisibility(View.VISIBLE);
+            holder.txt_disagree.setVisibility(View.VISIBLE);
+            holder.ll_real_back_time_body.setVisibility(View.GONE);
         }else if (data.get(position).getStatue() == 1){
-            holder.txt_title.setText("教师已同意你的请假申请");
+            holder.txt_title.setText("您已经同意了该同学的请假申请");
             holder.txt_title.setTextColor(context.getResources().getColor(R.color.statue1));
-            holder.txt_back.setVisibility(View.VISIBLE);
-            holder.txt_cancle.setVisibility(View.VISIBLE);
-            holder.ll_real_back_time.setVisibility(View.GONE);
+            holder.txt_agree.setVisibility(View.GONE);
+            holder.txt_disagree.setVisibility(View.GONE);
+            holder.ll_real_back_time_body.setVisibility(View.GONE);
         }else if (data.get(position).getStatue() == -1){
-            holder.txt_title.setText("教师拒绝了你的请假申请");
+            holder.txt_title.setText("您已经拒绝了该同学的请假申请");
             holder.txt_title.setTextColor(context.getResources().getColor(R.color.statue_1));
-            holder.txt_back.setVisibility(View.GONE);
-            holder.txt_cancle.setVisibility(View.GONE);
-            holder.ll_real_back_time.setVisibility(View.GONE);
+            holder.txt_agree.setVisibility(View.GONE);
+            holder.txt_disagree.setVisibility(View.GONE);
+            holder.ll_real_back_time_body.setVisibility(View.GONE);
         }else if (data.get(position).getStatue() == 2){
-            holder.txt_title.setText("在教师同意申请后,你取消了请假");
+            holder.txt_title.setText("该同学取消了请假");
             holder.txt_title.setTextColor(context.getResources().getColor(R.color.statue2));
-            holder.txt_back.setVisibility(View.GONE);
-            holder.txt_cancle.setVisibility(View.GONE);
-            holder.ll_real_back_time.setVisibility(View.GONE);
+            holder.txt_agree.setVisibility(View.GONE);
+            holder.txt_disagree.setVisibility(View.GONE);
+            holder.ll_real_back_time_body.setVisibility(View.GONE);
         }else if (data.get(position).getStatue() == 3){
-            holder.txt_title.setText("已归假");
+            holder.txt_title.setText("该同学已归假");
             holder.txt_title.setTextColor(context.getResources().getColor(R.color.statue1));
-            holder.txt_back.setVisibility(View.GONE);
-            holder.txt_cancle.setVisibility(View.GONE);
-            holder.ll_real_back_time.setVisibility(View.VISIBLE);
+            holder.txt_agree.setVisibility(View.GONE);
+            holder.txt_disagree.setVisibility(View.GONE);
+            holder.ll_real_back_time_body.setVisibility(View.VISIBLE);
             holder.txt_real_back_time.setText(TimeFormatUtil.DateToRealTime(TimeFormatUtil.bmobDateToDate(data.get(position).getBackTime().getDate())));
-        }else if (data.get(position).getStatue() == -2){
-            holder.txt_title.setText("在教师没有处理前，你取消了请假");
-            holder.txt_title.setTextColor(context.getResources().getColor(R.color.statue_2));
-            holder.txt_back.setVisibility(View.GONE);
-            holder.txt_cancle.setVisibility(View.GONE);
-            holder.ll_real_back_time.setVisibility(View.GONE);
         }
-        holder.txt_back.setOnClickListener(listener);
-        holder.txt_cancle.setOnClickListener(listener);
 
-        if (data.get(position).getTeahcer().getRealName() != null && !data.get(position).getTeahcer().getRealName().equals("")){
-            holder.txt_teacher_name.setText(data.get(position).getTeahcer().getRealName());
+        holder.txt_agree.setOnClickListener(listener);
+        holder.txt_disagree.setOnClickListener(listener);
+
+        if (data.get(position).getStudent().getRealName() != null && !data.get(position).getStudent().getRealName().equals("")){
+            holder.txt_user_name.setText(data.get(position).getStudent().getRealName());
         }else {
-            holder.txt_teacher_name.setText(data.get(position).getTeahcer().getNickName());
+            holder.txt_user_name.setText(data.get(position).getStudent().getNickName());
         }
 
-        if (data.get(position).getTeahcer().getHeadPortrait() != null && !data.get(position).getTeahcer().getHeadPortrait().getUrl().equals("")){
+        if (data.get(position).getStudent().getHeadPortrait() != null && !data.get(position).getStudent().getHeadPortrait().getUrl().equals("")){
             Glide.with(context)
-                    .load(data.get(position).getTeahcer().getHeadPortrait().getUrl())
+                    .load(data.get(position).getStudent().getHeadPortrait().getUrl())
                     .dontAnimate()
                     .into(holder.head);
         }else {
@@ -132,7 +119,6 @@ public class RequestLeaveAdapter extends RecyclerView.Adapter<RequestLeaveAdapte
                     .into(holder.head);
         }
         holder.head.setOnClickListener(listener);
-
     }
 
     @Override
@@ -140,7 +126,7 @@ public class RequestLeaveAdapter extends RecyclerView.Adapter<RequestLeaveAdapte
         return data.size();
     }
 
-    class RequestLeaveViewHolder extends RecyclerView.ViewHolder {
+    class RespondLeaveViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txt_title;
         private TextView txt_student_name;
@@ -149,28 +135,28 @@ public class RequestLeaveAdapter extends RecyclerView.Adapter<RequestLeaveAdapte
         private TextView txt_begin_time;
         private TextView txt_end_time;
         private TextView txt_release_time;
-        private TextView txt_cancle;
-        private TextView txt_back;
+        private TextView txt_disagree;
+        private TextView txt_agree;
         private CircleImageView head;
-        private TextView txt_teacher_name;
-        private LinearLayout ll_real_back_time;
+        private TextView txt_user_name;
         private TextView txt_real_back_time;
+        private LinearLayout ll_real_back_time_body;
 
-        public RequestLeaveViewHolder(View itemView) {
+        public RespondLeaveViewHolder(View itemView) {
             super(itemView);
-            txt_title = (TextView) itemView.findViewById(R.id.item_request_leave_student_title);
-            txt_student_name = (TextView) itemView.findViewById(R.id.item_request_leave_student_student_name);
-            txt_class_num = (TextView) itemView.findViewById(R.id.item_request_leave_student_class_num);
-            txt_reason = (TextView) itemView.findViewById(R.id.item_request_leave_student_reason);
-            txt_begin_time = (TextView) itemView.findViewById(R.id.item_request_leave_student_begin_time);
-            txt_end_time = (TextView) itemView.findViewById(R.id.item_request_leave_student_end_time);
-            txt_release_time = (TextView) itemView.findViewById(R.id.item_request_leave_student_release_time);
-            txt_cancle = (TextView) itemView.findViewById(R.id.item_request_leave_student_cancle);
-            txt_back = (TextView) itemView.findViewById(R.id.item_request_leave_student_back);
-            head = (CircleImageView) itemView.findViewById(R.id.item_request_leave_student_head_portrait);
-            txt_teacher_name = (TextView) itemView.findViewById(R.id.item_request_leave_student_teacher_name);
-            ll_real_back_time = (LinearLayout) itemView.findViewById(R.id.item_request_leave_student_real_end_time_body);
-            txt_real_back_time = (TextView) itemView.findViewById(R.id.item_request_leave_student_real_end_time);
+            txt_title = (TextView) itemView.findViewById(R.id.item_respond_leave_title);
+            txt_student_name = (TextView) itemView.findViewById(R.id.item_respond_leave_student_name);
+            txt_class_num = (TextView) itemView.findViewById(R.id.item_respond_leave_class_num);
+            txt_reason = (TextView) itemView.findViewById(R.id.item_respond_leave_reason);
+            txt_begin_time = (TextView) itemView.findViewById(R.id.item_respond_leave_begin_time);
+            txt_end_time = (TextView) itemView.findViewById(R.id.item_respond_leave_end_time);
+            txt_release_time = (TextView) itemView.findViewById(R.id.item_respond_leave_release_time);
+            txt_disagree = (TextView) itemView.findViewById(R.id.item_respond_leave_disagree);
+            txt_agree = (TextView) itemView.findViewById(R.id.item_respond_leave_agree);
+            head = (CircleImageView) itemView.findViewById(R.id.item_respond_leave_head_portrait);
+            txt_user_name = (TextView) itemView.findViewById(R.id.item_respond_leave_name);
+            txt_real_back_time = (TextView) itemView.findViewById(R.id.item_respond_leave_real_end_time);
+            ll_real_back_time_body = (LinearLayout) itemView.findViewById(R.id.item_respond_leave_real_end_time_body);
         }
     }
 
@@ -189,35 +175,30 @@ public class RequestLeaveAdapter extends RecyclerView.Adapter<RequestLeaveAdapte
             String tempMsg1 = "";
             String tempMsg2 = "";
             boolean update = true;
-            boolean tempBack = false;
             switch (v.getId()) {
-                case R.id.item_request_leave_student_cancle:
-                    tempMsg2 = "取消请假申请中...";
-                    tempMsg1 = "确定取消请假申请?";
-                    if (data.get(position).getStatue() == 0){
-                        tempStatue = -2;
-                    }else if (data.get(position).getStatue() == 1){
-                        tempStatue = 2;
-                    }
-                    tempBack = false;
+                case R.id.item_respond_leave_disagree:
+                    tempMsg2 = "拒绝中...";
+                    tempMsg1 = "确定拒绝该同学的请假申请?";
+                    tempStatue = -1;
                     break;
-                case R.id.item_request_leave_student_back:
-                    tempMsg2 = "归假处理中...";
-                    tempMsg1 = "确定归假?";
-                    tempStatue = 3;
-                    tempBack = true;
+                case R.id.item_respond_leave_agree:
+                    tempMsg2 = "同意中...";
+                    tempMsg1 = "确定同意该同学的请假申请?";
+                    tempStatue = 1;
+
                     break;
-                case R.id.item_request_leave_student_head_portrait:
+                case R.id.item_respond_leave_head_portrait:
                     update = false;
                     UserDetailsActivity.go2Activity(context,data.get(position).getTeahcer().getObjectId());
                     break;
             }
+
             if (!update){
                 return;
             }
+
             final int statue = tempStatue;
             final String msg = tempMsg2;
-            final boolean back = tempBack;
 
             DialogConfirm.newInstance("提示", tempMsg1, new DialogConfirm.CancleAndOkDo() {
                 @Override
@@ -233,7 +214,7 @@ public class RequestLeaveAdapter extends RecyclerView.Adapter<RequestLeaveAdapte
                                 public void done(ViewHolder viewHolder, final BaseNiceDialog baseNiceDialog) {
                                     TextView textView = viewHolder.getView(R.id.nicedialog_loading_textView);
                                     textView.setText(msg);
-                                    BmobManageRequestLeave.getManager().studentUpdateSatue(objID, statue, back,new BmobUpdateDone() {
+                                    BmobManageRequestLeave.getManager().teacherUpdateSatue(objID, statue,new BmobUpdateDone() {
                                         @Override
                                         public void done(BmobException e) {
                                             if (e == null){
@@ -256,5 +237,5 @@ public class RequestLeaveAdapter extends RecyclerView.Adapter<RequestLeaveAdapte
 
         }
     }
-
+    
 }

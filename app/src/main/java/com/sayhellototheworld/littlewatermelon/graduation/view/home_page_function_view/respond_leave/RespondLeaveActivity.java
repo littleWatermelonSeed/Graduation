@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.home_function.ControlRespondLeave;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -17,6 +18,8 @@ public class RespondLeaveActivity extends BaseSlideBcakStatusActivity implements
     private TextView txt_back;
     private SmartRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
+
+    private ControlRespondLeave crl;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +44,13 @@ public class RespondLeaveActivity extends BaseSlideBcakStatusActivity implements
 
     @Override
     protected void initParam() {
-
+        crl = new ControlRespondLeave(this,refreshLayout,recyclerView);
     }
 
     @Override
     protected void initShow() {
         tintManager.setStatusBarTintResource(R.color.white);
+        refreshLayout.autoRefresh();
     }
 
     public static void go2Activity(Context context){

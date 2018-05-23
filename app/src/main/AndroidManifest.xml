@@ -17,6 +17,7 @@
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".SchoolApp"
@@ -90,15 +91,15 @@
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.AnnouncementActivity"
+            android:name=".view.home_page_function_view.announcement.AnnouncementActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.RequestRepairsActivity"
+            android:name=".view.home_page_function_view.request_repairs.RequestRepairsActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.home_page_function_view.RespondRepairActivity"
+            android:name=".view.home_page_function_view.respond_repairs.RespondRepairActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
@@ -164,7 +165,15 @@
             android:name=".view.message_function_view.BindTeacherMsgActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.request_leave.WriteLeaveActivity"
+        <activity
+            android:name=".view.home_page_function_view.request_leave.WriteLeaveActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.home_page_function_view.announcement.WriteAnnouncementActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.home_page_function_view.request_repairs.WriteRepairsActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/radius_background4">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择上门维修时间"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20px"/>
+
+    <LinearLayout
+        android:layout_width="450px"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="15px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="维修时间："/>
+
+        <TextView
+            android:id="@+id/pop_chose_time_appointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background_normal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70px"
+        android:layout_marginTop="10px"
+        android:layout_marginBottom="20px">
+
+        <TextView
+            android:id="@+id/pop_chose_time_cancle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="取消"
+            android:gravity="center"
+            android:background="@drawable/radius_background_buttongreen1"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="1px"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/pop_chose_time_ensure"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="确定"
+            android:gravity="center"
+            android:layout_marginLeft="1px"
+            android:layout_marginRight="10px"
+            android:textColor="@color/white"
+            android:background="@drawable/radius_background_buttongreen1"/>
+    </LinearLayout>
+</LinearLayout>

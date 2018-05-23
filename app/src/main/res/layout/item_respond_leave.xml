@@ -14,7 +14,7 @@
     android:layout_marginLeft="10px">
 
     <TextView
-        android:id="@+id/item_request_leave_student_title"
+        android:id="@+id/item_respond_leave_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="处理教师："
+        android:text="申请学生："
         android:textSize="20px"
         android:textColor="@color/green"/>
 
@@ -35,7 +35,7 @@
         android:paddingTop="10px">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/item_request_leave_student_head_portrait"
+            android:id="@+id/item_respond_leave_head_portrait"
             android:layout_width="70px"
             android:layout_height="70px"
             android:src="@drawable/head_log1"
@@ -46,11 +46,11 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="20px"
             android:orientation="vertical"
-            android:layout_toRightOf="@+id/item_request_leave_student_head_portrait"
+            android:layout_toRightOf="@+id/item_respond_leave_head_portrait"
             android:layout_centerVertical="true">
 
             <TextView
-                android:id="@+id/item_request_leave_student_teacher_name"
+                android:id="@+id/item_respond_leave_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15px"
@@ -80,11 +80,11 @@
             android:text="姓         名："/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_student_name"
+            android:id="@+id/item_respond_leave_student_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60px"
@@ -97,7 +97,7 @@
             android:text="班         级："/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_class_num"
+            android:id="@+id/item_respond_leave_class_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -114,7 +114,7 @@
             android:text="请假原因："/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_reason"
+            android:id="@+id/item_respond_leave_reason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -131,7 +131,7 @@
             android:text="开始时间："/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_begin_time"
+            android:id="@+id/item_respond_leave_begin_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -148,13 +148,13 @@
             android:text="归假时间："/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_end_time"
+            android:id="@+id/item_respond_leave_end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/item_request_leave_student_real_end_time_body"
+        android:id="@+id/item_respond_leave_real_end_time_body"
         android:layout_width="match_parent"
         android:layout_height="60px"
         android:gravity="center_vertical"
@@ -168,7 +168,7 @@
             android:textColor="@color/green"/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_real_end_time"
+            android:id="@+id/item_respond_leave_real_end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/green"/>
@@ -190,7 +190,7 @@
             android:textColor="@color/red1"/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_release_time"
+            android:id="@+id/item_respond_leave_release_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
@@ -203,18 +203,18 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/item_request_leave_student_cancle"
+            android:id="@+id/item_respond_leave_disagree"
             android:layout_width="0px"
             android:layout_height="80px"
             android:layout_weight="1"
             android:background="@drawable/radius_background_buttongreen4"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="取消请假"
+            android:text="不同意"
             android:textSize="35px"/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_back"
+            android:id="@+id/item_respond_leave_agree"
             android:layout_width="0px"
             android:layout_height="80px"
             android:layout_weight="1"
@@ -222,7 +222,7 @@
             android:textColor="@color/white"
             android:layout_marginLeft="2px"
             android:gravity="center"
-            android:text="归    假"
+            android:text="同    意"
             android:textSize="35px"/>
     </LinearLayout>
 

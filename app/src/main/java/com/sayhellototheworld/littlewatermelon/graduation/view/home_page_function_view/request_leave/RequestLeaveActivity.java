@@ -115,16 +115,16 @@ public class RequestLeaveActivity extends BaseSlideBcakStatusActivity implements
                 }else {
                     DialogConfirm.newInstance("提示", "你还没有绑定教师,或者你的绑定申请还没有通过,是否前去绑定教师/查看绑定申请状态?",
                             new DialogConfirm.CancleAndOkDo() {
-                        @Override
-                        public void cancle() {
+                                @Override
+                                public void cancle() {
 
-                        }
+                                }
 
-                        @Override
-                        public void ok() {
-                            TeacherMessageActivity.go2Activity(RequestLeaveActivity.this);
-                        }
-                    }).setMargin(60)
+                                @Override
+                                public void ok() {
+                                    TeacherMessageActivity.go2Activity(RequestLeaveActivity.this);
+                                }
+                            }).setMargin(60)
                             .setOutCancel(false)
                             .show(getSupportFragmentManager());
                 }

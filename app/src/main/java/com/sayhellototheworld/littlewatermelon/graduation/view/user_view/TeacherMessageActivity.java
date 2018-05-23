@@ -29,6 +29,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogCon
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.TeacherBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageStudent;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageTeacher;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.ManageFile;
@@ -448,6 +449,7 @@ public class TeacherMessageActivity extends BaseSlideBcakStatusActivity implemen
     @Override
     public void delMsgSuc() {
         refreshLayout.autoRefresh();
+        BmobManageStudent.getManager().queryAndDel(student,nowTeacher);
         DialogLoading.dismissLoadingDialog(handler, dialog, "", DialogLoading.MSG_SUCCESS);
     }
 

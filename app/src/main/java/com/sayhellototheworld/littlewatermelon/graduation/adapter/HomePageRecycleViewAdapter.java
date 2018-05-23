@@ -9,14 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.AnnouncementActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.announcement.AnnouncementActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_leave.RequestLeaveActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RequestRepairsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.request_repairs.RequestRepairsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.ResourceSharingActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.respond_leave.RespondLeaveActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.RespondRepairActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.respond_repairs.RespondRepairActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
 /**
@@ -149,7 +149,7 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
                 startResourceSharing();
                 break;
             case 3:
-                RespondRepairActivity.go2Activity(context);
+                RespondRepairActivity.go2Activity(context,RespondRepairActivity.REPAIRS_TYPE_ALL);
                 break;
         }
     }
@@ -172,7 +172,7 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
                 RespondLeaveActivity.go2Activity(context);
                 break;
             case 5:
-                AnnouncementActivity.go2Activity(context);
+                AnnouncementActivity.go2Activity(context,AnnouncementActivity.ANNOUNCEMENT_TYPE_TEACHER);
                 break;
         }
     }
@@ -187,10 +187,6 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
 
     private void startResourceSharing(){
         ResourceSharingActivity.go2Activity(context,ResourceSharingActivity.TYPE_RESOURCE_SHARE_HOME);
-    }
-
-    private void startClassSchedule(){
-        AnnouncementActivity.go2Activity(context);
     }
 
 }

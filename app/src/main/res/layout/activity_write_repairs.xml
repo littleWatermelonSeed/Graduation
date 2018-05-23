@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/white1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_write_repairs_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="返回"
+            android:textSize="30px"/>
+
+        <TextView
+            android:id="@+id/activity_write_repairs_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="提交"
+            android:textSize="30px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="提交维修申请"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:drawable/editbox_background_normal"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_write_repairs_edt_describe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="维修描述(500字以内)..."
+                android:lineSpacingMultiplier="1.5"
+                android:maxLength="500"
+                android:minLines="4"
+                android:paddingBottom="10px"
+                android:paddingTop="10px"
+                android:textColor="@color/white4"
+                android:textSize="30px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:text="报修人姓名："/>
+
+                <EditText
+                    android:id="@+id/activity_write_repairs_edt_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="80px"
+                    android:layout_below="@+id/activity_write_line"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textColor="@color/white4"
+                    android:textSize="30px"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:text="报修地点    ："/>
+
+                <EditText
+                    android:id="@+id/activity_write_repairs_edt_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="80px"
+                    android:layout_below="@+id/activity_write_line"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textColor="@color/white4"
+                    android:textSize="30px"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:text="联系方式    ："/>
+
+                <EditText
+                    android:id="@+id/activity_write_repairs_edt_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="80px"
+                    android:layout_below="@+id/activity_write_line"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textColor="@color/white4"
+                    android:textSize="30px"
+                    android:inputType="phone"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

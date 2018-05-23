@@ -47,8 +47,8 @@ public class ControlMessage implements OnRefreshListener{
         refreshLayout.setOnRefreshListener(this);
         user = BmobManageUser.getCurrentUser();
         if (userType == MessageFragment.MESSAGE_TYPE_STUDENT){
-            noReadNum = new int[8];
-            num = 8;
+            noReadNum = new int[7];
+            num = 7;
         }else if (userType == MessageFragment.MESSAGE_TYPE_TEACHER){
             noReadNum = new int[7];
             num = 7;
@@ -79,7 +79,6 @@ public class ControlMessage implements OnRefreshListener{
     private void getStudentNoReadNum(){
         commonNoReadNum();
         getSBindNoReadNum();
-        getAnnouncementNoReadNum();
     }
 
     private void getTeacherNoReadNum(){
@@ -163,7 +162,6 @@ public class ControlMessage implements OnRefreshListener{
         addNum(true);
     }
 
-    private void getAnnouncementNoReadNum(){addNum(true);}
 
     private void getSBindNoReadNum(){
         BmobManageTeacher.getManager().querySNoReadCount(user, new QueryCountListener() {

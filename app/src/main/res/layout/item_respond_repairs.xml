@@ -13,208 +13,202 @@
     android:layout_marginRight="10px"
     android:layout_marginLeft="10px">
 
-    <TextView
-        android:id="@+id/item_request_leave_student_title"
+    <LinearLayout
+        android:id="@+id/item_respond_repairs_man_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/statue_2"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="申请人："
+            android:textSize="20px"
+            android:textColor="@color/green"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="90px"
+            android:background="@color/white"
+            android:paddingBottom="10px"
+            android:paddingTop="10px">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/item_respond_repairs_head_portrait"
+                android:layout_width="70px"
+                android:layout_height="70px"
+                android:src="@drawable/head_log1"
+                android:layout_centerVertical="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20px"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/item_respond_repairs_head_portrait"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/item_respond_repairs_people_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15px"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/plan_user_name_text_color"
+                    android:textSize="25px"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="处理教师："
+        android:text="维修描述:"
         android:textSize="20px"
+        android:layout_marginTop="15px"
         android:textColor="@color/green"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="90px"
-        android:background="@color/white"
-        android:paddingBottom="10px"
-        android:paddingTop="10px">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/item_request_leave_student_head_portrait"
-            android:layout_width="70px"
-            android:layout_height="70px"
-            android:src="@drawable/head_log1"
-            android:layout_centerVertical="true"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20px"
-            android:orientation="vertical"
-            android:layout_toRightOf="@+id/item_request_leave_student_head_portrait"
-            android:layout_centerVertical="true">
-
-            <TextView
-                android:id="@+id/item_request_leave_student_teacher_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15px"
-                android:gravity="center_vertical"
-                android:textColor="@color/plan_user_name_text_color"
-                android:textSize="25px"/>
-        </LinearLayout>
-    </RelativeLayout>
-
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/item_respond_repairs_describe"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="请假信息："
-        android:textSize="20px"
-        android:textColor="@color/green"
         android:layout_marginTop="10px"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60px"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="姓         名："/>
-
-        <TextView
-            android:id="@+id/item_request_leave_student_student_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60px"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="班         级："/>
-
-        <TextView
-            android:id="@+id/item_request_leave_student_class_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60px"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="请假原因："/>
-
-        <TextView
-            android:id="@+id/item_request_leave_student_reason"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60px"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开始时间："/>
-
-        <TextView
-            android:id="@+id/item_request_leave_student_begin_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60px"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="归假时间："/>
-
-        <TextView
-            android:id="@+id/item_request_leave_student_end_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/item_request_leave_student_real_end_time_body"
-        android:layout_width="match_parent"
-        android:layout_height="60px"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:layout_marginTop="15px">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="实际归假时间："
-            android:textColor="@color/green"/>
+            android:text="报修人姓名："/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_real_end_time"
+            android:id="@+id/item_respond_repairs_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/green"/>
+            android:text="报修地点    ："/>
+
+        <TextView
+            android:id="@+id/item_respond_repairs_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系方式    ："/>
+
+        <TextView
+            android:id="@+id/item_respond_repairs_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/statue0"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red1"
+            android:text="  (点击拨打)"
+            android:textSize="15px"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_respond_repairs_statue_body"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前状态    ："/>
+
+        <TextView
+            android:id="@+id/item_respond_repairs_statue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_respond_repairs_appointment_time_body"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预约上门时间："/>
+
+        <TextView
+            android:id="@+id/item_respond_repairs_appointment_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10px"
-        android:layout_marginTop="15px">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="申请时间："
-            android:textSize="15px"
-            android:textColor="@color/red1"/>
+            android:text="提交时间："
+            android:textColor="@color/red1"
+            android:textSize="15px"/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_release_time"
+            android:id="@+id/item_respond_repairs_release_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20px"
-            android:textSize="15px"
-            android:textColor="@color/red1"/>
+            android:textColor="@color/red1"
+            android:textSize="15px"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15px">
 
         <TextView
-            android:id="@+id/item_request_leave_student_cancle"
+            android:id="@+id/item_respond_repairs_cancle"
             android:layout_width="0px"
             android:layout_height="80px"
             android:layout_weight="1"
             android:background="@drawable/radius_background_buttongreen4"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="取消请假"
+            android:text="取消维修"
             android:textSize="35px"/>
 
         <TextView
-            android:id="@+id/item_request_leave_student_back"
+            android:id="@+id/item_respond_repairs_done"
             android:layout_width="0px"
             android:layout_height="80px"
             android:layout_weight="1"
@@ -222,7 +216,7 @@
             android:textColor="@color/white"
             android:layout_marginLeft="2px"
             android:gravity="center"
-            android:text="归    假"
+            android:text="我来维修"
             android:textSize="35px"/>
     </LinearLayout>
 

@@ -80,8 +80,18 @@ public class BmobManageRequestLeave {
     }
 
     public void queryByTeacher(MyUserBean user,int skip,final BmobQueryDone<RequestLeaveBean> listener){
-        BmobQuery<RequestLeaveBean> query = new BmobQuery<>();
-        query.addWhereEqualTo("teahcer",user);
+        BmobQuery<RequestLeaveBean> query1 = new BmobQuery<>();
+        query1.addWhereEqualTo("teahcer",user);
+        BmobQuery<RequestLeaveBean> query2 = new BmobQuery<>();
+        query2.addWhereNotEqualTo("statue",-2);
+
+        List<BmobQuery<RequestLeaveBean>> andQuerys = new ArrayList<BmobQuery<RequestLeaveBean>>();
+        andQuerys.add(query1);
+        andQuerys.add(query2);
+
+        BmobQuery<RequestLeaveBean> query = new BmobQuery<RequestLeaveBean>();
+        query.and(andQuerys);
+
         query.include("student");
         query.setLimit(10);
         query.setSkip(10*skip);
