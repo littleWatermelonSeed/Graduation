@@ -15,12 +15,15 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogLoading;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaCommentBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ForumBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ForumCommentBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostCommentBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ResourceCommentBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ResourceShareBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaComment;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageForumComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageLostComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageResourceComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
@@ -50,6 +53,7 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
     public final static int COMMENT_TYPE_LOST_AND_FIND = 0;
     public final static int COMMENT_TYPE_FLEA_MARKET = 1;
     public final static int COMMENT_TYPE_FLEA_RRSOURCE_SHARE = 2;
+    public final static int COMMENT_TYPE_FORUM = 3;
 
     private Handler handler = new Handler(){
         @Override
@@ -100,6 +104,9 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
             case COMMENT_TYPE_FLEA_RRSOURCE_SHARE:
                 textView_msg.setText("写评论");
                 break;
+            case COMMENT_TYPE_FORUM:
+                textView_msg.setText("写评论");
+                break;
         }
     }
 
@@ -146,6 +153,9 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
             case COMMENT_TYPE_FLEA_RRSOURCE_SHARE:
                 sendResourceComment(commentContent);
                 break;
+            case COMMENT_TYPE_FORUM:
+                sendForum(commentContent);
+                break;
         }
     }
 
@@ -189,6 +199,20 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
         BmobManageResourceComment.getManager().uploadMsg(resourceCommentBean,this);
     }
 
+    private void sendForum(String commentContent){
+        ForumBean forumBean = (ForumBean) bmobObject;
+        ForumCommentBean forumCommentBean = new ForumCommentBean();
+
+        forumCommentBean.setPublishUser(forumBean.getUser());
+        forumCommentBean.setUser(userBean);
+        forumCommentBean.setReleaseTime(new BmobDate(new Date()));
+        forumCommentBean.setContent(commentContent);
+        forumCommentBean.setRead(false);
+        forumCommentBean.setForum(forumBean);
+        forumCommentBean.setType(0);
+        BmobManageForumComment.getManager().uploadMsg(forumCommentBean,forumBean.getObjectId(),this);
+    }
+
     @Override
     public void msgSuccess(String objectID) {
         switch (comment_type){
@@ -207,7 +231,6 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
         DialogLoading.dismissLoadingDialog(handler, dialog, "发布失败", DialogLoading.MSG_FAIL);
         BmobExceptionUtil.dealWithException(this,e);
     }
-
 
     public static void go2Activity(Context context, BmobObject bmobObj, int type){
         Intent intent = new Intent(context,WriteCommentActivity.class);

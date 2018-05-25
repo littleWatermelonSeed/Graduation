@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_forum_details_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="返回"
+            android:textSize="30px"/>
+
+        <ImageView
+            android:id="@+id/activity_forum_details_more"
+            android:layout_width="50px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/more1"/>
+
+        <TextView
+            android:id="@+id/activity_forum_details_title"
+            android:layout_width="400px"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="详情"
+            android:textSize="35px"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/activity_forum_details_refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/activity_forum_details_bottom"
+            android:background="@color/white"
+            app:srlAccentColor="@color/white"
+            app:srlEnablePreviewInEditMode="false"
+            app:srlPrimaryColor="@color/gray"
+            android:layout_marginBottom="100px">
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_srlBackgroundColor="@color/white6"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fillViewport="false"
+                android:paddingBottom="25px"
+                android:paddingLeft="35px"
+                android:paddingRight="35px"
+                android:paddingTop="25px">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="15px"
+                    android:paddingLeft="15px"
+                    android:paddingRight="15px">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10px">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/activity_forum_details_head_portrait"
+                            android:layout_width="70px"
+                            android:layout_height="70px"
+                            android:src="@drawable/head_log1"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20px"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/activity_forum_details_user_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/plan_user_name_text_color"
+                                android:textSize="30px"/>
+
+                            <TextView
+                                android:id="@+id/activity_forum_details_school_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5px"
+                                android:textSize="20px"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/activity_forum_details_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10px"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:lineSpacingMultiplier="1.5"
+                        android:paddingBottom="15px"
+                        android:paddingTop="15px"
+                        android:textIsSelectable="true"
+                        android:textSize="30px"/>
+
+                    <com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView
+                        android:id="@+id/activity_forum_details_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10px"
+                        android:gravity="center_horizontal"
+                        android:horizontalSpacing="15dp"
+                        android:numColumns="3"
+                        android:verticalSpacing="8dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60px"
+                        android:layout_marginTop="15px">
+
+                        <TextView
+                            android:id="@+id/activity_forum_details_release_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20px"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:id="@+id/activity_forum_details_comment_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:textSize="20px"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10px"/>
+
+                        <ImageView
+                            android:id="@+id/activity_forum_details_comment_icon"
+                            android:layout_width="40px"
+                            android:layout_height="40px"
+                            android:layout_toLeftOf="@+id/activity_forum_details_comment_num"
+                            android:src="@drawable/comment"
+                            android:layout_marginRight="10px"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:id="@+id/activity_forum_details_like_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/activity_forum_details_comment_icon"
+                            android:textSize="20px"
+                            android:layout_marginRight="40px"
+                            android:layout_centerVertical="true"/>
+
+                        <ImageView
+                            android:id="@+id/activity_forum_details_like_icon"
+                            android:layout_width="40px"
+                            android:layout_height="40px"
+                            android:layout_toLeftOf="@+id/activity_forum_details_like_num"
+                            android:src="@drawable/like"
+                            android:layout_marginRight="10px"
+                            android:layout_centerVertical="true"/>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/gray"
+                        android:layout_marginTop="10px"/>
+
+                    <com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyListView
+                        android:id="@+id/activity_forum_comment_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:divider="@null"/>
+
+                </LinearLayout>
+            </ScrollView>
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_srlBackgroundColor="@color/white6"/>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:background="@color/white1">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/gray"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/activity_forum_details_bottom_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:layout_marginLeft="20px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginTop="10px"
+                    android:layout_marginBottom="10px"
+                    android:layout_toLeftOf="@+id/activity_forum_details_bottom_like"
+                    android:layout_centerVertical="true"
+                    android:text="说点什么吧..."
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white3"/>
+
+                <ImageView
+                    android:id="@+id/activity_forum_details_bottom_like"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:src="@drawable/like"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30px"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

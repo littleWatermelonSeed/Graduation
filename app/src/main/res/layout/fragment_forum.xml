@@ -1,11 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="@color/gray"
-              android:id="@+id/fragment_forum_parent"
-             tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.ForumFragment">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_forum_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white1"
+    android:orientation="vertical"
+    tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.ForumFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,8 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:textSize="15px"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:textSize="15px"/>
         </LinearLayout>
     </RelativeLayout>
 
@@ -59,38 +60,40 @@
     <!--android:layout_height="1px"-->
     <!--android:background="@color/gray"/>-->
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="10px"
+        android:orientation="horizontal"
+        android:paddingLeft="15px"
+        android:paddingRight="15px">
+
+        <TextView
+            android:id="@+id/fragment_forum_local_school"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radius_background8"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/fragment_forum_all_school"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5px"
+            android:layout_weight="1"
+            android:background="@drawable/radius_background4"
+            android:gravity="center"
+            android:text="全国"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_forum_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_forum_smart_refresh"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@color/white"
-        app:srlPrimaryColor="@color/gray"
-        app:srlAccentColor="@color/white"
-        app:srlEnablePreviewInEditMode="true">
+        android:padding="0px">
 
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_srlBackgroundColor="@color/gray"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_forum_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
-        </LinearLayout>
-
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_srlBackgroundColor="@color/gray"/>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </FrameLayout>
 
 </LinearLayout>

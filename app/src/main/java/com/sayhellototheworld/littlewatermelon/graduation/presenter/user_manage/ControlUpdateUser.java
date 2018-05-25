@@ -19,6 +19,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.presenter.center_plaza
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.MyActivityManager;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.ForumFragment;
 
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
@@ -82,6 +83,7 @@ public class ControlUpdateUser implements ViUpdateUserCoDo, UserUpdateDo {
         DialogLoading.dismissLoadingDialog(handler,dialog,"个人资料更新成功", DialogLoading.MSG_SUCCESS);
         MyActivityManager.getDestoryed().destroyedListActivity();
         ControlUserFragment.syncUserFragment();
+        ForumFragment.recreateView();
     }
 
     @Override

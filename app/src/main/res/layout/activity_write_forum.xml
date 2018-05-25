@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/white1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_write_forum_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="返回"
+            android:textSize="30px"/>
+
+        <TextView
+            android:id="@+id/activity_write_forum_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="发布"
+            android:textSize="30px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发布同学圈"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:drawable/editbox_background_normal"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_write_forum_edt_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingTop="10px"
+                android:paddingBottom="10px"
+                android:lineSpacingMultiplier="1.5"
+                android:gravity="left"
+                android:hint="分享你此刻的生活..."
+                android:maxLength="500"
+                android:minLines="4"
+                android:textColor="@color/white4"
+                android:textSize="35px"/>
+
+            <com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridView
+                android:id="@+id/activity_write_forum_card_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
+                android:horizontalSpacing="15dp"
+                android:verticalSpacing="8dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

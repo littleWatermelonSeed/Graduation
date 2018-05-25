@@ -17,7 +17,7 @@
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name=".SchoolApp"
@@ -173,7 +173,19 @@
             android:name=".view.home_page_function_view.announcement.WriteAnnouncementActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.home_page_function_view.request_repairs.WriteRepairsActivity"
+        <activity
+            android:name=".view.home_page_function_view.request_repairs.WriteRepairsActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.forum_function_view.WriteForumActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.forum_function_view.OwnForumActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.forum_function_view.ForumDetailsActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

@@ -40,11 +40,11 @@ public class FleaMarketActivity extends BaseSlideBcakStatusActivity implements V
     private TextView txt_no_msg;
     private LinearLayout ll_search;
     private SmartRefreshLayout refreshLayout;
-    private View pop_window_view;
     private TextView txt_write_flea;
     private TextView txt_own_flea;
     private TextView txt_own_flea_collect;
     private PopupWindow pop_window;
+    private View pop_window_view;
     private RecyclerView mRecyclerView;
     private RelativeLayout rl_other_page;
     private TextView txt_other_user_name;
