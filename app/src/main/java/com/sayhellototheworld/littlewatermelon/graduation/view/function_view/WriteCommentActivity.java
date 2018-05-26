@@ -223,7 +223,6 @@ public class WriteCommentActivity extends BaseSlideBcakStatusActivity implements
                 break;
         }
         DialogLoading.dismissLoadingDialog(handler, dialog, "发布成功", DialogLoading.MSG_SUCCESS);
-        finish();
     }
 
     @Override

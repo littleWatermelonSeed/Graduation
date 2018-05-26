@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10px"
+        android:paddingLeft="15px"
+        android:paddingRight="15px"
+        android:paddingTop="10px"
+        android:minHeight="90px">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_forum_comment_head_portrait"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:src="@drawable/head_log1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70px"
+                android:orientation="vertical"
+                android:layout_marginLeft="15px">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5px">
+
+                    <TextView
+                        android:id="@+id/item_forum_comment_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/plan_user_name_text_color"/>
+
+                    <TextView
+                        android:id="@+id/item_forum_comment_replay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="回复"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/green"
+                        android:layout_marginRight="15px"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/item_forum_comment_school_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="15px"
+                    android:layout_marginTop="5px"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_forum_comment_replay_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10px"
+                android:layout_marginLeft="15px">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="回复"/>
+
+                <TextView
+                    android:id="@+id/item_forum_comment_replay_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:textColor="@color/green"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:layout_marginLeft="10px"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_forum_comment_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10px"
+                android:textSize="25px"
+                android:layout_marginRight="50px"
+                android:layout_marginLeft="15px"
+                android:textIsSelectable="true"
+                android:lineSpacingMultiplier="1.5"/>
+
+            <TextView
+                android:id="@+id/item_forum_comment_create_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10px"
+                android:textSize="20px"
+                android:layout_marginRight="50px"
+                android:layout_marginLeft="15px"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5px"/>
+
+</LinearLayout>

@@ -68,4 +68,14 @@ public class OwnForumActivity extends BaseSlideBcakStatusActivity implements Vie
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ForumDetailsActivity.FORUM_DEL_CODE){
+            if (resultCode == RESULT_OK){
+                refreshLayout.autoRefresh();
+            }
+        }
+    }
+
 }

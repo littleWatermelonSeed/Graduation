@@ -31,6 +31,7 @@ public class ControlForum implements OnLoadMoreListener, OnRefreshListener,
     public final static int FORUM_TYPE_ALL_SCHOOL = 0;
     public final static int FORUM_TYPE_LOACL_SCHOOL = 1;
     public final static int FORUM_TYPE_OWN = 2;
+    public final static int FORUM_TYPE_MSG = 3;
 
     private Context context;
     private SmartRefreshLayout refreshLayout;
@@ -55,7 +56,7 @@ public class ControlForum implements OnLoadMoreListener, OnRefreshListener,
 
         this.refreshLayout.setOnRefreshListener(this);
         this.refreshLayout.setOnLoadMoreListener(this);
-        adapter = new ForumAdapter(context,forumData,type);
+        adapter = new ForumAdapter(context,forumData,type,this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -100,6 +101,12 @@ public class ControlForum implements OnLoadMoreListener, OnRefreshListener,
         loading = false;
         forumData.clear();
         doQuery();
+    }
+
+    public void notifyAdapter(int position,int num,String likeID){
+        forumData.get(position).setLikeUserObjID(likeID);
+        forumData.get(position).setLikeNum(num);
+        adapter.notifyDataSetChanged();
     }
 
     private void finishSmart(boolean success){

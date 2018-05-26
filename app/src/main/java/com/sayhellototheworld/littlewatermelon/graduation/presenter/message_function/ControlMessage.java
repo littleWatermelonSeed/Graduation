@@ -7,6 +7,7 @@ import android.util.Log;
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.MessageAdapter;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageFleaComment;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageForumComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageLostComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageResourceComment;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageTeacher;
@@ -151,7 +152,20 @@ public class ControlMessage implements OnRefreshListener{
     }
 
     private void getFourmNoReadNum(){
-        addNum(true);
+        BmobManageForumComment.getManager().queryNoReadCount(new QueryCountListener() {
+            @Override
+            public void queryCountSuc(Integer integer) {
+                noReadNum[3] = integer;
+                addNum(true);
+                Log.i("niyuanjie","同学圈消息数量 = " + integer);
+            }
+
+            @Override
+            public void queryCountFailed(BmobException e) {
+                BmobExceptionUtil.dealWithException(context,e);
+                finishSmart(false);
+            }
+        });
     }
 
     private void getFriendNoReadNum(){

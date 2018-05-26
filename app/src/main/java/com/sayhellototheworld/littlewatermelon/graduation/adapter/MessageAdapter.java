@@ -14,6 +14,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.MessageFragment;
 import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.BindTeacherMsgActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.CommonMessageActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.ForumCommentMessageActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -154,8 +155,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             case MSG_TYPE_LOST:
             case MSG_TYPE_FLEA:
             case MSG_TYPE_SHARE:
-            case MSG_TYPE_FORUM:
                 CommonMessageActivity.go2Activity(context, nowType[position]);
+                break;
+            case MSG_TYPE_FORUM:
+                ForumCommentMessageActivity.go2Activity(context);
                 break;
             case MSG_TYPE_STUDENT_BIND:
                 BindTeacherMsgActivity.go2Activity(context,BindTeacherMsgActivity.BIND_TEACHER_TYPE_STUDENT);
@@ -174,16 +177,19 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             case MSG_TYPE_LOST:
             case MSG_TYPE_FLEA:
             case MSG_TYPE_SHARE:
-            case MSG_TYPE_FORUM:
                 CommonMessageActivity.go2Activity(context, nowType[position]);
                 break;
             case MSG_TYPE_TEACHER_BIND:
                 BindTeacherMsgActivity.go2Activity(context,BindTeacherMsgActivity.BIND_TEACHER_TYPE_TEACHER);
                 break;
+            case MSG_TYPE_FORUM:
+                ForumCommentMessageActivity.go2Activity(context);
+                break;
             case MSG_TYPE_FRIEND:
                 break;
             case MSG_TYPE_STRANGER:
                 break;
+
         }
         noReadNum[position] = 0;
         notifyDataSetChanged();
@@ -194,13 +200,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             case MSG_TYPE_LOST:
             case MSG_TYPE_FLEA:
             case MSG_TYPE_SHARE:
-            case MSG_TYPE_FORUM:
                 CommonMessageActivity.go2Activity(context, nowType[position]);
+                break;
+            case MSG_TYPE_FORUM:
+                ForumCommentMessageActivity.go2Activity(context);
                 break;
             case MSG_TYPE_FRIEND:
                 break;
             case MSG_TYPE_STRANGER:
                 break;
+
         }
         noReadNum[position] = 0;
         notifyDataSetChanged();

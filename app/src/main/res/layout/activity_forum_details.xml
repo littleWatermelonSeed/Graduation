@@ -203,7 +203,7 @@
                         android:layout_marginTop="10px"/>
 
                     <com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyListView
-                        android:id="@+id/activity_forum_comment_list"
+                        android:id="@+id/activity_forum_details_comment_list"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"

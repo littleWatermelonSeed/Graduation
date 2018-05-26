@@ -151,7 +151,7 @@ public class MessageDeatilsAdapter extends RecyclerView.Adapter<MessageDeatilsAd
                     switch (type){
                         case MessageAdapter.MSG_TYPE_LOST:
                             MsgDetailsActivity.go2Activity(context,false,data.get(position).getBmobObject(),
-                                    MsgDetailsActivity.DETAILS_TYPE_LOST,true);
+                                    MsgDetailsActivity.DETAILS_TYPE_LOST,false);
                             break;
                         case MessageAdapter.MSG_TYPE_FLEA:
                             FleaMsgDetailsActivity.go2Activity(context, FleaMarketActivity.TYPE_FLEA_MARK_HOME, (FleaMarketBean) data.get(position).getBmobObject());

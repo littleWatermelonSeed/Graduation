@@ -36,15 +36,17 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
     private Context context;
     private List<ForumBean> data;
     private int type;
+    private ControlForum controlForum;
 
     private ItemClick listener;
     private String userID;
     private BmobManageForum manageForum;
 
-    public ForumAdapter(Context context, List<ForumBean> data, int type) {
+    public ForumAdapter(Context context, List<ForumBean> data, int type,ControlForum controlForum) {
         this.context = context;
         this.data = data;
         this.type = type;
+        this.controlForum = controlForum;
         userID = BmobManageUser.getCurrentUser().getObjectId();
         manageForum = BmobManageForum.getManager();
     }
@@ -159,7 +161,11 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
                     UserDetailsActivity.go2Activity(context,data.get(position).getUser().getObjectId());
                     break;
                 case R.id.item_forum_content:
-                    ForumDetailsActivity.go2Activity(context,type,data.get(position));
+                    if (type == ControlForum.FORUM_TYPE_OWN){
+                        ForumDetailsActivity.go2Activity(context,type,position,controlForum,data.get(position),ForumDetailsActivity.FORUM_DEL_CODE);
+                    }else {
+                        ForumDetailsActivity.go2Activity(context,type,position,controlForum,data.get(position));
+                    }
                     break;
                 case R.id.item_forum_like_num:
                 case R.id.item_forum_like_icon:

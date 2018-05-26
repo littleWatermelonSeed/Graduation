@@ -100,7 +100,7 @@ public class BmobManageForumComment {
 
         BmobQuery<ForumCommentBean> query = new BmobQuery<>();
         query.and(andQuerys2);
-        query.include("user,resource,resource.user,publishUser");
+        query.include("user,otherUser,publishUser,forum,forum.user");
         query.setLimit(10);
         query.setSkip(10*skip);
         query.order("-createdAt");
@@ -117,7 +117,56 @@ public class BmobManageForumComment {
         });
     }
 
-    public void queryNoReadCount(int skip,final QueryCountListener listener){
+    public void queryToMsg1(int skip,final BmobQueryDone<ForumCommentBean> listener){
+        BmobQuery<ForumCommentBean> query1 = new BmobQuery<>();
+        query1.addWhereEqualTo("publishUser",BmobManageUser.getCurrentUser());
+        BmobQuery<ForumCommentBean> query2 = new BmobQuery<>();
+        query2.addWhereNotEqualTo("otherUser",null);
+
+        List<BmobQuery<ForumCommentBean>> andQuerys1 = new ArrayList<>();
+        andQuerys1.add(query1);
+        andQuerys1.add(query2);
+
+        BmobQuery<ForumCommentBean> tempQuery1 = new BmobQuery<>();
+        BmobQuery<ForumCommentBean> and = tempQuery1.and(andQuerys1);
+
+        BmobQuery<ForumCommentBean> query3 = new BmobQuery<>();
+        query3.addWhereEqualTo("otherUser",BmobManageUser.getCurrentUser());
+
+        List<BmobQuery<ForumCommentBean>> andQuerys2 = new ArrayList<>();
+        andQuerys2.add(and);
+        andQuerys2.add(query3);
+
+        BmobQuery<ForumCommentBean> tempQuery2 = new BmobQuery<>();
+        BmobQuery<ForumCommentBean> or = tempQuery2.or(andQuerys2);
+
+        BmobQuery<ForumCommentBean> query4 = new BmobQuery<>();
+        query4.addWhereNotEqualTo("user",BmobManageUser.getCurrentUser());
+
+        List<BmobQuery<ForumCommentBean>> andQuerys3 = new ArrayList<>();
+        andQuerys3.add(query4);
+        andQuerys3.add(or);
+
+        BmobQuery<ForumCommentBean> query = new BmobQuery<>();
+        query.and(andQuerys3);
+        query.include("user,otherUser,publishUser,forum,forum.user");
+        query.setLimit(10);
+        query.setSkip(10*skip);
+        query.order("-createdAt");
+
+        query.findObjects(new FindListener<ForumCommentBean>() {
+            @Override
+            public void done(List<ForumCommentBean> list, BmobException e) {
+                if (e == null){
+                    listener.querySuccess(list);
+                }else {
+                    listener.queryFailed(e);
+                }
+            }
+        });
+    }
+
+    public void queryNoReadCount(final QueryCountListener listener){
         BmobQuery<ForumCommentBean> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("publishUser",BmobManageUser.getCurrentUser());
         BmobQuery<ForumCommentBean> query2 = new BmobQuery<>();
@@ -142,9 +191,6 @@ public class BmobManageForumComment {
 
         BmobQuery<ForumCommentBean> query = new BmobQuery<>();
         query.and(andQuerys2);
-        query.setLimit(10);
-        query.setSkip(10*skip);
-        query.order("-createdAt");
 
         query.count(ForumCommentBean.class, new CountListener() {
             @Override

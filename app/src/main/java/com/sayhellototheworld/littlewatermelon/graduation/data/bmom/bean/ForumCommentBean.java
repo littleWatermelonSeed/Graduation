@@ -22,6 +22,15 @@ public class ForumCommentBean extends BmobObject {
     private Boolean read;
     private BmobDate releaseTime;
     private Integer type;
+    private String replayContent;
+
+    public String getReplayContent() {
+        return replayContent;
+    }
+
+    public void setReplayContent(String replayContent) {
+        this.replayContent = replayContent;
+    }
 
     public ForumBean getForum() {
         return forum;
