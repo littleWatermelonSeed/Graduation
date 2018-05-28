@@ -21,7 +21,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_inte
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.BindTeacherMsgActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.teacher_view.BindTeacherMsgActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;
@@ -83,6 +83,9 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
         }else if (data.get(position).getStatue() == 1){
             holder.txt_statue.setText("你的申请已通过");
             holder.txt_statue.setBackgroundResource(R.drawable.radius_background_buttongreen4);
+        }else if (data.get(position).getStatue() == -2){
+            holder.txt_statue.setText("老师取消了与你的绑定");
+            holder.txt_statue.setBackgroundResource(R.drawable.radius_background_buttongreen3);
         }
 
         if (data.get(position).getTeacher().getRealName() == null || data.get(position).getTeacher().getRealName().equals("")){
@@ -129,6 +132,11 @@ public class BindTeacherAdapter extends RecyclerView.Adapter<BindTeacherAdapter.
             holder.txt_statue.setVisibility(View.VISIBLE);
             holder.txt_statue.setText("已同意申请");
             holder.txt_statue.setBackgroundResource(R.drawable.radius_background_buttongreen4);
+        }else if (data.get(position).getStatue() == -2){
+            holder.ll_chos_body.setVisibility(View.GONE);
+            holder.txt_statue.setVisibility(View.VISIBLE);
+            holder.txt_statue.setText("你取消了与该同学的绑定");
+            holder.txt_statue.setBackgroundResource(R.drawable.radius_background_buttongreen3);
         }
 
         if (data.get(position).getStudent().getRealName() == null || data.get(position).getStudent().getRealName().equals("")){

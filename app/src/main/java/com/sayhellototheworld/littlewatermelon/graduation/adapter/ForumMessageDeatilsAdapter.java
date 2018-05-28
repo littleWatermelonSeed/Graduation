@@ -77,7 +77,7 @@ public class ForumMessageDeatilsAdapter extends RecyclerView.Adapter<ForumMessag
         holder.txt_comment.setText(data.get(position).getContent());
         holder.txt_comment_time.setText(TimeFormatUtil.DateToRealTime(TimeFormatUtil.bmobDateToDate(data.get(position).getReleaseTime().getDate())));
         holder.txt_comment_user_name.setText(data.get(position).getUser().getNickName());
-        holder.txt_release_user_name.setText(data.get(position).getPublishUser().getNickName());
+        holder.txt_release_user_name.setText(data.get(position).getPublishUser().getNickName() + "：");
         holder.txt_release_content.setText(data.get(position).getForum().getContent());
 
         if (data.get(position).getRead()){

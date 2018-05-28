@@ -3,6 +3,13 @@ package com.sayhellototheworld.littlewatermelon.graduation;
 import android.app.Application;
 import android.content.Context;
 
+import com.sayhellototheworld.littlewatermelon.graduation.im.IMMessageHandler;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
+import cn.bmob.newim.BmobIM;
 import cn.bmob.v3.Bmob;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -25,6 +32,7 @@ public class SchoolApp extends Application{
         appContext = getApplicationContext();
         initBmob();
         initRealm();
+        initIM();
     }
 
     private void initBmob(){
@@ -39,6 +47,30 @@ public class SchoolApp extends Application{
                 .schemaVersion(1)
                 .build();
         Realm.setDefaultConfiguration(realmConfiguration);
+    }
+
+    private void initIM(){
+        if (getApplicationInfo().packageName.equals(getMyProcessName())){
+            BmobIM.init(this);
+            BmobIM.registerDefaultMessageHandler(new IMMessageHandler());
+        }
+    }
+
+    /**
+     * 获取当前运行的进程名
+     * @return
+     */
+    public static String getMyProcessName() {
+        try {
+            File file = new File("/proc/" + android.os.Process.myPid() + "/" + "cmdline");
+            BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));
+            String processName = mBufferedReader.readLine().trim();
+            mBufferedReader.close();
+            return processName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static Context getAppContext(){

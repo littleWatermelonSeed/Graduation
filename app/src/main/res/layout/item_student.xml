@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="20px"
+    android:paddingBottom="20px"
+    android:paddingRight="20px"
+    android:paddingLeft="20px"
+    android:layout_marginTop="10px"
+    android:background="@color/white">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/item_student_head_portrait"
+    android:layout_width="70px"
+    android:layout_height="70px"
+    android:src="@drawable/head_log1"
+    android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/item_student_student_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/item_student_head_portrait"
+        android:layout_toLeftOf="@+id/item_student_unbind"
+        android:layout_centerVertical="true"
+        android:text="倪远杰"
+        android:layout_marginLeft="20px"/>
+
+    <Button
+        android:id="@+id/item_student_unbind"
+        android:layout_width="120px"
+        android:layout_height="50px"
+        android:text="取消绑定"
+        android:textSize="20px"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/radius_background_buttongreen1"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

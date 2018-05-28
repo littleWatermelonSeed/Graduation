@@ -12,7 +12,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.MessageFragment;
-import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.BindTeacherMsgActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.teacher_view.BindTeacherMsgActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.CommonMessageActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.ForumCommentMessageActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;

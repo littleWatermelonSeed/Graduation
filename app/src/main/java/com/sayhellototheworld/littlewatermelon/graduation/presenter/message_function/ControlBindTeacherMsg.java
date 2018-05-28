@@ -10,7 +10,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
-import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.BindTeacherMsgActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.teacher_view.BindTeacherMsgActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;

@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.SysUtil;
@@ -97,6 +98,7 @@ public class ShowImageAdapter extends BaseAdapter {
 //            Log.i("niyuanjie","加载网络图片");
             Glide.with(context)
                     .load(imagePath.get(position))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(viewHolder.imageView_content);
         }
         mListen = new WritePlanImageListen(position);

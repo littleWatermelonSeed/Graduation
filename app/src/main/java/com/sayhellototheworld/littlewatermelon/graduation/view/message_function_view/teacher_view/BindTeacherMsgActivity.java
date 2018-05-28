@@ -1,4 +1,4 @@
-package com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view;
+package com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.teacher_view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,9 +20,9 @@ public class BindTeacherMsgActivity extends BaseSlideBcakStatusActivity implemen
 
     private TextView txt_back;
     private TextView txt_title;
-    private ImageView img_more;
     private SmartRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
+    private ImageView img_student;
     
     private int type;
     private ControlBindTeacherMsg cbt;
@@ -37,8 +37,9 @@ public class BindTeacherMsgActivity extends BaseSlideBcakStatusActivity implemen
     protected void initWidget() {
         txt_back = (TextView) findViewById(R.id.activity_bind_teacher_msg_back);
         txt_back.setOnClickListener(this);
+        img_student = (ImageView) findViewById(R.id.activity_bind_teacher_student);
+        img_student.setOnClickListener(this);
         txt_title = (TextView) findViewById(R.id.activity_bind_teacher_msg_title);
-        img_more = (ImageView) findViewById(R.id.activity_bind_teacher_msg_more);
         refreshLayout = (SmartRefreshLayout) findViewById(R.id.activity_bind_teacher_msg_smart_refresh);
         refreshLayout.setEnableScrollContentWhenRefreshed(true);
         refreshLayout.setEnableScrollContentWhenLoaded(true);
@@ -59,6 +60,11 @@ public class BindTeacherMsgActivity extends BaseSlideBcakStatusActivity implemen
         tintManager.setStatusBarTintResource(R.color.white);
         showTitle();
         refreshLayout.autoRefresh();
+        if (type == BIND_TEACHER_TYPE_STUDENT){
+            img_student.setVisibility(View.GONE);
+        }else if (type == BIND_TEACHER_TYPE_TEACHER){
+            img_student.setVisibility(View.VISIBLE);
+        }
     }
 
     private void showTitle(){
@@ -83,6 +89,9 @@ public class BindTeacherMsgActivity extends BaseSlideBcakStatusActivity implemen
         switch (v.getId()){
             case R.id.activity_bind_teacher_msg_back:
                 finish();
+                break;
+            case R.id.activity_bind_teacher_student:
+                StudentActivity.go2Activity(this);
                 break;
         }
     }

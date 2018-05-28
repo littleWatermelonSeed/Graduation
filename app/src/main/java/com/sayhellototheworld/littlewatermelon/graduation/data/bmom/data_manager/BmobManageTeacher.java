@@ -68,10 +68,13 @@ public class BmobManageTeacher {
         query1.addWhereEqualTo("student",student);
         BmobQuery<TeacherBean> query2 = new BmobQuery<>();
         query2.addWhereNotEqualTo("statue",-1);
+        BmobQuery<TeacherBean> query3 = new BmobQuery<>();
+        query3.addWhereNotEqualTo("statue",-2);
 
         List<BmobQuery<TeacherBean>> andQuerys = new ArrayList<BmobQuery<TeacherBean>>();
         andQuerys.add(query1);
         andQuerys.add(query2);
+        andQuerys.add(query3);
 
         BmobQuery<TeacherBean> query = new BmobQuery<TeacherBean>();
         query.and(andQuerys);
@@ -84,6 +87,49 @@ public class BmobManageTeacher {
                     listener.querySuccess(list);
                 }else {
                     listener.queryFailed(e);
+                }
+            }
+        });
+    }
+
+    public void teacherUnBindStudent(MyUserBean student, MyUserBean teacher){
+        BmobQuery<TeacherBean> query1 = new BmobQuery<>();
+        query1.addWhereEqualTo("student",student);
+        BmobQuery<TeacherBean> query2 = new BmobQuery<>();
+        query2.addWhereEqualTo("statue",1);
+        BmobQuery<TeacherBean> query3 = new BmobQuery<>();
+        query3.addWhereEqualTo("teacher",teacher);
+
+        List<BmobQuery<TeacherBean>> andQuerys = new ArrayList<BmobQuery<TeacherBean>>();
+        andQuerys.add(query1);
+        andQuerys.add(query2);
+        andQuerys.add(query3);
+
+        BmobQuery<TeacherBean> query = new BmobQuery<TeacherBean>();
+        query.and(andQuerys);
+
+        query.findObjects(new FindListener<TeacherBean>() {
+            @Override
+            public void done(List<TeacherBean> list, BmobException e) {
+                if (e == null){
+                    if (list.size() <= 0){
+                        return;
+                    }
+                    TeacherBean t = new TeacherBean();
+                    t.setStatue(-2);
+                    t.setsRead(false);
+                    t.update(list.get(0).getObjectId(), new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null){
+                                Log.i("niyuanjie","教师取消学生绑定后更新teacher表成功");
+                            }else {
+                                Log.i("niyuanjie","教师取消学生绑定后更新teacher表失败");
+                            }
+                        }
+                    });
+                }else {
+                    Log.i("niyuanjie","教师取消学生绑定后查询teacher表失败");
                 }
             }
         });
@@ -229,6 +275,8 @@ public class BmobManageTeacher {
             }
         });
     }
+
+
 
     public void agreeBind(final TeacherBean teacherBean, final BmobUpdateDone listener){
         TeacherBean t = new TeacherBean();
