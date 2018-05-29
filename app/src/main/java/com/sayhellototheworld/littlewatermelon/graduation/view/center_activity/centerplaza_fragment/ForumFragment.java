@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogConfirm;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.forum_function.ControlForum;
 import com.sayhellototheworld.littlewatermelon.graduation.util.ScreenUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.util.StatusBarUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.view.forum_function_view.AllSchoolForumFragment;
@@ -183,7 +184,7 @@ public class ForumFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.pop_window_forum_more_write_own:
                 pop_window.dismiss();
-                OwnForumActivity.go2Activity(getContext());
+                OwnForumActivity.go2Activity(getContext(), ControlForum.FORUM_TYPE_OWN);
                 break;
         }
     }

@@ -240,6 +240,7 @@ public class BmobManageUser {
 
     public void queryByID(String userID, final BmobQueryDone<MyUserBean> listener){
         BmobQuery<MyUserBean> query = new BmobQuery<>();
+//        query.include("skin,headPortrait");
         query.getObject(userID, new QueryListener<MyUserBean>() {
             @Override
             public void done(MyUserBean myUserBean, BmobException e) {
@@ -553,6 +554,8 @@ public class BmobManageUser {
             }
         });
     }
+
+
 
     public static MyUserBean getCurrentUser() {
         MyUserBean userBean = BmobUser.getCurrentUser(MyUserBean.class);

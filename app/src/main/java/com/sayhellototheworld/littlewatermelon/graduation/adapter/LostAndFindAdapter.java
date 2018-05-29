@@ -29,12 +29,12 @@ public class LostAndFindAdapter extends RecyclerView.Adapter<LostAndFindAdapter.
 
     private List<LostAndFindBean> bean;
     private Context context;
-    private boolean privateLost;
+    private int type;
 
-    public LostAndFindAdapter(Context context,List<LostAndFindBean> bean,boolean privateLost){
+    public LostAndFindAdapter(Context context,List<LostAndFindBean> bean,int type){
         this.context = context;
         this.bean = bean;
-        this.privateLost = privateLost;
+        this.type = type;
     }
 
     @Override
@@ -137,7 +137,7 @@ public class LostAndFindAdapter extends RecyclerView.Adapter<LostAndFindAdapter.
                     UserDetailsActivity.go2Activity(context,bean.get(position).getUser().getObjectId());
                     break;
                 case R.id.item_lost_and_find_body:
-                    MsgDetailsActivity.go2Activity(context,star,bean.get(position),MsgDetailsActivity.DETAILS_TYPE_LOST,privateLost);
+                    MsgDetailsActivity.go2Activity(context,star,bean.get(position),MsgDetailsActivity.DETAILS_TYPE_LOST,type);
                     break;
                 case R.id.item_lost_and_find_comment:
                     WriteCommentActivity.go2Activity(context,bean.get(position),WriteCommentActivity.COMMENT_TYPE_LOST_AND_FIND);

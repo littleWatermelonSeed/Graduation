@@ -26,6 +26,10 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener{
 
+    public final static int LOST_AND_FIND_TYPE_PUBLIC = 0;
+    public final static int LOST_AND_FIND_TYPE_OWN = 1;
+    public final static int LOST_AND_FIND_TYPE_OTHER = 2;
+
     private TextView txt_back;
     private TextView txt_msg;
     private TextView txt_school_name;
@@ -40,7 +44,7 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
     private RecyclerView mRecyclerView;
     private ControlLostAndFind cla;
 
-    private boolean privateLost;
+    private int type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,21 +80,31 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
     @Override
     protected void initParam() {
         Intent intent = getIntent();
-        privateLost = intent.getBooleanExtra("privateLost",false);
-        cla = new ControlLostAndFind(this,refreshLayout,mRecyclerView,privateLost);
+        type = intent.getIntExtra("type",-1);
+        if (type == LOST_AND_FIND_TYPE_OWN){
+            cla = new ControlLostAndFind(this,refreshLayout,mRecyclerView,type);
+        }else if (type == LOST_AND_FIND_TYPE_PUBLIC){
+            cla = new ControlLostAndFind(this,refreshLayout,mRecyclerView,type);
+        }else if (type == LOST_AND_FIND_TYPE_OTHER){
+            cla = new ControlLostAndFind(this,refreshLayout,mRecyclerView,type,getIntent().getStringExtra("otherID"));
+        }
         tintManager.setStatusBarTintResource(R.color.white);
     }
 
     @Override
     protected void initShow() {
         refreshLayout.autoRefresh();
-        if (privateLost){
+        if (type == LOST_AND_FIND_TYPE_OWN){
             ll_search.setVisibility(View.GONE);
             img_more.setVisibility(View.GONE);
             txt_msg.setText("我的发布");
-        }else {
+        }else if (type == LOST_AND_FIND_TYPE_PUBLIC){
             txt_school_name.setVisibility(View.VISIBLE);
             txt_school_name.setText(BmobManageUser.getCurrentUser().getSchoolName());
+        }else if (type == LOST_AND_FIND_TYPE_OTHER){
+            txt_school_name.setVisibility(View.GONE);
+            img_more.setVisibility(View.GONE);
+            txt_msg.setText("Ta发布的失物招领");
         }
     }
 
@@ -122,14 +136,21 @@ public class LostAndFindActivity extends BaseSlideBcakStatusActivity implements 
                 break;
             case R.id.pop_window_lost_and_find_view_own:
                 pop_window.dismiss();
-                LostAndFindActivity.go2Activity(this,true);
+                LostAndFindActivity.go2Activity(this,LOST_AND_FIND_TYPE_OWN);
                 break;
         }
     }
 
-    public static void go2Activity(Context context,boolean privateLost){
+    public static void go2Activity(Context context,int type){
         Intent intent = new Intent(context,LostAndFindActivity.class);
-        intent.putExtra("privateLost",privateLost);
+        intent.putExtra("type",type);
+        context.startActivity(intent);
+    }
+
+    public static void go2Activity(Context context,int type,String otherID){
+        Intent intent = new Intent(context,LostAndFindActivity.class);
+        intent.putExtra("type",type);
+        intent.putExtra("otherID",otherID);
         context.startActivity(intent);
     }
 

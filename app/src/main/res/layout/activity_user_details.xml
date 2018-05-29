@@ -39,7 +39,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20px"
-            android:src="@drawable/more1"/>
+            android:src="@drawable/more1"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <FrameLayout
@@ -120,7 +121,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:textSize="25px"/>
+                        android:textSize="25px"
+                        android:textIsSelectable="true"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -132,6 +134,7 @@
                     android:visibility="visible">
 
                     <LinearLayout
+                        android:id="@+id/activity_user_details_function_body"
                         android:layout_width="match_parent"
                         android:layout_height="150px"
                         android:layout_marginTop="20px"
@@ -245,7 +248,8 @@
                         <TextView
                             android:id="@+id/activity_user_details_school_name"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -266,7 +270,8 @@
                         <TextView
                             android:id="@+id/activity_user_details_real_name"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -287,7 +292,8 @@
                         <TextView
                             android:id="@+id/activity_user_details_nickname"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -308,7 +314,8 @@
                         <TextView
                             android:id="@+id/activity_user_details_birthday"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -329,7 +336,8 @@
                         <TextView
                             android:id="@+id/activity_user_details_location"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -350,7 +358,8 @@
                         <TextView
                             android:id="@+id/activity_user_details_home"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -371,9 +380,31 @@
                         <TextView
                             android:id="@+id/activity_user_details_email"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"/>
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="85px"
+                        android:background="@color/wuse7"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="1px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px">
+
+                        <TextView
+                            android:layout_width="150px"
+                            android:layout_height="wrap_content"
+                            android:text="Ta的ID:"/>
+
+                        <TextView
+                            android:id="@+id/activity_user_details_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

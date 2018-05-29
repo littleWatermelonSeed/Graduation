@@ -176,7 +176,8 @@ public class ForumDetailsActivity extends BaseSlideBcakStatusActivity implements
     @Override
     protected void initShow() {
         tintManager.setStatusBarTintResource(R.color.white);
-        if (type == ControlForum.FORUM_TYPE_ALL_SCHOOL || type == ControlForum.FORUM_TYPE_LOACL_SCHOOL || type == ControlForum.FORUM_TYPE_MSG){
+        if (type == ControlForum.FORUM_TYPE_ALL_SCHOOL || type == ControlForum.FORUM_TYPE_LOACL_SCHOOL ||
+                type == ControlForum.FORUM_TYPE_MSG || type == ControlForum.FORUM_TYPE_OTHER){
             img_more.setVisibility(View.GONE);
         }else if (type == ControlForum.FORUM_TYPE_OWN){
             img_more.setVisibility(View.VISIBLE);

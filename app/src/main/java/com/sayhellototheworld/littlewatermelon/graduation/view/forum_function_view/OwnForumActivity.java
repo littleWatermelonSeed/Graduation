@@ -16,8 +16,11 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 public class OwnForumActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener{
 
     private TextView txt_back;
+    private TextView txt_title;
     private SmartRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
+
+    private int type;
 
     private ControlForum cf;
 
@@ -31,6 +34,7 @@ public class OwnForumActivity extends BaseSlideBcakStatusActivity implements Vie
     protected void initWidget() {
         txt_back = (TextView) findViewById(R.id.activity_own_forum_back);
         txt_back.setOnClickListener(this);
+        txt_title = (TextView) findViewById(R.id.activity_own_forum_msg);
 
         refreshLayout = (SmartRefreshLayout) findViewById(R.id.activity_own_forum_smart_refresh);
         refreshLayout.setEnableScrollContentWhenRefreshed(true);
@@ -46,7 +50,14 @@ public class OwnForumActivity extends BaseSlideBcakStatusActivity implements Vie
 
     @Override
     protected void initParam() {
-        cf = new ControlForum(this,ControlForum.FORUM_TYPE_OWN,refreshLayout,recyclerView);
+        type = getIntent().getIntExtra("type",-1);
+        if (type == ControlForum.FORUM_TYPE_OWN){
+            cf = new ControlForum(this,type,refreshLayout,recyclerView);
+            txt_title.setText("我的同学圈贴");
+        }else if (type == ControlForum.FORUM_TYPE_OTHER){
+            cf = new ControlForum(this,type,refreshLayout,recyclerView,getIntent().getStringExtra("otherID"));
+            txt_title.setText("Ta的同学圈贴");
+        }
     }
 
     @Override
@@ -55,8 +66,17 @@ public class OwnForumActivity extends BaseSlideBcakStatusActivity implements Vie
         refreshLayout.autoRefresh();
     }
 
-    public static void go2Activity(Context context){
-        context.startActivity(new Intent(context,OwnForumActivity.class));
+    public static void go2Activity(Context context,int type){
+        Intent intent = new Intent(context,OwnForumActivity.class);
+        intent.putExtra("type",type);
+        context.startActivity(intent);
+    }
+
+    public static void go2Activity(Context context,int type,String otherID){
+        Intent intent = new Intent(context,OwnForumActivity.class);
+        intent.putExtra("type",type);
+        intent.putExtra("otherID",otherID);
+        context.startActivity(intent);
     }
 
     @Override

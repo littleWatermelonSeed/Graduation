@@ -38,6 +38,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.ScreenUtils;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -84,7 +85,7 @@ public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements V
     private static boolean stared;
 
     private boolean loading = false;
-    private boolean privateLost;
+    private int lostType;
     private int nowSkip = 0;
     private CommentAdapter adapter;
     private List<CommentBean> commentList;
@@ -151,14 +152,18 @@ public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements V
         tintManager.setStatusBarTintResource(R.color.white);
         commentList = new ArrayList<>();
         adapter = new CommentAdapter(this,commentList);
-        privateLost = getIntent().getBooleanExtra("privateLost",false);
+        lostType = getIntent().getIntExtra("lostType",-1);
     }
 
     @Override
     protected void initShow() {
         showBody();
         refreshLayout.autoRefresh();
-        if (!privateLost){
+        if (lostType == LostAndFindActivity.LOST_AND_FIND_TYPE_OWN){
+            img_more.setVisibility(View.VISIBLE);
+        }else if (lostType == LostAndFindActivity.LOST_AND_FIND_TYPE_PUBLIC){
+            img_more.setVisibility(View.GONE);
+        }else if (lostType == LostAndFindActivity.LOST_AND_FIND_TYPE_OTHER){
             img_more.setVisibility(View.GONE);
         }
     }
@@ -393,12 +398,12 @@ public class MsgDetailsActivity extends BaseSlideBcakStatusActivity implements V
 
     }
 
-    public static void go2Activity(Context context, boolean star,BmobObject bmobObj, int type,boolean privateLost) {
+    public static void go2Activity(Context context, boolean star,BmobObject bmobObj, int type,int lostType) {
         Intent intent = new Intent(context, MsgDetailsActivity.class);
         bmobObject = bmobObj;
         details_type = type;
         stared = star;
-        intent.putExtra("privateLost",privateLost);
+        intent.putExtra("lostType",lostType);
         ((Activity)context).startActivityForResult(intent,MSG_DETAILS_REQUEST_CODE);
     }
 

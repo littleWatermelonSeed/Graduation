@@ -7,10 +7,13 @@ import android.util.Log;
 
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.LostAndFindAdapter;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageLostAndFind;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -38,18 +41,38 @@ public class ControlLostAndFind extends FindListener<LostAndFindBean> implements
 
     private boolean loading = false;
     private int nowSkip = 0;
-    private boolean privateLost;
+    private int type;
 
-    public ControlLostAndFind(Context context, SmartRefreshLayout refreshLayout, RecyclerView mRecyclerView,boolean privateLost){
+    private String otherID;
+    private MyUserBean other;
+    private boolean getOther = false;
+
+    public ControlLostAndFind(Context context, SmartRefreshLayout refreshLayout, RecyclerView mRecyclerView,int type){
         this.context = context;
-        this.privateLost = privateLost;
+        this.type = type;
         this.refreshLayout = refreshLayout;
         this.mRecyclerView = mRecyclerView;
         this.refreshLayout.setOnRefreshListener(this);
         this.refreshLayout.setOnLoadMoreListener(this);
         manager = BmobManageLostAndFind.getManager();
         lostData = new ArrayList<>();
-        adapter = new LostAndFindAdapter(context,lostData,privateLost);
+        adapter = new LostAndFindAdapter(context,lostData,this.type);
+        LinearLayoutManager llManager = new LinearLayoutManager(context);
+        this.mRecyclerView.setLayoutManager(llManager);
+        this.mRecyclerView.setAdapter(adapter);
+    }
+
+    public ControlLostAndFind(Context context, SmartRefreshLayout refreshLayout, RecyclerView mRecyclerView,int type,String otherID){
+        this.context = context;
+        this.type = type;
+        this.refreshLayout = refreshLayout;
+        this.mRecyclerView = mRecyclerView;
+        this.refreshLayout.setOnRefreshListener(this);
+        this.refreshLayout.setOnLoadMoreListener(this);
+        this.otherID = otherID;
+        manager = BmobManageLostAndFind.getManager();
+        lostData = new ArrayList<>();
+        adapter = new LostAndFindAdapter(context,lostData,this.type);
         LinearLayoutManager llManager = new LinearLayoutManager(context);
         this.mRecyclerView.setLayoutManager(llManager);
         this.mRecyclerView.setAdapter(adapter);
@@ -82,21 +105,47 @@ public class ControlLostAndFind extends FindListener<LostAndFindBean> implements
     @Override
     public void onRefresh(RefreshLayout refreshLayout) {
         nowSkip = 0;
-        if (privateLost){
+        if (type == LostAndFindActivity.LOST_AND_FIND_TYPE_OWN){
             manager.queryByUser(BmobManageUser.getCurrentUser(),this,nowSkip);
-        }else {
+        }else if (type == LostAndFindActivity.LOST_AND_FIND_TYPE_PUBLIC){
             manager.queryBySchoolKey(BmobManageUser.getCurrentUser().getSchooleKey(),this,nowSkip);
+        }else if (type == LostAndFindActivity.LOST_AND_FIND_TYPE_OTHER){
+            doOther();
         }
-
         loading = false;
+    }
+
+    private void doOther() {
+        if (getOther){
+            manager.queryByUser(other,ControlLostAndFind.this,nowSkip);
+        }else {
+            BmobManageUser manageUser = new BmobManageUser(context);
+            manageUser.queryByID(otherID, new BmobQueryDone<MyUserBean>() {
+                @Override
+                public void querySuccess(List<MyUserBean> data) {
+                    getOther = true;
+                    other = data.get(0);
+                    manager.queryByUser(data.get(0),ControlLostAndFind.this,nowSkip);
+                }
+
+                @Override
+                public void queryFailed(BmobException e) {
+                    getOther = false;
+                    finishSmart(false);
+                    BmobExceptionUtil.dealWithException(context,e);
+                }
+            });
+        }
     }
 
     @Override
     public void onLoadMore(RefreshLayout refreshLayout) {
-        if (privateLost){
+        if (type == LostAndFindActivity.LOST_AND_FIND_TYPE_OWN){
             manager.queryByUser(BmobManageUser.getCurrentUser(),this,nowSkip);
-        }else {
+        }else if (type == LostAndFindActivity.LOST_AND_FIND_TYPE_PUBLIC){
             manager.queryBySchoolKey(BmobManageUser.getCurrentUser().getSchooleKey(),this,nowSkip);
+        }else if (type == LostAndFindActivity.LOST_AND_FIND_TYPE_OTHER){
+            doOther();
         }
         loading = true;
     }

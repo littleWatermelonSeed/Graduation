@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.ForumAdapter;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ForumBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageForum;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
@@ -32,18 +33,38 @@ public class ControlForum implements OnLoadMoreListener, OnRefreshListener,
     public final static int FORUM_TYPE_LOACL_SCHOOL = 1;
     public final static int FORUM_TYPE_OWN = 2;
     public final static int FORUM_TYPE_MSG = 3;
+    public final static int FORUM_TYPE_OTHER = 4;
 
     private Context context;
     private SmartRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
 
     private int type;
+    private String otherID;
+    private MyUserBean other;
+    private boolean getOther = false;
     private List<ForumBean> forumData;
     private BmobManageForum manager;
     private ForumAdapter adapter;
 
     private boolean loading = false;
     private int nowSkip = 0;
+
+    public ControlForum(Context context,int type,SmartRefreshLayout refreshLayout,RecyclerView recyclerView,String otherID) {
+        this.context = context;
+        this.type = type;
+        this.refreshLayout = refreshLayout;
+        this.recyclerView = recyclerView;
+        this.otherID = otherID;
+
+        forumData = new ArrayList<>();
+        manager = BmobManageForum.getManager();
+
+        this.refreshLayout.setOnRefreshListener(this);
+        this.refreshLayout.setOnLoadMoreListener(this);
+        adapter = new ForumAdapter(context,forumData,type,this);
+        recyclerView.setAdapter(adapter);
+    }
 
     public ControlForum(Context context,int type,SmartRefreshLayout refreshLayout,RecyclerView recyclerView) {
         this.context = context;
@@ -92,6 +113,31 @@ public class ControlForum implements OnLoadMoreListener, OnRefreshListener,
             manager.queryAll(nowSkip,this);
         }else if (type == FORUM_TYPE_OWN){
             manager.queryByUser(BmobManageUser.getCurrentUser(),nowSkip,this);
+        } else if (type == FORUM_TYPE_OTHER) {
+            doOther();
+        }
+    }
+
+    private void doOther() {
+        if (getOther){
+            manager.queryByUser(other,nowSkip,this);
+        }else {
+            BmobManageUser manageUser = new BmobManageUser(context);
+            manageUser.queryByID(otherID, new BmobQueryDone<MyUserBean>() {
+                @Override
+                public void querySuccess(List<MyUserBean> data) {
+                    getOther = true;
+                    other = data.get(0);
+                    manager.queryByUser(other,nowSkip,ControlForum.this);
+                }
+
+                @Override
+                public void queryFailed(BmobException e) {
+                    getOther = false;
+                    finishSmart(false);
+                    BmobExceptionUtil.dealWithException(context,e);
+                }
+            });
         }
     }
 

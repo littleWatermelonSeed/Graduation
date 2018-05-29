@@ -168,7 +168,7 @@ public class ResourceShareAdapter extends RecyclerView.Adapter<ResourceShareAdap
                     ResourceSharingActivity.go2Activity(context,data.get(position).getUser());
                     break;
                 case R.id.item_resource_share_head_portrait:
-                    UserDetailsActivity.go2Activity(context,data.get(position).getObjectId());
+                    UserDetailsActivity.go2Activity(context,data.get(position).getUser().getObjectId());
                     break;
             }
         }

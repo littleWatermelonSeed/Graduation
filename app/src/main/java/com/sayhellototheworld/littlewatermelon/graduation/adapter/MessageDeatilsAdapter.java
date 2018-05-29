@@ -18,6 +18,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.Msg
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMsgDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.ResourceShareDetailsActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -151,7 +152,7 @@ public class MessageDeatilsAdapter extends RecyclerView.Adapter<MessageDeatilsAd
                     switch (type){
                         case MessageAdapter.MSG_TYPE_LOST:
                             MsgDetailsActivity.go2Activity(context,false,data.get(position).getBmobObject(),
-                                    MsgDetailsActivity.DETAILS_TYPE_LOST,false);
+                                    MsgDetailsActivity.DETAILS_TYPE_LOST, LostAndFindActivity.LOST_AND_FIND_TYPE_PUBLIC);
                             break;
                         case MessageAdapter.MSG_TYPE_FLEA:
                             FleaMsgDetailsActivity.go2Activity(context, FleaMarketActivity.TYPE_FLEA_MARK_HOME, (FleaMarketBean) data.get(position).getBmobObject());
