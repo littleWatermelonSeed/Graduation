@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="20px"
+    android:paddingTop="20px"
+    android:paddingRight="25px"
+    android:paddingLeft="25px"
+    android:orientation="horizontal"
+    android:layout_marginTop="15px">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_request_friend_msg_head_portrait"
+        android:layout_width="70px"
+        android:layout_height="70px"
+        android:src="@drawable/head_log1"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20px"
+        android:layout_toLeftOf="@+id/item_request_friend_msg_right_body"
+        android:layout_toRightOf="@+id/item_request_friend_msg_head_portrait">
+
+        <TextView
+            android:id="@+id/item_request_friend_msg_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="备注："/>
+
+            <TextView
+                android:id="@+id/item_request_friend_msg_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_request_friend_msg_request_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15px"
+            android:textSize="20px"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_request_friend_msg_right_body"
+        android:layout_width="100px"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20px"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/item_request_friend_msg_agree"
+            android:layout_width="80px"
+            android:layout_height="40px"
+            android:text="同意"
+            android:background="@drawable/radius_background7"
+            android:textColor="@color/white"
+            android:textSize="20px"/>
+
+        <Button
+            android:id="@+id/item_request_friend_msg_disagree"
+            android:layout_width="80px"
+            android:layout_height="40px"
+            android:text="拒绝"
+            android:background="@drawable/radius_background5"
+            android:textSize="20px"
+            android:layout_marginTop="20px"/>
+
+        <TextView
+            android:id="@+id/item_request_friend_msg_statue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</RelativeLayout>

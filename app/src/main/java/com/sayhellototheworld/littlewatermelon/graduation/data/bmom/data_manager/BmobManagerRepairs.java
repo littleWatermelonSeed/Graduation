@@ -32,7 +32,7 @@ public class BmobManagerRepairs {
 
     public static BmobManagerRepairs getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManagerRepairs.class) {
                 if (manager == null) {
                     manager = new BmobManagerRepairs();
                 }

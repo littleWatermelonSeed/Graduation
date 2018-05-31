@@ -34,7 +34,7 @@ public class BmobManageForum {
 
     public static BmobManageForum getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageForum.class) {
                 if (manager == null) {
                     manager = new BmobManageForum();
                 }

@@ -16,9 +16,10 @@ import com.sayhellototheworld.littlewatermelon.graduation.adapter.MessageAdapter
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.message_function.ControlMessage;
 import com.sayhellototheworld.littlewatermelon.graduation.util.StatusBarUtils;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.QueryFriendActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
-public class MessageFragment extends Fragment{
+public class MessageFragment extends Fragment implements View.OnClickListener{
 
     private View mView;
     private LinearLayout parentLayout;
@@ -62,6 +63,7 @@ public class MessageFragment extends Fragment{
     private void initWidget(){
         parentLayout = (LinearLayout) mView.findViewById(R.id.fragment_message_parent);
         img_plus = (ImageView) mView.findViewById(R.id.fragment_message_more);
+        img_plus.setOnClickListener(this);
         recyclerView = (RecyclerView) mView.findViewById(R.id.fragment_message_recycler_view);
         refreshLayout = (SmartRefreshLayout) mView.findViewById(R.id.fragment_message_smart_refresh);
         refreshLayout.setEnableScrollContentWhenRefreshed(true);
@@ -103,4 +105,12 @@ public class MessageFragment extends Fragment{
         create = false;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fragment_message_more:
+                QueryFriendActivity.go2Activity(getContext());
+                break;
+        }
+    }
 }

@@ -15,7 +15,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.adapter.bean.MessageDe
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FleaMarketBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ResourceShareBean;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.MsgDetailsActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMsgDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;

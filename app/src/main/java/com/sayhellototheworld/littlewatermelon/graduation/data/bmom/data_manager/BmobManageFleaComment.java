@@ -37,7 +37,7 @@ public class BmobManageFleaComment {
 
     public static BmobManageFleaComment getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageFleaComment.class) {
                 if (manager == null) {
                     manager = new BmobManageFleaComment();
                 }

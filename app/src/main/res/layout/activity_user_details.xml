@@ -230,6 +230,43 @@
                         </LinearLayout>
                     </LinearLayout>
 
+                    <RelativeLayout
+                        android:id="@+id/activity_user_details_remark_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="85px"
+                        android:background="@color/wuse7"
+                        android:layout_marginTop="1px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px">
+
+                        <TextView
+                            android:id="@+id/activity_user_details_txt_remark"
+                            android:layout_width="150px"
+                            android:layout_height="wrap_content"
+                            android:text="备注名:"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentLeft="true"
+                            android:visibility="visible"/>
+
+                        <TextView
+                            android:id="@+id/activity_user_details_remark_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true"
+                            android:layout_toRightOf="@+id/activity_user_details_txt_remark"
+                            android:layout_toLeftOf="@+id/activity_user_details_write_remark_name"
+                            android:layout_centerVertical="true"/>
+
+                        <ImageView
+                            android:id="@+id/activity_user_details_write_remark_name"
+                            android:layout_width="35px"
+                            android:layout_height="35px"
+                            android:src="@drawable/write_remark_name"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="20px"/>
+                    </RelativeLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="85px"
@@ -415,7 +452,8 @@
             android:layout_height="80px"
             android:layout_gravity="bottom"
             android:background="@color/white1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/activity_user_details_operation_friend"

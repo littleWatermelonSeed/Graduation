@@ -36,7 +36,7 @@ public class BmobManageForumComment {
 
     public static BmobManageForumComment getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageForumComment.class) {
                 if (manager == null) {
                     manager = new BmobManageForumComment();
                 }

@@ -15,7 +15,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.customwidget.MyGridVie
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.LostAndFindBean;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.MsgDetailsActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.WriteCommentActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 

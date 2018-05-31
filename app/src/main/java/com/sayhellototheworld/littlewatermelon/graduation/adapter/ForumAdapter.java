@@ -18,7 +18,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_inte
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.forum_function.ControlForum;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.forum_function_view.ForumDetailsActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.WriteCommentActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 

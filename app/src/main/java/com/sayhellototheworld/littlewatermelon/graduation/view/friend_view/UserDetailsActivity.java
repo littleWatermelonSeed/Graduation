@@ -1,4 +1,4 @@
-package com.sayhellototheworld.littlewatermelon.graduation.view.function_view;
+package com.sayhellototheworld.littlewatermelon.graduation.view.friend_view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -19,7 +20,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.forum_function.ControlForum;
-import com.sayhellototheworld.littlewatermelon.graduation.presenter.forum_function.ControlUserDetails;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.friend.ControlUserDetails;
 import com.sayhellototheworld.littlewatermelon.graduation.util.LayoutBackgroundUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
@@ -58,10 +59,15 @@ public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements 
     private Button btn_chat;
     private LinearLayout ll_bottom_body;
     private LinearLayout ll_function_body;
+    private RelativeLayout rl_remark_body;
+    private TextView txt_remark_name;
+    private ImageView img_write;
 
     private String userID;
+    private boolean chat = false;
     private int dataStatue = 0;
     private MyUserBean user;
+    private int friendOperationStatue = -1;
 
     private ControlUserDetails cud;
 
@@ -107,12 +113,17 @@ public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements 
         btn_chat.setOnClickListener(this);
         ll_bottom_body = (LinearLayout) findViewById(R.id.activity_user_details_bottom_body);
         ll_function_body = (LinearLayout) findViewById(R.id.activity_user_details_function_body);
+        rl_remark_body = (RelativeLayout) findViewById(R.id.activity_user_details_remark_body);
+        txt_remark_name = (TextView) findViewById(R.id.activity_user_details_remark_name);
+        img_write = (ImageView) findViewById(R.id.activity_user_details_write_remark_name);
+        img_write.setOnClickListener(this);
     }
 
     @Override
     protected void initParam() {
         userID = getIntent().getStringExtra("userID");
-        cud = new ControlUserDetails(this,userID,this);
+        chat = getIntent().getBooleanExtra("chat",false);
+        cud = new ControlUserDetails(this,userID,this,ll_bottom_body);
     }
 
     @Override
@@ -201,6 +212,13 @@ public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements 
         context.startActivity(intent);
     }
 
+    public static void go2Activity(Context context, String userID,boolean chat) {
+        Intent intent = new Intent(context, UserDetailsActivity.class);
+        intent.putExtra("userID", userID);
+        intent.putExtra("chat",chat);
+        context.startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -234,11 +252,30 @@ public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements 
             case R.id.activity_user_details_operation_friend:
                 if (!clickJudge())
                     return;
+                requestFriend();
                 break;
             case R.id.activity_user_details_chat:
                 if (!clickJudge())
                     return;
+                if (chat){
+                    finish();
+                }else {
+                    cud.goChat();
+                }
                 break;
+            case R.id.activity_user_details_write_remark_name:
+                if (!clickJudge())
+                    return;
+                cud.writeRemark(txt_remark_name);
+                break;
+        }
+    }
+
+    private void requestFriend(){
+        if (friendOperationStatue == -1){
+            cud.requestFriend();
+        }else if (friendOperationStatue == 1){
+            cud.cancleFriend();
         }
     }
 
@@ -260,4 +297,21 @@ public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements 
     public void setUser(MyUserBean user){
         this.user = user;
     }
+
+    public void setFriendOperationStatue(int statue,String remarkName){
+        this.friendOperationStatue = statue;
+        showBottom(remarkName);
+    }
+
+    public void showBottom(String remarkName){
+        if (friendOperationStatue == -1){
+            btn_operation_friend.setText("加好友");
+            rl_remark_body.setVisibility(View.GONE);
+        }else if (friendOperationStatue == 1){
+            btn_operation_friend.setText("删除好友");
+            rl_remark_body.setVisibility(View.VISIBLE);
+            txt_remark_name.setText(remarkName);
+        }
+    }
+
 }

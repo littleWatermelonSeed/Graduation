@@ -60,6 +60,7 @@
 
          
 
+
         <!-- TODO 集成：1.5、配置IM SDK需要的广播和服务 -->
         <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver">
             <intent-filter>
@@ -183,7 +184,7 @@
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
-            android:name=".view.function_view.UserDetailsActivity"
+            android:name=".view.friend_view.UserDetailsActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
         <activity
@@ -234,7 +235,23 @@
             android:name=".view.message_function_view.ForumCommentMessageActivity"
             android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
-        <activity android:name=".view.message_function_view.teacher_view.StudentActivity"
+        <activity
+            android:name=".view.message_function_view.teacher_view.StudentActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.friend_view.FriendRequestMsgActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.friend_view.QueryFriendActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity
+            android:name=".view.im_view.IMActivity"
+            android:theme="@style/NoActionBarTranslucentTheme">
+        </activity>
+        <activity android:name=".view.im_view.ChatActivity"
                   android:theme="@style/NoActionBarTranslucentTheme">
         </activity>
     </application>

@@ -15,7 +15,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ForumCo
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.forum_function_view.ReplayOtherCommentActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 
 import java.util.List;
 

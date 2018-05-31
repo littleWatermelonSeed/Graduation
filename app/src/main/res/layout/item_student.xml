@@ -24,7 +24,6 @@
         android:layout_toRightOf="@+id/item_student_head_portrait"
         android:layout_toLeftOf="@+id/item_student_unbind"
         android:layout_centerVertical="true"
-        android:text="倪远杰"
         android:layout_marginLeft="20px"/>
 
     <Button

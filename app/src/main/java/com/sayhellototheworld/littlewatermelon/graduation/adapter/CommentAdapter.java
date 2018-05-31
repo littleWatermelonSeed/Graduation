@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.bean.CommentBean;
-import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;

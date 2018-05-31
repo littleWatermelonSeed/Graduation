@@ -37,7 +37,7 @@ public class BmobManageResourceComment {
 
     public static BmobManageResourceComment getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageResourceComment.class) {
                 if (manager == null) {
                     manager = new BmobManageResourceComment();
                 }

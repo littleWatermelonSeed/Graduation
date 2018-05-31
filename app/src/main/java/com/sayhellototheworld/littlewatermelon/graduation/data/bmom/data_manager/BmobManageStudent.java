@@ -31,7 +31,7 @@ public class BmobManageStudent {
 
     public static BmobManageStudent getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageStudent.class) {
                 if (manager == null) {
                     manager = new BmobManageStudent();
                 }

@@ -28,7 +28,7 @@ public class BmobManageAnnouncement {
 
     public static BmobManageAnnouncement getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageAnnouncement.class) {
                 if (manager == null) {
                     manager = new BmobManageAnnouncement();
                 }

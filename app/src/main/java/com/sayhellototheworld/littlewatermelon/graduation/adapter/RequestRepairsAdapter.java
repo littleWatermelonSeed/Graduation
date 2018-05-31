@@ -21,7 +21,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_inte
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
-import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;

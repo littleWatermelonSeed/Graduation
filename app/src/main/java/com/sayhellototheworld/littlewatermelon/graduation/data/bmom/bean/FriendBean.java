@@ -10,6 +10,15 @@ public class FriendBean extends BmobObject {
 
     private MyUserBean user;
     private MyUserBean friend;
+    private String remarkName;
+
+    public String getRemarkName() {
+        return remarkName;
+    }
+
+    public void setRemarkName(String remarkName) {
+        this.remarkName = remarkName;
+    }
 
     public MyUserBean getUser() {
         return user;

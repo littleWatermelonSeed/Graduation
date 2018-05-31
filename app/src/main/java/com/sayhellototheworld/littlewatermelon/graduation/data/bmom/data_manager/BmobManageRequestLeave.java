@@ -38,7 +38,7 @@ public class BmobManageRequestLeave {
 
     public static BmobManageRequestLeave getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageRequestLeave.class) {
                 if (manager == null) {
                     manager = new BmobManageRequestLeave();
                 }

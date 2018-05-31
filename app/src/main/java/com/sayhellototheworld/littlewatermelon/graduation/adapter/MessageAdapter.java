@@ -12,6 +12,8 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.MessageFragment;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.FriendRequestMsgActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.im_view.IMActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.teacher_view.BindTeacherMsgActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.CommonMessageActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.message_function_view.ForumCommentMessageActivity;
@@ -40,30 +42,33 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public final static int MSG_TYPE_FLEA = 1;
     public final static int MSG_TYPE_SHARE = 2;
     public final static int MSG_TYPE_FORUM = 3;
-    public final static int MSG_TYPE_FRIEND = 4;
-    public final static int MSG_TYPE_STRANGER = 5;
-    public final static int MSG_TYPE_REPAIRS = 6;
-    public final static int MSG_TYPE_STUDENT_BIND = 7;
-    public final static int MSG_TYPE_TEACHER_BIND = 8;
+    public final static int MSG_TYPE_FRIEND_REQUEST = 4;
+    public final static int MSG_TYPE_MY_FRIEND_REQUEST = 5;
+    public final static int MSG_TYPE_FRIEND = 6;
+    public final static int MSG_TYPE_STRANGER = 7;
+    public final static int MSG_TYPE_STUDENT_BIND = 8;
+    public final static int MSG_TYPE_TEACHER_BIND = 9;
 
-    private String[] studentMsg = {"失物招领   的消息", "跳蚤市场   的消息", "资源共享   的消息", "同学圈   的消息", "好友私聊   的消息", "来自陌生人   的消息",
-            "教师绑定   的消息"};
-    private int[] studentType = {MSG_TYPE_LOST, MSG_TYPE_FLEA, MSG_TYPE_SHARE, MSG_TYPE_FORUM, MSG_TYPE_FRIEND, MSG_TYPE_STRANGER,
-             MSG_TYPE_STUDENT_BIND};
-    private int[] studentIcon = {R.drawable.lost_and_find, R.drawable.flea_market, R.drawable.resource_sharing, R.drawable.forum, R.drawable.friend,
-            R.drawable.stranger,  R.drawable.teacher};
+    private String[] studentMsg = {"失物招领   的消息", "跳蚤市场   的消息", "资源共享   的消息", "同学圈   的消息", "新朋友请求   的消息","我的朋友申请   的消息",
+            "好友私聊   的消息", "来自陌生人   的消息","教师绑定   的消息"};
+    private int[] studentType = {MSG_TYPE_LOST, MSG_TYPE_FLEA, MSG_TYPE_SHARE, MSG_TYPE_FORUM,MSG_TYPE_FRIEND_REQUEST, MSG_TYPE_MY_FRIEND_REQUEST,
+            MSG_TYPE_FRIEND,MSG_TYPE_STRANGER,MSG_TYPE_STUDENT_BIND};
+    private int[] studentIcon = {R.drawable.lost_and_find, R.drawable.flea_market, R.drawable.resource_sharing, R.drawable.forum,
+            R.drawable.friend_request_icon,R.drawable.my_request_friend_icon,R.drawable.friend,R.drawable.stranger,  R.drawable.teacher};
 
-    private String[] teacherMsg = {"失物招领   的消息", "跳蚤市场   的消息", "资源共享   的消息", "同学圈   的消息", "好友私聊   的消息", "来自陌生人   的消息",
-            "学生绑定请求   的消息"};
-    private int[] teacherType = {MSG_TYPE_LOST, MSG_TYPE_FLEA, MSG_TYPE_SHARE, MSG_TYPE_FORUM, MSG_TYPE_FRIEND, MSG_TYPE_STRANGER,
-             MSG_TYPE_TEACHER_BIND};
-    private int[] teacherIcon = {R.drawable.lost_and_find, R.drawable.flea_market, R.drawable.resource_sharing, R.drawable.forum, R.drawable.friend,
-            R.drawable.stranger, R.drawable.student};
+    private String[] teacherMsg = {"失物招领   的消息", "跳蚤市场   的消息", "资源共享   的消息", "同学圈   的消息", "新朋友请求   的消息",
+            "我的朋友申请   的消息","好友私聊   的消息", "来自陌生人   的消息","学生绑定请求   的消息"};
+    private int[] teacherType = {MSG_TYPE_LOST, MSG_TYPE_FLEA, MSG_TYPE_SHARE, MSG_TYPE_FORUM, MSG_TYPE_FRIEND_REQUEST,MSG_TYPE_MY_FRIEND_REQUEST,
+            MSG_TYPE_FRIEND,MSG_TYPE_STRANGER,MSG_TYPE_TEACHER_BIND};
+    private int[] teacherIcon = {R.drawable.lost_and_find, R.drawable.flea_market, R.drawable.resource_sharing, R.drawable.forum,
+            R.drawable.friend_request_icon, R.drawable.my_request_friend_icon,R.drawable.friend,R.drawable.stranger, R.drawable.student};
 
-    private String[] repairsMsg = {"失物招领   的消息", "跳蚤市场   的消息", "资源共享   的消息", "同学圈   的消息", "好友私聊   的消息", "来自陌生人   的消息"};
-    private int[] repairsType = {MSG_TYPE_LOST, MSG_TYPE_FLEA, MSG_TYPE_SHARE, MSG_TYPE_FORUM, MSG_TYPE_FRIEND, MSG_TYPE_STRANGER};
-    private int[] repairsIcon = {R.drawable.lost_and_find, R.drawable.flea_market, R.drawable.resource_sharing, R.drawable.forum, R.drawable.friend,
-            R.drawable.stranger};
+    private String[] repairsMsg = {"失物招领   的消息", "跳蚤市场   的消息", "资源共享   的消息", "同学圈   的消息", "新朋友请求   的消息","我的朋友申请   的消息",
+            "好友私聊   的消息", "来自陌生人   的消息"};
+    private int[] repairsType = {MSG_TYPE_LOST, MSG_TYPE_FLEA, MSG_TYPE_SHARE, MSG_TYPE_FORUM, MSG_TYPE_FRIEND_REQUEST,MSG_TYPE_MY_FRIEND_REQUEST,
+            MSG_TYPE_FRIEND, MSG_TYPE_STRANGER};
+    private int[] repairsIcon = {R.drawable.lost_and_find, R.drawable.flea_market, R.drawable.resource_sharing,
+            R.drawable.forum,R.drawable.friend_request_icon, R.drawable.my_request_friend_icon,R.drawable.friend,R.drawable.stranger};
 
 
     public MessageAdapter(Context context, int type, int[] noReadNum, SmartRefreshLayout refreshLayout) {
@@ -164,8 +169,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 BindTeacherMsgActivity.go2Activity(context,BindTeacherMsgActivity.BIND_TEACHER_TYPE_STUDENT);
                 break;
             case MSG_TYPE_FRIEND:
+                IMActivity.go2Activity(context);
                 break;
             case MSG_TYPE_STRANGER:
+                break;
+            case MSG_TYPE_FRIEND_REQUEST:
+                FriendRequestMsgActivity.go2Activity(context,FriendRequestMsgActivity.FRIEND_REQUEST_TYPE_OTHER);
+                break;
+            case MSG_TYPE_MY_FRIEND_REQUEST:
+                FriendRequestMsgActivity.go2Activity(context,FriendRequestMsgActivity.FRIEND_REQUEST_TYPE_OWN);
                 break;
         }
         noReadNum[position] = 0;
@@ -186,10 +198,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 ForumCommentMessageActivity.go2Activity(context);
                 break;
             case MSG_TYPE_FRIEND:
+                IMActivity.go2Activity(context);
                 break;
             case MSG_TYPE_STRANGER:
                 break;
-
+            case MSG_TYPE_FRIEND_REQUEST:
+                FriendRequestMsgActivity.go2Activity(context,FriendRequestMsgActivity.FRIEND_REQUEST_TYPE_OTHER);
+                break;
+            case MSG_TYPE_MY_FRIEND_REQUEST:
+                FriendRequestMsgActivity.go2Activity(context,FriendRequestMsgActivity.FRIEND_REQUEST_TYPE_OWN);
+                break;
         }
         noReadNum[position] = 0;
         notifyDataSetChanged();
@@ -206,10 +224,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 ForumCommentMessageActivity.go2Activity(context);
                 break;
             case MSG_TYPE_FRIEND:
+                IMActivity.go2Activity(context);
                 break;
             case MSG_TYPE_STRANGER:
                 break;
-
+            case MSG_TYPE_FRIEND_REQUEST:
+                FriendRequestMsgActivity.go2Activity(context,FriendRequestMsgActivity.FRIEND_REQUEST_TYPE_OTHER);
+                break;
+            case MSG_TYPE_MY_FRIEND_REQUEST:
+                FriendRequestMsgActivity.go2Activity(context,FriendRequestMsgActivity.FRIEND_REQUEST_TYPE_OWN);
+                break;
         }
         noReadNum[position] = 0;
         notifyDataSetChanged();

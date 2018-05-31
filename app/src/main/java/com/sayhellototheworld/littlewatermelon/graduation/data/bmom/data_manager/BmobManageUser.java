@@ -24,7 +24,6 @@ import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil
 import com.sayhellototheworld.littlewatermelon.graduation.util.PictureUtil;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobInstallation;
@@ -240,16 +239,27 @@ public class BmobManageUser {
 
     public void queryByID(String userID, final BmobQueryDone<MyUserBean> listener){
         BmobQuery<MyUserBean> query = new BmobQuery<>();
-//        query.include("skin,headPortrait");
-        query.getObject(userID, new QueryListener<MyUserBean>() {
+        query.addWhereEqualTo("objectId",userID);
+        query.findObjects(new FindListener<MyUserBean>() {
             @Override
-            public void done(MyUserBean myUserBean, BmobException e) {
+            public void done(List<MyUserBean> list, BmobException e) {
                 if (e == null){
-                    List<MyUserBean> data = new ArrayList<>();
-                    if (myUserBean != null){
-                        data.add(myUserBean);
-                    }
-                    listener.querySuccess(data);
+                    listener.querySuccess(list);
+                }else {
+                    listener.queryFailed(e);
+                }
+            }
+        });
+    }
+
+    public void queryByPhone(String phone, final BmobQueryDone<MyUserBean> listener){
+        BmobQuery<MyUserBean> query = new BmobQuery<>();
+        query.addWhereEqualTo("mobilePhoneNumber",phone);
+        query.findObjects(new FindListener<MyUserBean>() {
+            @Override
+            public void done(List<MyUserBean> list, BmobException e) {
+                if (e == null){
+                    listener.querySuccess(list);
                 }else {
                     listener.queryFailed(e);
                 }

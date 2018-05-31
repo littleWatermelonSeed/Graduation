@@ -32,7 +32,7 @@ public class BmobManageFleaMark {
 
     public static BmobManageFleaMark getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageFleaMark.class) {
                 if (manager == null) {
                     manager = new BmobManageFleaMark();
                 }

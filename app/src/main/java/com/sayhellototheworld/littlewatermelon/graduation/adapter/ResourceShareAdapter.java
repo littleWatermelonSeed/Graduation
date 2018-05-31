@@ -17,7 +17,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogAck
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.ResourceShareBean;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.TimeFormatUtil;
-import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.UserDetailsActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.function_view.WriteCommentActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.ResourceShareDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.ResourceSharingActivity;

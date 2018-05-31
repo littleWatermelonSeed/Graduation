@@ -34,7 +34,7 @@ public class BmobManageResourceCollect {
 
     public static BmobManageResourceCollect getManager() {
         if (manager == null) {
-            synchronized (BmobManageLostAndFind.class) {
+            synchronized (BmobManageResourceCollect.class) {
                 if (manager == null) {
                     manager = new BmobManageResourceCollect();
                 }
