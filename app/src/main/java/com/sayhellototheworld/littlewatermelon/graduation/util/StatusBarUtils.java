@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 /**
  * Created by 123 on 2017/8/23.
@@ -12,12 +13,12 @@ import android.widget.LinearLayout;
 
 public class StatusBarUtils {
 
-    public static int getStatusHeight(Activity activity){
+    public static int getStatusHeight(Activity activity) {
         int statusHeight = 0;
         Rect localRect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);
         statusHeight = localRect.top;
-        if (0 == statusHeight){
+        if (0 == statusHeight) {
             Class<?> localClass;
             try {
                 localClass = Class.forName("com.android.internal.R$dimen");
@@ -43,13 +44,20 @@ public class StatusBarUtils {
         return statusHeight;
     }
 
-    public static void setLayoutMargin(Activity activity, ViewGroup parentLayout){
+    public static void setLayoutMargin(Activity activity, ViewGroup parentLayout) {
         View firstChild = parentLayout.getChildAt(0);
-        if(firstChild != null){
+        if (firstChild != null) {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(firstChild.getLayoutParams());
-            params.setMargins(0, StatusBarUtils.getStatusHeight(activity),0,0);
+            params.setMargins(0, StatusBarUtils.getStatusHeight(activity), 0, 0);
             firstChild.setLayoutParams(params);
         }
+    }
+
+    public static void setRelativeLayoutMargin(Activity activity, ViewGroup parentLayout) {
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(parentLayout.getLayoutParams());
+        params.setMargins(0, StatusBarUtils.getStatusHeight(activity), 0, 0);
+        parentLayout.setLayoutParams(params);
+
     }
 
 }

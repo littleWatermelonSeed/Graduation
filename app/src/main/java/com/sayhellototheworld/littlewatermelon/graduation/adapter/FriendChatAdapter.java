@@ -22,28 +22,28 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by 123 on 2018/5/31.
  */
 
-public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendViewHolder>  {
+public class FriendChatAdapter extends RecyclerView.Adapter<FriendChatAdapter.FriendChatViewHolder>  {
 
     private Context context;
     private List<FriendBean> data;
 
     private FriendClick listener;
 
-    public FriendAdapter(Context context, List<FriendBean> data) {
+    public FriendChatAdapter(Context context, List<FriendBean> data) {
         this.context = context;
         this.data = data;
     }
 
     @Override
-    public FriendViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_friend, parent, false);
+    public FriendChatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_friend_chat, parent, false);
         AutoUtils.autoSize(view);
-        FriendViewHolder holder = new FriendViewHolder(view);
+        FriendChatViewHolder holder = new FriendChatViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(FriendViewHolder holder, int position) {
+    public void onBindViewHolder(FriendChatViewHolder holder, int position) {
         listener = new FriendClick(position);
         holder.ll_body.setOnClickListener(listener);
         if (data.get(position).getFriend().getHeadPortrait() != null && !data.get(position).getFriend().getHeadPortrait().getUrl().equals("")){
@@ -66,13 +66,6 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
         }
         holder.txt_user_name.setText(userName);
 
-        String intro;
-        if (data.get(position).getFriend().getIntroduction() == null){
-            intro = "";
-        }else {
-            intro = data.get(position).getFriend().getIntroduction();
-        }
-        holder.txt_introduction.setText("简介：" + intro);
     }
 
     @Override
@@ -80,18 +73,22 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
         return data.size();
     }
 
-    class FriendViewHolder extends RecyclerView.ViewHolder {
+    class FriendChatViewHolder extends RecyclerView.ViewHolder {
         CircleImageView head;
         TextView txt_user_name;
-        TextView txt_introduction;
+        TextView txt_last_msg;
+        TextView txt_last_time;
+        TextView txt_no_read_num;
         LinearLayout ll_body;
 
-        public FriendViewHolder(View view) {
+        public FriendChatViewHolder(View view) {
             super(view);
-            ll_body = (LinearLayout) view.findViewById(R.id.item_friend_body);
-            head = (CircleImageView) view.findViewById(R.id.item_friend_head_portrait);
-            txt_user_name = (TextView) view.findViewById(R.id.item_friend_user_name);
-            txt_introduction = (TextView) view.findViewById(R.id.item_friend_introduction);
+            ll_body = (LinearLayout) view.findViewById(R.id.item_friend_chat_body);
+            head = (CircleImageView) view.findViewById(R.id.item_friend_chat_head_portrait);
+            txt_user_name = (TextView) view.findViewById(R.id.item_friend_chat_user_name);
+            txt_last_msg = (TextView) view.findViewById(R.id.item_friend_chat_last_msg);
+            txt_last_time = (TextView) view.findViewById(R.id.item_friend_chat_last_time);
+            txt_no_read_num = (TextView) view.findViewById(R.id.item_friend_chat_no_read_num);
         }
     }
 
@@ -106,7 +103,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.item_friend_body:
+                case R.id.item_friend_chat_body:
                     String userName;
                     if (data.get(position).getRemarkName() != null && data.get(position).getRemarkName() != null && !data.get(position).getRemarkName().equals("")){
                         userName = data.get(position).getRemarkName();

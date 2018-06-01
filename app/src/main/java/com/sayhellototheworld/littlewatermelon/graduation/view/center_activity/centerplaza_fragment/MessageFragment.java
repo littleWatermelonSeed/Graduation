@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
-import com.sayhellototheworld.littlewatermelon.graduation.adapter.MessageAdapter;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.message_function.ControlMessage;
 import com.sayhellototheworld.littlewatermelon.graduation.util.StatusBarUtils;
@@ -32,16 +31,12 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
     public final static int MESSAGE_TYPE_TEACHER = 1;
     public final static int MESSAGE_TYPE_REPAIRS = 2;
 
-    private MessageAdapter adapter;
-    private int[] noReadNum;
     private int userType;
-    private static boolean create = false;
     private ControlMessage cm;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        create = true;
     }
 
     @Override
@@ -102,7 +97,6 @@ public class MessageFragment extends Fragment implements View.OnClickListener{
     public void onDestroy() {
         super.onDestroy();
         mView = null;
-        create = false;
     }
 
     @Override

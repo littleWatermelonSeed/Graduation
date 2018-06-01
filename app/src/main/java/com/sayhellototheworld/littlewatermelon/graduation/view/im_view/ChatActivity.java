@@ -13,14 +13,15 @@ import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
-import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.im.ControlChat;
+import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseStatusActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChatActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener{
+public class ChatActivity extends BaseStatusActivity implements View.OnClickListener{
 
     public static Map<String,MyUserBean> userMap = new HashMap<>();
 
@@ -35,6 +36,8 @@ public class ChatActivity extends BaseSlideBcakStatusActivity implements View.On
     private String userTag;
     private MyUserBean user;
     private String userName;
+
+    private ControlChat controlChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class ChatActivity extends BaseSlideBcakStatusActivity implements View.On
         refreshLayout.setEnableAutoLoadMore(false);
         refreshLayout.setDisableContentWhenRefresh(true);
         refreshLayout.setDisableContentWhenLoading(true);
+        refreshLayout.setEnableLoadMore(false);
 
         recyclerView = (RecyclerView) findViewById(R.id.activity_chat_recycle_view);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -71,6 +75,8 @@ public class ChatActivity extends BaseSlideBcakStatusActivity implements View.On
         userTag = getIntent().getStringExtra("userTag");
         userName = getIntent().getStringExtra("userName");
         user = userMap.get(userTag);
+
+        controlChat = new ControlChat(this,user,userName,refreshLayout,recyclerView);
     }
 
     @Override
@@ -89,6 +95,9 @@ public class ChatActivity extends BaseSlideBcakStatusActivity implements View.On
                 UserDetailsActivity.go2Activity(this,user.getObjectId(),true);
                 break;
             case R.id.activity_chat_send_msg:
+                String msg = edt_content.getText().toString();
+                edt_content.setText("");
+                controlChat.sendMessage(msg);
                 break;
 
         }
@@ -98,6 +107,8 @@ public class ChatActivity extends BaseSlideBcakStatusActivity implements View.On
     protected void onDestroy() {
         super.onDestroy();
         userMap.remove(userTag);
+        controlChat.updateLocalCache();
+        controlChat.unBindAdapter();
     }
 
     public static void go2Activity(Context context, MyUserBean user,String userName) {
@@ -107,4 +118,5 @@ public class ChatActivity extends BaseSlideBcakStatusActivity implements View.On
         intent.putExtra("userName",userName);
         context.startActivity(intent);
     }
+
 }

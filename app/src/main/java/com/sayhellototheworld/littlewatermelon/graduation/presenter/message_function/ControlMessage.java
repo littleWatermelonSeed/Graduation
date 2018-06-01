@@ -49,14 +49,14 @@ public class ControlMessage implements OnRefreshListener{
         refreshLayout.setOnRefreshListener(this);
         user = BmobManageUser.getCurrentUser();
         if (userType == MessageFragment.MESSAGE_TYPE_STUDENT){
-            noReadNum = new int[9];
-            num = 9;
+            noReadNum = new int[7];
+            num = 7;
         }else if (userType == MessageFragment.MESSAGE_TYPE_TEACHER){
-            noReadNum = new int[9];
-            num = 9;
+            noReadNum = new int[7];
+            num = 7;
         }else if (userType == MessageFragment.MESSAGE_TYPE_REPAIRS){
-            noReadNum = new int[8];
-            num = 8;
+            noReadNum = new int[6];
+            num = 6;
         }
     }
 
@@ -97,8 +97,6 @@ public class ControlMessage implements OnRefreshListener{
         getFleaNoReadNum();
         getShareNoReadNum();
         getFourmNoReadNum();
-        getFriendNoReadNum();
-        getStangerNoReadNum();
         getFriendRequestNoReadNum();
         getMyFriendRequestNoReadNum();
     }
@@ -205,20 +203,11 @@ public class ControlMessage implements OnRefreshListener{
         });
     }
 
-    private void getFriendNoReadNum(){
-        addNum(true);
-    }
-
-    private void getStangerNoReadNum(){
-        addNum(true);
-    }
-
-
     private void getSBindNoReadNum(){
         BmobManageTeacher.getManager().querySNoReadCount(user, new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
-                noReadNum[8] = integer;
+                noReadNum[6] = integer;
                 addNum(true);
                 Log.i("niyuanjie","学生绑定消息数量 = " + integer);
             }
@@ -235,7 +224,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageTeacher.getManager().queryTNoReadCount(user, new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
-                noReadNum[8] = integer;
+                noReadNum[6] = integer;
                 addNum(true);
                 Log.i("niyuanjie","老师绑定消息数量 = " + integer);
             }

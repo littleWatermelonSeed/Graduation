@@ -5,17 +5,12 @@
     android:layout_height="match_parent"
     tools:context="com.sayhellototheworld.littlewatermelon.graduation.view.forum_function_view.LocalSchoolForumFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="聊天"/>
-
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fragment_chat_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white1"
+        android:background="@color/white"
         app:srlAccentColor="@color/white"
         app:srlEnablePreviewInEditMode="true"
         app:srlPrimaryColor="@color/gray">
@@ -29,11 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="聊天"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/fragment_chat_recycler_view"

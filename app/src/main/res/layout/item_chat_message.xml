@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_chat_msg_left_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/margin_10"
+        android:paddingTop="15px">
+
+        <TextView
+            android:id="@+id/item_chat_msg_left_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/radius_background8"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:paddingTop="2px"
+            android:paddingBottom="2px"
+            android:text="2015-5-6"
+            android:textSize="15px"
+            android:textColor="@color/white"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_5">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/item_chat_msg_left_head"
+                android:layout_width="70px"
+                android:layout_height="70px"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/head_log1"/>
+
+            <TextView
+                android:id="@+id/item_chat_msg_left_content"
+                style="@style/style_text_1e1e1e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginTop="10px"
+                android:layout_toRightOf="@id/item_chat_msg_left_head"
+                android:background="@drawable/chat_left_qp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="left|center"
+                android:lineSpacingExtra="@dimen/margin_3"
+                android:maxWidth="225.0dip"
+                android:minHeight="@dimen/height_40"
+                android:minWidth="80dp"
+                android:paddingBottom="@dimen/margin_10"
+                android:paddingLeft="@dimen/margin_30"
+                android:paddingRight="@dimen/margin_15"
+                android:paddingTop="@dimen/margin_10"
+                android:text="按时打看哈塞控件控件按时打黄金卡数据库"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_chat_msg_right_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/margin_10"
+        android:paddingTop="15px">
+
+        <TextView
+            android:id="@+id/item_chat_msg_right_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/radius_background8"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:paddingTop="2px"
+            android:paddingBottom="2px"
+            android:text="2015-5-6"
+            android:textSize="15px"
+            android:textColor="@color/white"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_5">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/item_chat_msg_right_head"
+                android:layout_width="70px"
+                android:layout_height="70px"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/head_log1"/>
+
+            <TextView
+                android:id="@+id/item_chat_msg_right_content"
+                style="@style/style_text_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_5"
+                android:layout_marginTop="10px"
+                android:layout_toLeftOf="@id/item_chat_msg_right_head"
+                android:background="@drawable/chat_right_qp"
+                android:gravity="left|center"
+                android:lineSpacingExtra="@dimen/margin_3"
+                android:maxWidth="225.0dip"
+                android:minHeight="@dimen/height_40"
+                android:minWidth="80dp"
+                android:paddingBottom="@dimen/margin_8"
+                android:paddingLeft="@dimen/margin_15"
+                android:paddingRight="@dimen/margin_30"
+                android:paddingTop="@dimen/margin_8"
+                android:text="爱上的痕迹阿萨德好几款阿萨德开奖号数据库爱上大吉卡数据库"/>
+
+            <ImageView
+                android:id="@+id/item_chat_msg_right_fail_resend"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/item_chat_msg_right_content"
+                android:clickable="true"
+                android:contentDescription="Settings"
+                android:scaleType="fitCenter"
+                android:src="@drawable/btn_chat_fail_resend"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:id="@+id/item_chat_msg_right_send_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/item_chat_msg_right_content"
+                android:textColor="@color/color_chat_send_status"
+                android:textSize="12sp"
+                android:visibility="invisible"
+                />
+
+            <ProgressBar
+                android:id="@+id/item_chat_msg_right_progress_load"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/item_chat_msg_right_content"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

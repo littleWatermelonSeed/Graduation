@@ -10,6 +10,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.GetFil
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.ManageFile;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.MySharedPreferences;
 import com.sayhellototheworld.littlewatermelon.graduation.data.thread_manager.JoinToThreadPool;
+import com.sayhellototheworld.littlewatermelon.graduation.im.IMManager;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.DeleteFileDo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.DownLoadFileDo;
@@ -278,6 +279,9 @@ public class BmobManageUser {
                 } else {
                     downPic(myUserBean, done);
                 }
+
+                IMManager.getManager().addIMStatueListener(myUserBean);
+                IMManager.getManager().connectIM(myUserBean.getObjectId());
             }
 
             @Override
@@ -579,6 +583,7 @@ public class BmobManageUser {
     public static void loginOutUser(){
         RealTimeData.getInstance().unsubUserLoginDeviceId(getCurrentUser());
         BmobUser.logOut();
+        IMManager.getManager().disConnectIM();
         MySharedPreferences.getInstance().saveMessage(MySharedPreferences.KEY_USER_LOGIN_STATUS,false);
     }
 
