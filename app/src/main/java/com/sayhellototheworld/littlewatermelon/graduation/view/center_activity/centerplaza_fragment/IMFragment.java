@@ -79,19 +79,9 @@ public class IMFragment extends Fragment implements View.OnClickListener{
                 QueryFriendActivity.go2Activity(getContext());
                 break;
             case R.id.fragment_im_chat_body:
-                img_chat_icon.setImageResource(R.drawable.chat_checked1);
-                img_friend_icon.setImageResource(R.drawable.friend_unchecked);
-                txt_title.setText("聊天");
-                txt_chat.setTextColor(getResources().getColor(R.color.statue2));
-                txt_friend.setTextColor(getResources().getColor(R.color.white4));
                 setFragment(R.id.fragment_im_chat_body);
                 break;
             case R.id.fragment_im_friend_body:
-                img_chat_icon.setImageResource(R.drawable.chat_unchecked);
-                img_friend_icon.setImageResource(R.drawable.friend_checked);
-                txt_title.setText("我的好友");
-                txt_chat.setTextColor(getResources().getColor(R.color.white4));
-                txt_friend.setTextColor(getResources().getColor(R.color.statue2));
                 setFragment(R.id.fragment_im_friend_body);
                 break;
 
@@ -103,6 +93,11 @@ public class IMFragment extends Fragment implements View.OnClickListener{
         hideFragment();
         switch (id){
             case R.id.fragment_im_chat_body:
+                img_chat_icon.setImageResource(R.drawable.chat_checked1);
+                img_friend_icon.setImageResource(R.drawable.friend_unchecked);
+                txt_title.setText("聊天");
+                txt_chat.setTextColor(getResources().getColor(R.color.statue2));
+                txt_friend.setTextColor(getResources().getColor(R.color.white4));
                 if(chatFragment == null){
                     chatFragment = new ChatFragment();
                     mTransaction.add(R.id.fragment_im_body,chatFragment);
@@ -112,11 +107,18 @@ public class IMFragment extends Fragment implements View.OnClickListener{
                 mTransaction.commit();
                 break;
             case R.id.fragment_im_friend_body:
+                img_chat_icon.setImageResource(R.drawable.chat_unchecked);
+                img_friend_icon.setImageResource(R.drawable.friend_checked);
+                txt_title.setText("我的好友");
+                txt_chat.setTextColor(getResources().getColor(R.color.white4));
+                txt_friend.setTextColor(getResources().getColor(R.color.statue2));
                 if(friendFragment == null){
                     friendFragment = new FriendFragment();
+                    friendFragment.setImFragment(this);
                     mTransaction.add(R.id.fragment_im_body,friendFragment);
                 }else {
                     mTransaction.show(friendFragment);
+                    friendFragment.asyncFriendList();
                 }
                 mTransaction.commit();
                 break;
@@ -130,6 +132,10 @@ public class IMFragment extends Fragment implements View.OnClickListener{
         if(chatFragment != null){
             mTransaction.hide(chatFragment);
         }
+    }
+
+    public void showChatFragment(){
+        setFragment(R.id.fragment_im_chat_body);
     }
 
     @Override

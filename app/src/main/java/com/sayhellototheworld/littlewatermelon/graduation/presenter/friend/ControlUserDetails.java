@@ -237,10 +237,10 @@ public class ControlUserDetails implements BmobQueryDone<MyUserBean>{
                             @Override
                             public void onClick(View v) {
                                 final String remarkName = edt_remark_name.getText().toString().trim();
-                                if (remarkName == null || remarkName.equals("")){
-                                    MyToastUtil.showToast("备注名不能为空");
-                                    return;
-                                }
+//                                if (remarkName == null || remarkName.equals("")){
+//                                    MyToastUtil.showToast("备注名不能为空");
+//                                    return;
+//                                }
                                 BmobManageFriend.getManager().updateRemarkName(friendBean.getObjectId(), remarkName, new BmobUpdateDone() {
                                     @Override
                                     public void done(BmobException e) {
@@ -273,7 +273,11 @@ public class ControlUserDetails implements BmobQueryDone<MyUserBean>{
         }else {
             userName = user.getNickName();
         }
-        ChatActivity.go2Activity(context,user,userName);
+        String h = "";
+        if (user.getHeadPortrait() != null && !user.getHeadPortrait().getUrl().equals("")){
+            h = user.getHeadPortrait().getUrl();
+        }
+        ChatActivity.go2Activity(context,user.getObjectId(),h,userName);
     }
 
 }

@@ -61,6 +61,8 @@ public class IMManager {
         info.setName(user.getNickName());
         if (user.getHeadPortrait() != null && !user.getHeadPortrait().getUrl().equals("")){
             info.setAvatar(user.getHeadPortrait().getUrl());
+        }else {
+            info.setAvatar("");
         }
         BmobIM.getInstance().updateUserInfo(info);
     }
@@ -93,40 +95,5 @@ public class IMManager {
             }
         });
     }
-
-//    public void updateUserInfo(MessageEvent event, final UpdateCacheListener listener) {
-//        final BmobIMConversation conversation = event.getConversation();
-//        final BmobIMUserInfo info = event.getFromUserInfo();
-//        final BmobIMMessage msg = event.getMessage();
-//        String username = info.getName();
-//        String title = conversation.getConversationTitle();
-//        //SDK内部将新会话的会话标题用objectId表示，因此需要比对用户名和私聊会话标题，后续会根据会话类型进行判断
-//        if (!username.equals(title)) {
-//            UserModel.getInstance().queryUserInfo(info.getUserId(), new QueryUserListener() {
-//                @Override
-//                public void done(User s, BmobException e) {
-//                    if (e == null) {
-//                        String name = s.getUsername();
-//                        String avatar = s.getAvatar();
-//                        conversation.setConversationIcon(avatar);
-//                        conversation.setConversationTitle(name);
-//                        info.setName(name);
-//                        info.setAvatar(avatar);
-//                        //TODO 会话：2.7、更新用户资料，用于在会话页面、聊天页面以及个人信息页面显示
-//                        BmobIM.getInstance().updateUserInfo(info);
-//                        //TODO 会话：4.7、更新会话资料-如果消息是暂态消息，则不更新会话资料
-//                        if (!msg.isTransient()) {
-//                            BmobIM.getInstance().updateConversation(conversation);
-//                        }
-//                    } else {
-//                        Logger.e(e);
-//                    }
-//                    listener.done(null);
-//                }
-//            });
-//        } else {
-//            listener.done(null);
-//        }
-//    }
 
 }

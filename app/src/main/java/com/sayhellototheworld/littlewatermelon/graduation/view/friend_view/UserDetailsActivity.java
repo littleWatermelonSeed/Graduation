@@ -303,13 +303,20 @@ public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements 
         showBottom(remarkName);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     public void showBottom(String remarkName){
         if (friendOperationStatue == -1){
             btn_operation_friend.setText("加好友");
             rl_remark_body.setVisibility(View.GONE);
+            btn_chat.setVisibility(View.GONE);
         }else if (friendOperationStatue == 1){
             btn_operation_friend.setText("删除好友");
             rl_remark_body.setVisibility(View.VISIBLE);
+            btn_chat.setVisibility(View.VISIBLE);
             txt_remark_name.setText(remarkName);
         }
     }

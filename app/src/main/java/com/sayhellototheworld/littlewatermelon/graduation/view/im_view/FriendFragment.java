@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.IMFragment;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -38,6 +38,9 @@ public class FriendFragment extends Fragment implements OnLoadMoreListener,OnRef
     private List<FriendBean> friendData;
     private BmobManageFriend manager;
     private FriendAdapter adapter;
+
+    private static boolean show = false;
+    private IMFragment imFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,9 +74,10 @@ public class FriendFragment extends Fragment implements OnLoadMoreListener,OnRef
     }
 
     private void initParam(){
+        show = true;
         friendData = new ArrayList<>();
         manager = BmobManageFriend.getManager();
-        adapter = new FriendAdapter(getContext(),friendData);
+        adapter = new FriendAdapter(getContext(),friendData,imFragment);
         recyclerView.setAdapter(adapter);
     }
 
@@ -111,7 +115,6 @@ public class FriendFragment extends Fragment implements OnLoadMoreListener,OnRef
             friendData.addAll(data);
         }
         adapter.notifyDataSetChanged();
-        Log.i("niyuanjie","查询成功，数据数为：" + data.size());
         finishSmart(true);
         nowSkip++;
     }
@@ -121,4 +124,23 @@ public class FriendFragment extends Fragment implements OnLoadMoreListener,OnRef
         finishSmart(false);
         BmobExceptionUtil.dealWithException(getContext(),e);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        show = false;
+        imFragment = null;
+    }
+
+    public void setImFragment(IMFragment imFragment){
+        this.imFragment = imFragment;
+    }
+
+    public void asyncFriendList(){
+        if (show){
+            friendData.clear();
+            manager.queryByUser(BmobManageUser.getCurrentUser(),0,this);
+        }
+    }
+
 }

@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.ChatMessageAdapter;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.im.IMManager;
 import com.sayhellototheworld.littlewatermelon.graduation.im.IMMessageHandler;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobMessageSendListener;
@@ -34,7 +33,8 @@ import cn.bmob.v3.exception.BmobException;
 public class ControlChat implements BmobMessageSendListener,OnRefreshListener{
 
     private Context context;
-    private MyUserBean friend;
+    private String friednID;
+    private String friendHeadUrl;
     private String userName;
     private SmartRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
@@ -46,30 +46,23 @@ public class ControlChat implements BmobMessageSendListener,OnRefreshListener{
     private ChatMessageAdapter adapter;
     private BmobIMMessage firstMessage;
 
-    public ControlChat(Context context, MyUserBean friend,String userName,SmartRefreshLayout refreshLayout,RecyclerView recyclerView) {
+    public ControlChat(Context context,String friednID, String friendHeadUrl,String userName,SmartRefreshLayout refreshLayout,RecyclerView recyclerView) {
         this.context = context;
-        this.friend = friend;
+        this.friednID = friednID;
+        this.friendHeadUrl = friendHeadUrl;
         this.userName = userName;
         this.refreshLayout = refreshLayout;
         this.recyclerView = recyclerView;
 
-        if (this.friend.getHeadPortrait() != null && !this.friend.getHeadPortrait().getUrl().equals("")){
-            adapter = new ChatMessageAdapter(this.context,this.friend.getHeadPortrait().getUrl(),this,recyclerView);
-        }else {
-            adapter = new ChatMessageAdapter(this.context,"",this,recyclerView);
-        }
-        IMMessageHandler.bindChatAdapter(friend.getObjectId(),adapter);
-
+        adapter = new ChatMessageAdapter(this.context,friendHeadUrl,this,recyclerView);
+        IMMessageHandler.bindChatAdapter(friednID,adapter);
         this.recyclerView.setAdapter(adapter);
-
         this.refreshLayout.setOnRefreshListener(this);
 
         info = new BmobIMUserInfo();
-        info.setUserId(friend.getObjectId());
+        info.setUserId(friednID);
         info.setName(this.userName);
-        if (friend.getHeadPortrait() != null && friend.getHeadPortrait().getUrl() !=null &&  !friend.getHeadPortrait().getUrl().equals("")){
-            info.setAvatar(friend.getHeadPortrait().getUrl());
-        }
+        info.setAvatar(friendHeadUrl);
         conversationEntrance = BmobIM.getInstance().startPrivateConversation(info, null);
         messageManager = BmobIMConversation.obtain(BmobIMClient.getInstance(), conversationEntrance);
 
@@ -141,7 +134,7 @@ public class ControlChat implements BmobMessageSendListener,OnRefreshListener{
     }
 
     public void unBindAdapter(){
-        IMMessageHandler.unBindChatAdapter(friend.getObjectId());
+        IMMessageHandler.unBindChatAdapter(friednID);
     }
 
     public void delMsg(BmobIMMessage msg){

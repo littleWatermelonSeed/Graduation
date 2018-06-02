@@ -244,6 +244,7 @@ public class BmobManageFriend {
         andQuerys.add(query2);
 
         BmobQuery<FriendBean> query = new BmobQuery<>();
+        query.include("user,friend");
         query.and(andQuerys);
         query.findObjects(new FindListener<FriendBean>() {
             @Override

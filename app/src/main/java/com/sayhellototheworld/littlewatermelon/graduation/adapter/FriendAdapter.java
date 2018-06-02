@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.FriendBean;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.IMFragment;
+import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.im_view.ChatActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -26,12 +28,14 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
 
     private Context context;
     private List<FriendBean> data;
+    private IMFragment imFragment;
 
     private FriendClick listener;
 
-    public FriendAdapter(Context context, List<FriendBean> data) {
+    public FriendAdapter(Context context, List<FriendBean> data,IMFragment imFragment) {
         this.context = context;
         this.data = data;
+        this.imFragment = imFragment;
     }
 
     @Override
@@ -57,6 +61,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
                     .dontAnimate()
                     .into(holder.head);
         }
+        holder.head.setOnClickListener(listener);
 
         String userName;
         if (data.get(position).getRemarkName() != null && data.get(position).getRemarkName() != null && !data.get(position).getRemarkName().equals("")){
@@ -113,9 +118,17 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
                     }else {
                         userName = data.get(position).getFriend().getNickName();
                     }
-                    ChatActivity.go2Activity(context,data.get(position).getFriend(),userName);
+                    String h = "";
+                    if (data.get(position).getFriend().getHeadPortrait() != null && !data.get(position).getFriend().getHeadPortrait().getUrl().equals("")){
+                        h = data.get(position).getFriend().getHeadPortrait().getUrl();
+                    }
+                    ChatActivity.go2Activity(context,data.get(position).getFriend().getObjectId(),h,userName);
+                    break;
+                case R.id.item_friend_head_portrait:
+                    UserDetailsActivity.go2Activity(context,data.get(position).getFriend().getObjectId());
                     break;
             }
+            imFragment.showChatFragment();
         }
     }
 

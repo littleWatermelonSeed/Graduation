@@ -12,18 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
-import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.im.ControlChat;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseStatusActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ChatActivity extends BaseStatusActivity implements View.OnClickListener{
-
-    public static Map<String,MyUserBean> userMap = new HashMap<>();
 
     private ImageView img_back;
     private TextView txt_title;
@@ -33,11 +27,12 @@ public class ChatActivity extends BaseStatusActivity implements View.OnClickList
     private EditText edt_content;
     private Button btn_send;
 
-    private String userTag;
-    private MyUserBean user;
     private String userName;
+    private String friendHeadUrl;
+    private String friendID;
 
     private ControlChat controlChat;
+    private static String nowChatFriendID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +67,12 @@ public class ChatActivity extends BaseStatusActivity implements View.OnClickList
 
     @Override
     protected void initParam() {
-        userTag = getIntent().getStringExtra("userTag");
+        friendHeadUrl = getIntent().getStringExtra("friendHeadUrl");
+        friendID = getIntent().getStringExtra("friendID");
         userName = getIntent().getStringExtra("userName");
-        user = userMap.get(userTag);
+        nowChatFriendID = friendID;
 
-        controlChat = new ControlChat(this,user,userName,refreshLayout,recyclerView);
+        controlChat = new ControlChat(this,friendID,friendHeadUrl,userName,refreshLayout,recyclerView);
     }
 
     @Override
@@ -92,7 +88,7 @@ public class ChatActivity extends BaseStatusActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.activity_chat_more:
-                UserDetailsActivity.go2Activity(this,user.getObjectId(),true);
+                UserDetailsActivity.go2Activity(this,friendID,true);
                 break;
             case R.id.activity_chat_send_msg:
                 String msg = edt_content.getText().toString();
@@ -106,17 +102,21 @@ public class ChatActivity extends BaseStatusActivity implements View.OnClickList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        userMap.remove(userTag);
         controlChat.updateLocalCache();
         controlChat.unBindAdapter();
+        nowChatFriendID = null;
     }
 
-    public static void go2Activity(Context context, MyUserBean user,String userName) {
+    public static void go2Activity(Context context,String friendID,String friendHeadUrl,String userName) {
         Intent intent = new Intent(context, ChatActivity.class);
-        userMap.put(user.getObjectId(),user);
-        intent.putExtra("userTag",user.getObjectId());
+        intent.putExtra("friendID",friendID);
+        intent.putExtra("friendHeadUrl",friendHeadUrl);
         intent.putExtra("userName",userName);
         context.startActivity(intent);
+    }
+
+    public static String getNowChatFriendID(){
+        return nowChatFriendID;
     }
 
 }
