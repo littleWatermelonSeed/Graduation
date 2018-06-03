@@ -143,4 +143,11 @@ public class IMFragment extends Fragment implements View.OnClickListener{
         super.onDestroy();
         mView = null;
     }
+
+    public void onParentActivityResult(String friendID){
+        if (chatFragment != null){
+            chatFragment.onParentActivityResult(friendID);
+        }
+    }
+
 }

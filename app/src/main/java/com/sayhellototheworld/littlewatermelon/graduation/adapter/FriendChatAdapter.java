@@ -108,7 +108,8 @@ public class FriendChatAdapter extends RecyclerView.Adapter<FriendChatAdapter.Fr
             switch (v.getId()){
                 case R.id.item_friend_chat_body:
                     CenterActivity.setReduceChatNoRead(data.get(position).getNoReadNum());
-                    ChatActivity.go2Activity(context,data.get(position).getFriendID(),data.get(position).getFriendHeadUrl(),data.get(position).getFriendName());
+                    ChatActivity.go2ActivityForResult(context,data.get(position).getFriendID(),data.get(position).getFriendHeadUrl(),
+                            data.get(position).getFriendName());
                     data.get(position).setNoReadNum(0);
                     notifyDataSetChanged();
                     break;

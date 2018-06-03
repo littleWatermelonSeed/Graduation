@@ -275,7 +275,6 @@ public class BmobManageUser {
                 if ((myUserBean.getHeadPortrait() == null || myUserBean.getHeadPortrait().getUrl() == null) &&
                         (myUserBean.getSkin() == null || myUserBean.getSkin().getUrl() == null)) {
                     done.loginSuccess(myUserBean);
-                    return;
                 } else {
                     downPic(myUserBean, done);
                 }

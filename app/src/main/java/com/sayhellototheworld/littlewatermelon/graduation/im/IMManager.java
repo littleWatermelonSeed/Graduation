@@ -91,6 +91,8 @@ public class IMManager {
         conversationEntrance.sendMessage(msg, new MessageSendListener() {
             @Override
             public void done(BmobIMMessage bmobIMMessage, BmobException e) {
+                if (listener == null)
+                    return;
                 listener.done(bmobIMMessage,e);
             }
         });

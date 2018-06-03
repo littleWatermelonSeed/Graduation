@@ -7,6 +7,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserB
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.CenterActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.im_view.ChatActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.im_view.ChatFragment;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.newim.core.BmobIMClient;
 import cn.bmob.newim.event.MessageEvent;
 import cn.bmob.newim.event.OfflineMessageEvent;
 import cn.bmob.newim.listener.BmobIMMessageHandler;
@@ -30,23 +32,26 @@ public class IMMessageHandler extends BmobIMMessageHandler {
 
     private static Map<String, ChatMessageAdapter> chatAdapters = new HashMap<>();
     private static ChatFragment chatFragment;
+    private static ChatActivity chatActivity;
 
     @Override
     public void onMessageReceive(final MessageEvent event) {
         //在线消息
+        if (deleteFriendMsg(event))
+            return;
+
+        boolean chating = false;
+
         if (chatAdapters.containsKey(event.getFromUserInfo().getUserId())) {
             chatAdapters.get(event.getFromUserInfo().getUserId()).addToBottomMessages(event.getMessage());
+            chating = true;
         }
 
         if (chatFragment == null) {
-            BmobIMUserInfo info = new BmobIMUserInfo();
-            info.setAvatar(event.getFromUserInfo().getAvatar());
-            info.setName(event.getFromUserInfo().getName());
-            info.setUserId(event.getFromUserInfo().getUserId());
-            BmobIM.getInstance().startPrivateConversation(info, null);
+            BmobIM.getInstance().startPrivateConversation(event.getFromUserInfo(), null);
             CenterActivity.setAddChatNoRead(1);
         } else {
-            chatFragment.asyncChatList(event);
+            chatFragment.asyncChatList(event,chating);
         }
     }
 
@@ -54,6 +59,25 @@ public class IMMessageHandler extends BmobIMMessageHandler {
     public void onOfflineReceive(final OfflineMessageEvent event) {
         //离线消息，每次connect的时候会查询离线消息，如果有，此方法会被调用
         Log.i("niyuanjie", "离线接收到消息");
+    }
+
+    private boolean deleteFriendMsg(MessageEvent event){
+        if (event.getMessage().getContent().equals("delete,you,stupid" + BmobManageUser.getCurrentUser().getObjectId())){
+            String friendID = event.getFromUserInfo().getUserId();
+            BmobIMConversation messageManager = BmobIMConversation.obtain(BmobIMClient.getInstance(), event.getConversation());
+            messageManager.clearMessage();
+
+            BmobIM.getInstance().deleteConversation(friendID);
+            if (chatFragment != null){
+                chatFragment.delFriend(friendID);
+            }
+
+            if (chatActivity != null){
+                chatActivity.delFriend();
+            }
+            return true;
+        }
+        return false;
     }
 
     public void updateUserInfo(MessageEvent event) {
@@ -106,6 +130,14 @@ public class IMMessageHandler extends BmobIMMessageHandler {
 
     public static void unBindChatFriendList() {
         chatFragment = null;
+    }
+
+    public static void bindChatActivity(ChatActivity c){
+        chatActivity = c;
+    }
+
+    public static void unBindChatActivity(){
+        chatActivity = null;
     }
 
 }

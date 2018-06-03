@@ -3,6 +3,7 @@ package com.sayhellototheworld.littlewatermelon.graduation.view.im_view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,12 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sayhellototheworld.littlewatermelon.graduation.R;
+import com.sayhellototheworld.littlewatermelon.graduation.im.IMMessageHandler;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.im.ControlChat;
+import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseStatusActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.friend_view.UserDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 public class ChatActivity extends BaseStatusActivity implements View.OnClickListener{
+
+    public final static int CHAT_REQUEST_CODE = 100;
+    public final static int CHAT_DELETE_FRIEND_CODE = 101;
 
     private ImageView img_back;
     private TextView txt_title;
@@ -67,6 +73,7 @@ public class ChatActivity extends BaseStatusActivity implements View.OnClickList
 
     @Override
     protected void initParam() {
+        IMMessageHandler.bindChatActivity(this);
         friendHeadUrl = getIntent().getStringExtra("friendHeadUrl");
         friendID = getIntent().getStringExtra("friendID");
         userName = getIntent().getStringExtra("userName");
@@ -102,6 +109,7 @@ public class ChatActivity extends BaseStatusActivity implements View.OnClickList
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        IMMessageHandler.unBindChatActivity();
         controlChat.updateLocalCache();
         controlChat.unBindAdapter();
         nowChatFriendID = null;
@@ -115,8 +123,35 @@ public class ChatActivity extends BaseStatusActivity implements View.OnClickList
         context.startActivity(intent);
     }
 
+    public static void go2ActivityForResult(Context context,String friendID,String friendHeadUrl,String userName) {
+        Intent intent = new Intent(context, ChatActivity.class);
+        intent.putExtra("friendID",friendID);
+        intent.putExtra("friendHeadUrl",friendHeadUrl);
+        intent.putExtra("userName",userName);
+        ((FragmentActivity)context).startActivityForResult(intent,CHAT_REQUEST_CODE);
+    }
+
     public static String getNowChatFriendID(){
         return nowChatFriendID;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == UserDetailsActivity.USER_DETAILS_FOR_RESULT_CODE){
+            if (resultCode == UserDetailsActivity.USER_DETAILS_DELETE_FRIEND_CODE){
+                Intent intent = new Intent();
+                intent.putExtra("friendID",friendID);
+                setResult(CHAT_DELETE_FRIEND_CODE,intent);
+                controlChat.delConversation();
+                finish();
+            }
+        }
+    }
+
+    public void delFriend(){
+        finish();
+        MyToastUtil.showToast("该好友删除了你,不能再进行聊天");
     }
 
 }

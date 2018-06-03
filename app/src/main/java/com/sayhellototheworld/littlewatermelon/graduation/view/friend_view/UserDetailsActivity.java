@@ -3,6 +3,7 @@ package com.sayhellototheworld.littlewatermelon.graduation.view.friend_view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -32,6 +33,9 @@ import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_functio
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener {
+
+    public final static int USER_DETAILS_FOR_RESULT_CODE = 0;
+    public final static int USER_DETAILS_DELETE_FRIEND_CODE = 1000;
 
     private LinearLayout ll_body;
     private FrameLayout fl_body;
@@ -206,19 +210,6 @@ public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements 
         }
     }
 
-    public static void go2Activity(Context context, String userID) {
-        Intent intent = new Intent(context, UserDetailsActivity.class);
-        intent.putExtra("userID", userID);
-        context.startActivity(intent);
-    }
-
-    public static void go2Activity(Context context, String userID,boolean chat) {
-        Intent intent = new Intent(context, UserDetailsActivity.class);
-        intent.putExtra("userID", userID);
-        intent.putExtra("chat",chat);
-        context.startActivity(intent);
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -318,6 +309,27 @@ public class UserDetailsActivity extends BaseSlideBcakStatusActivity implements 
             rl_remark_body.setVisibility(View.VISIBLE);
             btn_chat.setVisibility(View.VISIBLE);
             txt_remark_name.setText(remarkName);
+        }
+    }
+
+
+    public static void go2Activity(Context context, String userID) {
+        Intent intent = new Intent(context, UserDetailsActivity.class);
+        intent.putExtra("userID", userID);
+        context.startActivity(intent);
+    }
+
+    public static void go2Activity(Context context, String userID,boolean chat) {
+        Intent intent = new Intent(context, UserDetailsActivity.class);
+        intent.putExtra("userID", userID);
+        intent.putExtra("chat",chat);
+        ((FragmentActivity)context).startActivityForResult(intent,USER_DETAILS_FOR_RESULT_CODE);
+    }
+
+    public void setResult(){
+        if (chat){
+            setResult(USER_DETAILS_DELETE_FRIEND_CODE);
+            finish();
         }
     }
 

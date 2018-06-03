@@ -17,6 +17,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.c
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.IMFragment;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.MessageFragment;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.UserFragment;
+import com.sayhellototheworld.littlewatermelon.graduation.view.im_view.ChatActivity;
 
 public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabChangeListener {
 
@@ -134,6 +135,7 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
 
         if (msgNoReadNum > 0){
             txt_msg.setText(msgNoReadNum + "");
+            txt_msg.setVisibility(View.VISIBLE);
         }else{
             txt_msg.setVisibility(View.GONE);
         }
@@ -147,6 +149,7 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
 
         if (msgNoReadNum > 0){
             txt_msg.setText(msgNoReadNum + "");
+            txt_msg.setVisibility(View.VISIBLE);
         }else{
             txt_msg.setVisibility(View.GONE);
         }
@@ -156,10 +159,11 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
         if (txt_chat == null)
             return;
 
-        chatNoReadNum = chatNoReadNum - n;
+        chatNoReadNum = chatNoReadNum + n;
 
         if (chatNoReadNum > 0){
             txt_chat.setText(chatNoReadNum + "");
+            txt_chat.setVisibility(View.VISIBLE);
         }else{
             txt_chat.setVisibility(View.GONE);
         }
@@ -170,10 +174,35 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
             if (txt_chat == null)
                 return;
 
-            chatNoReadNum = chatNoReadNum + n;
+            chatNoReadNum = chatNoReadNum - n;
+
+            if (chatNoReadNum < 0){
+                chatNoReadNum = 0;
+            }
 
             if (chatNoReadNum > 0){
                 txt_chat.setText(chatNoReadNum + "");
+                txt_chat.setVisibility(View.VISIBLE);
+            }else{
+                txt_chat.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    public static void setNewChatNoRead(int n){
+        synchronized (CenterActivity.class){
+            if (txt_chat == null)
+                return;
+
+            chatNoReadNum = n;
+
+            if (chatNoReadNum < 0){
+                chatNoReadNum = 0;
+            }
+
+            if (chatNoReadNum > 0){
+                txt_chat.setText(chatNoReadNum + "");
+                txt_chat.setVisibility(View.VISIBLE);
             }else{
                 txt_chat.setVisibility(View.GONE);
             }
@@ -191,6 +220,20 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
         chatNoReadNum = 0;
         txt_chat = null;
         txt_msg = null;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ChatActivity.CHAT_REQUEST_CODE){
+            if (resultCode == ChatActivity.CHAT_DELETE_FRIEND_CODE){
+                String friendID = data.getStringExtra("friendID");
+                IMFragment imFragment = (IMFragment) getSupportFragmentManager().findFragmentByTag(txtArr[3]);
+                if (imFragment != null){
+                    imFragment.onParentActivityResult(friendID);
+                }
+            }
+        }
     }
 
 }

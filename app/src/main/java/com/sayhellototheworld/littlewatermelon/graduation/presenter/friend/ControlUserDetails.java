@@ -202,6 +202,7 @@ public class ControlUserDetails implements BmobQueryDone<MyUserBean>{
                                         baseNiceDialog.dismiss();
                                         MyToastUtil.showToast("好友删除成功");
                                         uda.setFriendOperationStatue(-1,"");
+                                        uda.setResult();
                                     }
 
                                     @Override

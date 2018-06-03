@@ -141,4 +141,19 @@ public class ControlChat implements BmobMessageSendListener,OnRefreshListener{
         messageManager.deleteMessage(msg);
     }
 
+    public void delConversation(){
+        BmobIMTextMessage msg = new BmobIMTextMessage();
+        msg.setContent("delete,you,stupid" + friednID);
+        IMManager.getManager().sendMessage(msg, messageManager, new BmobMessageSendListener() {
+            @Override
+            public void done(BmobIMMessage msg, BmobException e) {
+                if (e == null){
+                    messageManager.clearMessage();
+                }
+            }
+        });
+
+        BmobIM.getInstance().deleteConversation(conversationEntrance);
+    }
+
 }

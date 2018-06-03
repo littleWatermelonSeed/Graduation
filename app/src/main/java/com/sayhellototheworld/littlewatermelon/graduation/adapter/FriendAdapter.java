@@ -122,7 +122,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
                     if (data.get(position).getFriend().getHeadPortrait() != null && !data.get(position).getFriend().getHeadPortrait().getUrl().equals("")){
                         h = data.get(position).getFriend().getHeadPortrait().getUrl();
                     }
-                    ChatActivity.go2Activity(context,data.get(position).getFriend().getObjectId(),h,userName);
+                    ChatActivity.go2ActivityForResult(context,data.get(position).getFriend().getObjectId(),h,userName);
                     break;
                 case R.id.item_friend_head_portrait:
                     UserDetailsActivity.go2Activity(context,data.get(position).getFriend().getObjectId());
