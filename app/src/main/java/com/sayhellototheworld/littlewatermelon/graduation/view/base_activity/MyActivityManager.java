@@ -42,10 +42,16 @@ public class MyActivityManager {
     public void destroyedListActivity() {
         for (Activity activity : list) {
             if (activity != null) {
-                activity.finish();
+                if (!activity.isDestroyed()){
+                    activity.finish();
+                }
             }
         }
         list.clear();
+    }
+
+    public void removeFromList(Activity activity) {
+        list.remove(activity);
     }
 
     public void addActivityToMap(String activityName, Activity activity) {

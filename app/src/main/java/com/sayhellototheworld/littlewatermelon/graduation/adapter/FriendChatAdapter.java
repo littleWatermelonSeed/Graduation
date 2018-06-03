@@ -11,12 +11,17 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.bean.FriendChatBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
+import com.sayhellototheworld.littlewatermelon.graduation.im.IMManager;
+import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.CenterActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.im_view.ChatActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;
 
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.core.ConnectionStatus;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -107,6 +112,16 @@ public class FriendChatAdapter extends RecyclerView.Adapter<FriendChatAdapter.Fr
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.item_friend_chat_body:
+                    if (BmobIM.getInstance().getCurrentStatus() != ConnectionStatus.CONNECTED){
+                        if (BmobIM.getInstance().getCurrentStatus() == ConnectionStatus.CONNECTING){
+
+                        }else if (BmobIM.getInstance().getCurrentStatus() == ConnectionStatus.DISCONNECT){
+                            IMManager.getManager().connectIM(BmobManageUser.getCurrentUser().getObjectId());
+                        }
+                        MyToastUtil.showToast("连接服务器中,请稍后重试");
+                        return;
+                    }
+
                     CenterActivity.setReduceChatNoRead(data.get(position).getNoReadNum());
                     ChatActivity.go2ActivityForResult(context,data.get(position).getFriendID(),data.get(position).getFriendHeadUrl(),
                             data.get(position).getFriendName());

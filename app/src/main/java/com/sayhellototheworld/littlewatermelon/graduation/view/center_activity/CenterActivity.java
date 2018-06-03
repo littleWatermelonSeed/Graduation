@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
 
     private FragmentTabHost mTabHost;
     private static int msgNoReadNum;
-    private static int chatNoReadNum;
+    private static int chatNoReadNum = 0;
     private static TextView txt_msg;
     private static TextView txt_chat;
 
@@ -49,7 +50,6 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
     @Override
     protected void initParam() {
         msgNoReadNum = getIntent().getIntExtra("msgNoReadNum", 0);
-        chatNoReadNum = getIntent().getIntExtra("chatNoReadNum", 0);
     }
 
     @Override
@@ -120,10 +120,9 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
         }
     }
 
-    public static void go2Activity(Context context, int msgNoReadNum, int chatNoReadNum) {
+    public static void go2Activity(Context context, int msgNoReadNum) {
         Intent intent = new Intent(context, CenterActivity.class);
         intent.putExtra("msgNoReadNum", msgNoReadNum);
-        intent.putExtra("chatNoReadNum", chatNoReadNum);
         context.startActivity(intent);
     }
 
@@ -146,6 +145,20 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
             return;
 
         msgNoReadNum = msgNoReadNum - n;
+
+        if (msgNoReadNum > 0){
+            txt_msg.setText(msgNoReadNum + "");
+            txt_msg.setVisibility(View.VISIBLE);
+        }else{
+            txt_msg.setVisibility(View.GONE);
+        }
+    }
+
+    public static void setNewMsgNoRead(int n){
+        if (txt_msg == null)
+            return;
+
+        msgNoReadNum = n;
 
         if (msgNoReadNum > 0){
             txt_msg.setText(msgNoReadNum + "");
@@ -209,6 +222,10 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
         }
     }
 
+    public static void setChatNoReadNum(int n){
+        chatNoReadNum = n;
+    }
+
     /**
      * 每次onRestart后都要查询IM消息
      */
@@ -220,6 +237,7 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
         chatNoReadNum = 0;
         txt_chat = null;
         txt_msg = null;
+        Log.i("niyuanjie","CenterActivity onDestroy");
     }
 
     @Override

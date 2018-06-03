@@ -32,6 +32,7 @@ public class BaseNoStatusActivity extends AutoLayoutActivity {
         //禁止自动弹出软键盘
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         baseActivityManager = MyActivityManager.getDestoryed();
+        baseActivityManager.addActivityToList(this);
     }
 
     @Override
@@ -60,6 +61,7 @@ public class BaseNoStatusActivity extends AutoLayoutActivity {
     protected void onDestroy() {
         super.onDestroy();
         baseActivityManager.removeActivityFromUserMap(getClass().getSimpleName());
+        baseActivityManager.removeFromList(this);
     }
 
     protected boolean isAppOnForeground() {

@@ -11,9 +11,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.DialogConfirm;
 import com.sayhellototheworld.littlewatermelon.graduation.customwidget.LiTopBar;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
-import com.sayhellototheworld.littlewatermelon.graduation.presenter.center_plaza.ControlUserFragment;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.BaseSlideBcakStatusActivity;
-import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.HomePageFragment;
 
 public class UserSettingActivity extends BaseSlideBcakStatusActivity implements View.OnClickListener {
 
@@ -21,18 +19,14 @@ public class UserSettingActivity extends BaseSlideBcakStatusActivity implements 
     private Button button_login;
     private RelativeLayout ll_change_ps;
 
+    private boolean loginOutIng = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_user_setting);
         super.onCreate(savedInstanceState);
-//        init();
     }
 
-//    public void init() {
-//        initWidget();
-//        initParam();
-//        initShow();
-//    }
 
     @Override
     protected void initWidget() {
@@ -61,6 +55,8 @@ public class UserSettingActivity extends BaseSlideBcakStatusActivity implements 
 
     @Override
     public void onClick(View v) {
+        if (loginOutIng)
+            return;
         switch (v.getId()) {
             case R.id.activity_user_setting_loginOutButton:
                 loginOut();
@@ -80,12 +76,12 @@ public class UserSettingActivity extends BaseSlideBcakStatusActivity implements 
 
             @Override
             public void ok() {
+                loginOutIng = true;
                 BmobManageUser.loginOutUser();
 
-                ControlUserFragment.syncUserFragment();
-                HomePageFragment.syncHomePageFragment();
-                LoginActivity.startLoginActivity(UserSettingActivity.this);
-                finish();
+//                ControlUserFragment.syncUserFragment();
+//                HomePageFragment.syncHomePageFragment();
+                LoginActivity.startLoginActivityWithLoginOut(UserSettingActivity.this);
             }
         }).setMargin(60)
                 .setOutCancel(false)

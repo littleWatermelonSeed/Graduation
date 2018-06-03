@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobMessageSendListener;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.CenterActivity;
 
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
@@ -79,6 +80,8 @@ public class IMManager {
                     disConnectIM();
                 }else if (status == ConnectionStatus.CONNECTED){
                     updateIMUser(user);
+                    CenterActivity.setChatNoReadNum((int) BmobIM.getInstance().getAllUnReadCount());
+                    CenterActivity.setNewChatNoRead((int) BmobIM.getInstance().getAllUnReadCount());
                 }
             }
         });

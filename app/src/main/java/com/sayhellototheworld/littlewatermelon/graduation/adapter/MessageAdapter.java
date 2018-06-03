@@ -148,6 +148,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             } else if (type == MessageFragment.MESSAGE_TYPE_REPAIRS) {
                 repairClick(position);
             }
+            CenterActivity.setReduceMsgNoRead(noReadNum[position]);
         }
     }
 

@@ -65,6 +65,7 @@ public abstract class BaseStatusActivity extends AutoLayoutActivity {
             tintManager.setStatusBarTintResource(R.color.white1);//通知栏所需颜色
         }
         baseActivityManager = MyActivityManager.getDestoryed();
+        baseActivityManager.addActivityToList(this);
     }
 
     protected SystemBarTintManager getTintManager() {
@@ -113,6 +114,7 @@ public abstract class BaseStatusActivity extends AutoLayoutActivity {
     protected void onDestroy() {
         super.onDestroy();
         baseActivityManager.removeActivityFromUserMap(getClass().getSimpleName());
+        baseActivityManager.removeFromList(this);
     }
 
     protected boolean isAppOnForeground() {

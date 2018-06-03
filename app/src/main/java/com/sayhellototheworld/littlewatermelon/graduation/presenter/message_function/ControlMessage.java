@@ -15,6 +15,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.QueryCountListener;
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.CenterActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.MessageFragment;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -39,7 +40,7 @@ public class ControlMessage implements OnRefreshListener{
     private int num;
     private MessageAdapter adapter;
     private boolean refreshIng = false;
-
+    private int totalNoReadNum = 0;
 
     public ControlMessage(Context context,int userType,SmartRefreshLayout refreshLayout,RecyclerView recyclerView){
         this.context = context;
@@ -74,10 +75,6 @@ public class ControlMessage implements OnRefreshListener{
         }
     }
 
-    public int[] getNoReadNum(){
-        return noReadNum;
-    }
-
     private void getStudentNoReadNum(){
         commonNoReadNum();
         getSBindNoReadNum();
@@ -105,6 +102,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageLostComment.getManager().queryNoReadCount(user, new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
+                totalNoReadNum = totalNoReadNum + integer;
                 noReadNum[0] = integer;
                 addNum(true);
                 Log.i("niyuanjie","失物招领消息数量 = " + integer);
@@ -122,6 +120,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageFleaComment.getManager().queryNoReadCount(user, new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
+                totalNoReadNum = totalNoReadNum + integer;
                 noReadNum[1] = integer;
                 addNum(true);
                 Log.i("niyuanjie","跳蚤市场消息数量 = " + integer);
@@ -139,6 +138,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageResourceComment.getManager().queryNoReadCount(user, new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
+                totalNoReadNum = totalNoReadNum + integer;
                 noReadNum[2] = integer;
                 addNum(true);
                 Log.i("niyuanjie","资源共享消息数量 = " + integer);
@@ -156,6 +156,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageForumComment.getManager().queryNoReadCount(new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
+                totalNoReadNum = totalNoReadNum + integer;
                 noReadNum[3] = integer;
                 addNum(true);
                 Log.i("niyuanjie","同学圈消息数量 = " + integer);
@@ -173,6 +174,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageRequestFriend.getManager().queryFriendNoReadCount(BmobManageUser.getCurrentUser(),new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
+                totalNoReadNum = totalNoReadNum + integer;
                 noReadNum[4] = integer;
                 addNum(true);
                 Log.i("niyuanjie","同学圈消息数量 = " + integer);
@@ -190,6 +192,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageRequestFriend.getManager().queryUserNoReadCount(BmobManageUser.getCurrentUser(),new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
+                totalNoReadNum = totalNoReadNum + integer;
                 noReadNum[5] = integer;
                 addNum(true);
                 Log.i("niyuanjie","同学圈消息数量 = " + integer);
@@ -207,6 +210,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageTeacher.getManager().querySNoReadCount(user, new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
+                totalNoReadNum = totalNoReadNum + integer;
                 noReadNum[6] = integer;
                 addNum(true);
                 Log.i("niyuanjie","学生绑定消息数量 = " + integer);
@@ -224,6 +228,7 @@ public class ControlMessage implements OnRefreshListener{
         BmobManageTeacher.getManager().queryTNoReadCount(user, new QueryCountListener() {
             @Override
             public void queryCountSuc(Integer integer) {
+                totalNoReadNum = totalNoReadNum + integer;
                 noReadNum[6] = integer;
                 addNum(true);
                 Log.i("niyuanjie","老师绑定消息数量 = " + integer);
@@ -254,6 +259,7 @@ public class ControlMessage implements OnRefreshListener{
                 finishSmart(success);
                 adapter = new MessageAdapter(context,userType,noReadNum, refreshLayout);
                 recyclerView.setAdapter(adapter);
+                CenterActivity.setNewMsgNoRead(totalNoReadNum);
                 Log.i("niyuanjie","所有信息查询完成 当前数量 = " + nowNum);
             }
         }
