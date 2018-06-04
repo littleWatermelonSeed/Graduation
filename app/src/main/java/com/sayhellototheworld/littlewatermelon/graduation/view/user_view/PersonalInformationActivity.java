@@ -30,6 +30,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.GetFil
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.ManageFile;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.ShowCurUserInfo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManage_interface.ViUpdateUserCoDo;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.center_plaza.ControlUserFragment;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.user_manage.ControlUpdateUser;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.PictureUtil;
@@ -408,6 +409,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         if (headPortraitPath.exists()) {
             headPortraitPath.delete();
         }
+        ControlUserFragment.syncUserFragment();
     }
 
     @Override
