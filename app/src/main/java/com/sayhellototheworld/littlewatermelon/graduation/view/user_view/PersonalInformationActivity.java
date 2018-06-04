@@ -81,6 +81,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
     private MyUserBean mUserBean;
 
     private BmobFile headPic = null;
+    private boolean afterRegister;
     private boolean chooseSchool = false;
 
     @Override
@@ -144,7 +145,8 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
         sex = "男";
         mUserBean = new MyUserBean();
         baseActivityManager.addActivityToList(this);
-        vud = new ControlUpdateUser(this, this);
+        afterRegister = getIntent().getBooleanExtra("afterRegister",false);
+        vud = new ControlUpdateUser(this, this,afterRegister);
         baseActivityManager.addActivityToUserMap(this, getClass().getSimpleName());
     }
 
@@ -278,6 +280,12 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
 
     public static void startPersonalInformationActivity(final Context context) {
         context.startActivity(new Intent(context, PersonalInformationActivity.class));
+    }
+
+    public static void startAfterRegisterActivity(final Context context) {
+        Intent intent = new Intent(context, PersonalInformationActivity.class);
+        intent.putExtra("afterRegister",true);
+        context.startActivity(intent);
     }
 
     @Override

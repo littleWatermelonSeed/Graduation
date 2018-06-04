@@ -113,6 +113,7 @@ public class ChatActivity extends BaseStatusActivity implements View.OnClickList
         controlChat.updateLocalCache();
         controlChat.unBindAdapter();
         nowChatFriendID = null;
+        controlChat.updateMsgStatue();
     }
 
     public static void go2Activity(Context context,String friendID,String friendHeadUrl,String userName) {

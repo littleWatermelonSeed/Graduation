@@ -211,4 +211,13 @@ public class ChatMessageAdapter  extends RecyclerView.Adapter<ChatMessageAdapter
         recyclerView.scrollToPosition(data.size() - 1);
     }
 
+    public void updateMsgStatue(){
+        for (BmobIMMessage f:data){
+            if (f.getSendStatus() == BmobIMSendStatus.SENDING.getStatus()){
+                f.setSendStatus(BmobIMSendStatus.SENT.getStatus());
+                f.update();
+            }
+        }
+    }
+
 }

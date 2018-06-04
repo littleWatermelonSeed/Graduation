@@ -82,7 +82,8 @@
 
         <activity android:name=".SDriverActivity">
         </activity>
-        <activity android:name=".view.center_activity.CenterActivity">
+        <activity android:name=".view.center_activity.CenterActivity"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".view.user_view.LoginActivity"

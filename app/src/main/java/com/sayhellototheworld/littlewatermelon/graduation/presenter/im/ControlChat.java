@@ -156,4 +156,8 @@ public class ControlChat implements BmobMessageSendListener,OnRefreshListener{
         BmobIM.getInstance().deleteConversation(conversationEntrance);
     }
 
+    public void updateMsgStatue(){
+        adapter.updateMsgStatue();
+    }
+
 }

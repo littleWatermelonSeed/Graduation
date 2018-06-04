@@ -80,8 +80,8 @@ public class IMManager {
                     disConnectIM();
                 }else if (status == ConnectionStatus.CONNECTED){
                     updateIMUser(user);
-                    CenterActivity.setChatNoReadNum((int) BmobIM.getInstance().getAllUnReadCount());
                     CenterActivity.setNewChatNoRead((int) BmobIM.getInstance().getAllUnReadCount());
+                    CenterActivity.setChatNoReadNum((int) BmobIM.getInstance().getAllUnReadCount());
                 }
             }
         });

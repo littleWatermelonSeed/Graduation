@@ -1,5 +1,6 @@
 package com.sayhellototheworld.littlewatermelon.graduation.presenter.user_manage;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.presenter.center_plaza
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.MyActivityManager;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.CenterActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.ForumFragment;
 
 import cn.bmob.v3.datatype.BmobFile;
@@ -35,12 +37,14 @@ public class ControlUpdateUser implements ViUpdateUserCoDo, UserUpdateDo {
     private BmobManageUser userManager;
     private MyUserBean userBean = null;
     private BaseNiceDialog dialog;
+    private boolean afterRegister;
 
     private final Handler handler;
 
-    public ControlUpdateUser(Context context, ShowCurUserInfo cu) {
+    public ControlUpdateUser(Context context, ShowCurUserInfo cu,boolean afterRegister) {
         mContext = context;
         this.cu = cu;
+        this.afterRegister = afterRegister;
         userManager = new BmobManageUser(mContext);
         userBean = userManager.getCurrentUser();
 
@@ -81,9 +85,16 @@ public class ControlUpdateUser implements ViUpdateUserCoDo, UserUpdateDo {
     @Override
     public void updateSuccess() {
         DialogLoading.dismissLoadingDialog(handler,dialog,"个人资料更新成功", DialogLoading.MSG_SUCCESS);
-        MyActivityManager.getDestoryed().destroyedListActivity();
+
         ControlUserFragment.syncUserFragment();
         ForumFragment.recreateView();
+
+        if (afterRegister){
+            MyActivityManager.getDestoryed().destroyedListActivity();
+            CenterActivity.go2Activity(mContext,0);
+        }else {
+            ((Activity)mContext).finish();
+        }
     }
 
     @Override
