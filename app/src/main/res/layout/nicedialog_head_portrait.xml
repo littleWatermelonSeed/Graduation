@@ -12,12 +12,14 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:text="拍       照"
-        android:background="@drawable/nicedialog_head_portrait_text_background"/>
+        android:background="@drawable/nicedialog_head_portrait_text_background"
+        android:visibility="gone"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:background="@color/gray"/>
+        android:background="@color/gray"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/nicedialog_head_portrait_chooseDFromAlbum"

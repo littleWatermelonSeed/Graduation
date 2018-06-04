@@ -41,14 +41,7 @@ public class ForgetPasswordNextActivity extends BaseSlideBcakStatusActivity impl
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_forget_password_next);
         super.onCreate(savedInstanceState);
-//        init();
     }
-
-//    public void init() {
-//        initWidget();
-//        initParam();
-//        initShow();
-//    }
 
     @Override
     protected void initWidget() {

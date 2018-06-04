@@ -271,7 +271,7 @@ public class PersonalInformationActivity extends BaseStatusActivity implements
 
             @Override
             public void ok() {
-                baseActivityManager.destroyedListActivity();
+                finish();
             }
         }).setMargin(60)
                 .setOutCancel(false)

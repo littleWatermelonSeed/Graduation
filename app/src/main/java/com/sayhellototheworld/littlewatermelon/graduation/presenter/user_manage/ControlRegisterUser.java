@@ -22,8 +22,7 @@ import com.sayhellototheworld.littlewatermelon.graduation.my_interface.userManag
 import com.sayhellototheworld.littlewatermelon.graduation.util.BmobExceptionUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.MyToastUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.MyActivityManager;
-import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment.UserFragment;
-import com.sayhellototheworld.littlewatermelon.graduation.view.user_view.PersonalInformationActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.CenterActivity;
 
 import cn.bmob.v3.exception.BmobException;
 
@@ -121,9 +120,9 @@ public class ControlRegisterUser implements ViRegisterUserCoDo,UserGetKeyCodeDo,
         MySharedPreferences.getInstance().saveMessage(MySharedPreferences.KEY_USER_ID,userName);
         MySharedPreferences.getInstance().saveMessage(MySharedPreferences.KEY_USER_PASSWORD,userPassword);
         MySharedPreferences.getInstance().saveMessage(MySharedPreferences.KEY_USER_LOGIN_STATUS,true);
-        UserFragment.setLogin(true);
+//        UserFragment.setLogin(true);
         MyActivityManager.getDestoryed().destroyedListActivity();
-        PersonalInformationActivity.startPersonalInformationActivity(mContext);
+        CenterActivity.go2Activity(mContext,0);
     }
 
     @Override

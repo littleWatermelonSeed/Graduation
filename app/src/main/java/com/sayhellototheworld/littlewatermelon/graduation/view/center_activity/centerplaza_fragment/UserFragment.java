@@ -1,7 +1,7 @@
 package com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.centerplaza_fragment;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +24,19 @@ import com.othershe.nicedialog.ViewConvertListener;
 import com.othershe.nicedialog.ViewHolder;
 import com.sayhellototheworld.littlewatermelon.graduation.R;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
+import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.data.local_file.ManageFile;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.BaseActivityDo;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.base_interface.ShowCurUserInfo;
 import com.sayhellototheworld.littlewatermelon.graduation.presenter.center_plaza.ControlUserFragment;
+import com.sayhellototheworld.littlewatermelon.graduation.presenter.forum_function.ControlForum;
 import com.sayhellototheworld.littlewatermelon.graduation.util.LayoutBackgroundUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.PictureUtil;
 import com.sayhellototheworld.littlewatermelon.graduation.util.pictureselect.activity.ShowPictureActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.forum_function_view.OwnForumActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.flea_mark.FleaMarketActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.lost_and_find.LostAndFindActivity;
+import com.sayhellototheworld.littlewatermelon.graduation.view.home_page_function_view.resource_share.ResourceSharingActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.user_view.LoginActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.user_view.PersonalInformationActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.user_view.RegisterUserActivity;
@@ -53,8 +59,21 @@ public class UserFragment extends Fragment implements BaseActivityDo, View.OnCli
     private LinearLayout registerAndLoginLayout;
     private Button button_register;
     private Button button_login;
-    private RelativeLayout mRelativeLayout_setting;
+    private ImageView img_setting;
     private RelativeLayout mRelativeLayout_setSkin;
+    private RelativeLayout mRelativeLayout_setInformation;
+    private ImageView img_forum;
+    private ImageView img_lost;
+    private ImageView img_flea;
+    private ImageView img_share;
+    private TextView txt_school_name;
+    private TextView txt_real_name;
+    private TextView txt_nick_name;
+    private TextView txt_birthday;
+    private TextView txt_local;
+    private TextView txt_home;
+    private TextView txt_email;
+    private TextView txt_id;
 
     private ControlUserFragment cuf;
 
@@ -92,8 +111,10 @@ public class UserFragment extends Fragment implements BaseActivityDo, View.OnCli
         imageView_userSex = (ImageView) mView.findViewById(R.id.fragment_user_sex);
         imageView_userSex.setOnClickListener(this);
         parentLayout = (AutoLinearLayout) mView.findViewById(R.id.fragment_user_informationBackground);
-        mRelativeLayout_setting = (RelativeLayout) mView.findViewById(R.id.fragment_user_setting);
-        mRelativeLayout_setting.setOnClickListener(this);
+//        mRelativeLayout_setting = (RelativeLayout) mView.findViewById(R.id.fragment_user_setting);
+//        mRelativeLayout_setting.setOnClickListener(this);
+        img_setting = (ImageView) mView.findViewById(R.id.fragment_user_settingIcon);
+        img_setting.setOnClickListener(this);
         mRelativeLayout_setSkin = (RelativeLayout) mView.findViewById(R.id.fragment_user_setSkin);
         mRelativeLayout_setSkin.setOnClickListener(this);
         itemScrollView = (ScrollView) mView.findViewById(R.id.fragment_user_ItemScrollView);
@@ -102,6 +123,25 @@ public class UserFragment extends Fragment implements BaseActivityDo, View.OnCli
         button_login.setOnClickListener(this);
         button_register = (Button) mView.findViewById(R.id.fragment_user_registerButton);
         button_register.setOnClickListener(this);
+
+        mRelativeLayout_setInformation = (RelativeLayout) mView.findViewById(R.id.fragment_user_information_setting);
+        mRelativeLayout_setInformation.setOnClickListener(this);
+        img_forum = (ImageView)mView.findViewById(R.id.fragment_user_forum_icon);
+        img_forum.setOnClickListener(this);
+        img_lost = (ImageView) mView.findViewById(R.id.fragment_user_lost_and_find_icon);
+        img_lost.setOnClickListener(this);
+        img_flea = (ImageView) mView.findViewById(R.id.fragment_user_flea_icon);
+        img_flea.setOnClickListener(this);
+        img_share = (ImageView) mView.findViewById(R.id.fragment_user_share_icon);
+        img_share.setOnClickListener(this);
+        txt_school_name = (TextView) mView.findViewById(R.id.fragment_user_school_name);
+        txt_real_name = (TextView) mView.findViewById(R.id.fragment_user_real_name);
+        txt_nick_name = (TextView) mView.findViewById(R.id.fragment_user_nickname);
+        txt_birthday = (TextView) mView.findViewById(R.id.fragment_user_birthday);
+        txt_local = (TextView) mView.findViewById(R.id.fragment_user_location);
+        txt_home = (TextView) mView.findViewById(R.id.fragment_user_home);
+        txt_email = (TextView) mView.findViewById(R.id.fragment_user_email);
+        txt_id = (TextView) mView.findViewById(R.id.fragment_user_id);
     }
 
     @Override
@@ -123,12 +163,13 @@ public class UserFragment extends Fragment implements BaseActivityDo, View.OnCli
             case R.id.fragment_user_introductionContent:
             case R.id.fragment_user_introductionPen:
             case R.id.fragment_user_sex:
+            case R.id.fragment_user_information_setting:
                 informationClick();
                 break;
             case R.id.fragment_user_setSkin:
                 setInforBackground();
                 break;
-            case R.id.fragment_user_setting:
+            case R.id.fragment_user_settingIcon:
                 UserSettingActivity.startLoginActivity(getActivity());
                 break;
             case R.id.fragment_user_loginButton:
@@ -136,6 +177,18 @@ public class UserFragment extends Fragment implements BaseActivityDo, View.OnCli
                 break;
             case R.id.fragment_user_registerButton:
                 RegisterUserActivity.startLoginActivity(getActivity());
+                break;
+            case R.id.fragment_user_forum_icon:
+                OwnForumActivity.go2Activity(getContext(), ControlForum.FORUM_TYPE_OWN, BmobManageUser.getCurrentUser().getObjectId());
+                break;
+            case R.id.fragment_user_lost_and_find_icon:
+                LostAndFindActivity.go2Activity(getContext(),LostAndFindActivity.LOST_AND_FIND_TYPE_OWN);
+                break;
+            case R.id.fragment_user_flea_icon:
+                FleaMarketActivity.go2Activity(getContext(),FleaMarketActivity.TYPE_FLEA_MARK_OWN);
+                break;
+            case R.id.fragment_user_share_icon:
+                ResourceSharingActivity.go2Activity(getContext(),ResourceSharingActivity.TYPE_RESOURCE_SHARE_OWN);
                 break;
 
         }
@@ -285,6 +338,16 @@ public class UserFragment extends Fragment implements BaseActivityDo, View.OnCli
                         }
                     });
         }
+
+        txt_school_name.setText(userBean.getSchoolName());
+        txt_real_name.setText(userBean.getRealName());
+        txt_nick_name.setText(userBean.getNickName());
+        txt_birthday.setText(userBean.getBirthday());
+        txt_local.setText(userBean.getLocation());
+        txt_home.setText(userBean.getHometown());
+        txt_email.setText(userBean.getMyEmail());
+        txt_id.setText(userBean.getObjectId());
+
         login = true;
     }
 

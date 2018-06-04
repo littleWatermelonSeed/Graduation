@@ -9,11 +9,29 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/fragment_user_setting"
+        android:layout_width="match_parent"
+        android:layout_height="85px"
+        android:layout_marginTop="60px"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fragment_user_settingIcon"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="25px"
+            android:src="@drawable/setting"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/fragment_user_headPortrait"
         android:layout_width="180px"
         android:layout_height="180px"
-        android:layout_marginTop="180px"
+        android:layout_marginTop="50px"
         android:src="@drawable/head_log1"
         app:civ_border_color="@color/white1"
         app:civ_border_width="1dp"/>
@@ -113,7 +131,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="25px"
-        android:background="@color/wuse5"
         android:visibility="visible">
 
         <LinearLayout
@@ -121,110 +138,337 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/fragment_user_setSkin"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="85px"
-                android:layout_marginTop="30px"
-                android:background="@color/wuse6"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@color/wuse6">
 
-                <ImageView
-                    android:id="@+id/fragment_user_setSkinIcon"
-                    android:layout_width="70px"
-                    android:layout_height="70px"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10px"
-                    android:src="@drawable/skin_icon"/>
+                <RelativeLayout
+                    android:id="@+id/fragment_user_setSkin"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20px"
-                    android:layout_toRightOf="@+id/fragment_user_setSkinIcon"
-                    android:text="更换用户背景"
-                    android:textSize="30px"/>
+                    <ImageView
+                        android:id="@+id/fragment_user_setSkinIcon"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10px"
+                        android:src="@drawable/skin_icon"/>
 
-                <ImageView
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10px"
-                    android:layout_marginRight="15px"
-                    android:src="@drawable/right_back"/>
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20px"
+                        android:layout_toRightOf="@+id/fragment_user_setSkinIcon"
+                        android:text="更换背景"
+                        android:textSize="30px"/>
+                </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/fragment_user_setting"
+                <RelativeLayout
+                    android:id="@+id/fragment_user_information_setting"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginTop="1px"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/fragment_user_information_setSkinIcon"
+                        android:layout_width="45px"
+                        android:layout_height="45px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10px"
+                        android:src="@drawable/user_information_icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20px"
+                        android:layout_toRightOf="@+id/fragment_user_information_setSkinIcon"
+                        android:text="修改个人信息"
+                        android:textSize="30px"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_user_function_body"
+                android:layout_width="match_parent"
+                android:layout_height="150px"
+                android:orientation="horizontal"
+                android:background="@color/wuse7">
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/fragment_user_forum_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="90px"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/forum"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="我的同学圈"
+                        android:textSize="20px"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/fragment_user_lost_and_find_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="90px"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/lost_and_find"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="我的失物招领"
+                        android:textSize="20px"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/fragment_user_flea_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="90px"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/flea_market"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="我的跳蚤市场"
+                        android:textSize="20px"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/fragment_user_share_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="90px"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/resource_sharing"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="我的资源"
+                        android:textSize="20px"/>
+                </LinearLayout>
+            </LinearLayout>
+            
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="85px"
-                android:layout_marginTop="30px"
-                android:background="@color/wuse6"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/fragment_user_settingIcon"
-                    android:layout_width="70px"
-                    android:layout_height="70px"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10px"
-                    android:src="@drawable/setting"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20px"
-                    android:layout_toRightOf="@+id/fragment_user_settingIcon"
-                    android:text="设置"
-                    android:textSize="30px"/>
-
-                <ImageView
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10px"
-                    android:layout_marginRight="15px"
-                    android:src="@drawable/right_back"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/fragment_user_bug"
-                android:layout_width="match_parent"
-                android:layout_height="85px"
+                android:background="@color/wuse7"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_marginTop="1px"
-                android:background="@color/wuse6"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/fragment_user_bugIcon"
-                    android:layout_width="70px"
-                    android:layout_height="70px"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10px"
-                    android:src="@drawable/bug"/>
+                android:paddingLeft="20px"
+                android:paddingRight="20px">
 
                 <TextView
+                    android:layout_width="150px"
+                    android:layout_height="wrap_content"
+                    android:text="学校:"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_school_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20px"
-                    android:layout_toRightOf="@+id/fragment_user_bugIcon"
-                    android:text="提交BUG"
-                    android:textSize="30px"/>
+                    android:textIsSelectable="true"/>
+            </LinearLayout>
 
-                <ImageView
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10px"
-                    android:layout_marginRight="15px"
-                    android:src="@drawable/right_back"/>
-            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:background="@color/wuse7"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px">
+
+                <TextView
+                    android:layout_width="150px"
+                    android:layout_height="wrap_content"
+                    android:text="真实姓名:"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_real_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:background="@color/wuse7"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px">
+
+                <TextView
+                    android:layout_width="150px"
+                    android:layout_height="wrap_content"
+                    android:text="昵称:"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:background="@color/wuse7"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px">
+
+                <TextView
+                    android:layout_width="150px"
+                    android:layout_height="wrap_content"
+                    android:text="生日:"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:background="@color/wuse7"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px">
+
+                <TextView
+                    android:layout_width="150px"
+                    android:layout_height="wrap_content"
+                    android:text="所在地:"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:background="@color/wuse7"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px">
+
+                <TextView
+                    android:layout_width="150px"
+                    android:layout_height="wrap_content"
+                    android:text="家乡:"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:background="@color/wuse7"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px">
+
+                <TextView
+                    android:layout_width="150px"
+                    android:layout_height="wrap_content"
+                    android:text="邮箱:"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85px"
+                android:background="@color/wuse7"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px">
+
+                <TextView
+                    android:layout_width="150px"
+                    android:layout_height="wrap_content"
+                    android:text="我的ID:"/>
+
+                <TextView
+                    android:id="@+id/fragment_user_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </com.zhy.autolayout.AutoLinearLayout>
