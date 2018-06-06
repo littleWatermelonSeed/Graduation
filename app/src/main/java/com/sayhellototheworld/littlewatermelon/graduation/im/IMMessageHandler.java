@@ -1,11 +1,14 @@
 package com.sayhellototheworld.littlewatermelon.graduation.im;
 
+import android.content.Intent;
 import android.util.Log;
 
+import com.sayhellototheworld.littlewatermelon.graduation.SchoolApp;
 import com.sayhellototheworld.littlewatermelon.graduation.adapter.ChatMessageAdapter;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.bean.MyUserBean;
 import com.sayhellototheworld.littlewatermelon.graduation.data.bmom.data_manager.BmobManageUser;
 import com.sayhellototheworld.littlewatermelon.graduation.my_interface.bmob_interface.BmobQueryDone;
+import com.sayhellototheworld.littlewatermelon.graduation.view.base_activity.MyActivityManager;
 import com.sayhellototheworld.littlewatermelon.graduation.view.center_activity.CenterActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.im_view.ChatActivity;
 import com.sayhellototheworld.littlewatermelon.graduation.view.im_view.ChatFragment;
@@ -22,6 +25,7 @@ import cn.bmob.newim.core.BmobIMClient;
 import cn.bmob.newim.event.MessageEvent;
 import cn.bmob.newim.event.OfflineMessageEvent;
 import cn.bmob.newim.listener.BmobIMMessageHandler;
+import cn.bmob.newim.notification.BmobNotificationManager;
 import cn.bmob.v3.exception.BmobException;
 
 /**
@@ -52,6 +56,12 @@ public class IMMessageHandler extends BmobIMMessageHandler {
             CenterActivity.setAddChatNoRead(1);
         } else {
             chatFragment.asyncChatList(event,chating);
+        }
+
+        if (chatAdapters.size() <= 0){
+            CenterActivity.setShowIM(true);
+            Intent intent = new Intent(MyActivityManager.getDestoryed().getTopActivity(),CenterActivity.class);
+            BmobNotificationManager.getInstance(SchoolApp.getAppContext()).showNotification(event,intent);
         }
     }
 

@@ -27,6 +27,7 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
     private static int chatNoReadNum = 0;
     private static TextView txt_msg;
     private static TextView txt_chat;
+    private static boolean showIM = false;
 
     private Class fragmentArr[] = {HomePageFragment.class, ForumFragment.class, MessageFragment.class, IMFragment.class, UserFragment.class};
     private String txtArr[] = {"首页", "同学圈", "消息", "聊天", "我的"};
@@ -101,6 +102,7 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
             case "首页":
                 tintManager.setStatusBarAlpha(1f);
                 tintManager.setStatusBarTintResource(R.color.home_page_top_bar);
+                HomePageFragment.syncHomePageFragmentAnno();
                 break;
             case "同学圈":
                 tintManager.setStatusBarAlpha(1f);
@@ -252,6 +254,19 @@ public class CenterActivity extends BaseStatusActivity implements TabHost.OnTabC
                 }
             }
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (showIM){
+            showIM = false;
+            mTabHost.setCurrentTab(3);
+        }
+    }
+
+    public static void setShowIM(boolean s){
+        showIM = s;
     }
 
 }

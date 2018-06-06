@@ -45,6 +45,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
     private static boolean show = false;
     private boolean login = false;
     private boolean bindScool = false;
+    private boolean annFirstShow = true;
     private static HomePageFragment homePageFragment;
     private MyUserBean teacher;
 
@@ -119,7 +120,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    private void showAnnouncement(){
+    public void showAnnouncement(){
         BmobManageTeacher.getManager().queryBindedByStudent(BmobManageUser.getCurrentUser(), new BmobQueryDone<TeacherBean>() {
             @Override
             public void querySuccess(List<TeacherBean> data) {
@@ -129,9 +130,18 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
                         @Override
                         public void querySuccess(List<AnnouncementBean> data) {
                             if (data.size() > 0){
-                                ll_announcement_body.setVisibility(View.VISIBLE);
-                                txt_announcement_title.setText(data.get(0).getTitle());
-                                txt_announcement_content.setText(data.get(0).getContent());
+                                if (ll_announcement_body.getVisibility() == View.GONE){
+                                    ll_announcement_body.setVisibility(View.VISIBLE);
+                                }
+                                if (annFirstShow){
+                                    txt_announcement_title.setText(data.get(0).getTitle());
+                                    txt_announcement_content.setText(data.get(0).getContent());
+                                    annFirstShow = false;
+                                }else if (!data.get(0).getTitle().equalsIgnoreCase(txt_announcement_title.getText().toString()) &&
+                                        !data.get(0).getContent().equalsIgnoreCase(txt_announcement_content.getText().toString())){
+                                    txt_announcement_title.setText(data.get(0).getTitle());
+                                    txt_announcement_content.setText(data.get(0).getContent());
+                                }
                             }
                         }
 
@@ -192,6 +202,15 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
         userBean = BmobManageUser.getCurrentUser();
         homePageFragment.showTopbar(true);
         homePageFragment.showRecycleView(true);
+    }
+
+    public static void syncHomePageFragmentAnno(){
+        if (!show)
+            return;
+        userBean = BmobManageUser.getCurrentUser();
+        if (userBean.getRole().equalsIgnoreCase("s")){
+            homePageFragment.showAnnouncement();
+        }
     }
 
 }
